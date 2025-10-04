@@ -28,7 +28,7 @@ export const Hero = memo(() => {
           loop
           muted
           playsInline
-          className="w-full h-full object-cover opacity-20"
+          className="w-full h-full object-cover opacity-30"
         >
           <source src="/hero-video.mp4" type="video/mp4" />
           {/* Fallback image if video doesn't load */}
