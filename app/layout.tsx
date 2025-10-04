@@ -16,9 +16,9 @@ const roboto = Roboto({
 
 export const metadata: Metadata = {
   title:
-    "elpernilet - Servicios de corte de jamón y personal de catering en España",
+    "Servicio de cortador de jamón para bodas y eventos en Barcelona | elpernilet",
   description:
-    "Servicios premium de catering en España: cortador de jamón ibérico en vivo, barra de bebidas y aperitivos gourmet, y camareros profesionales.",
+    "Maestros cortadores de jamón, barra de bebidas y camareros para bodas y eventos. Servicio en Barcelona y resto de España. Pide presupuesto en 24h.",
   keywords: [
     "catering España",
     "cortador de jamón",
@@ -93,7 +93,7 @@ export default function RootLayout({
         {/* Meta tags explícitos para Lighthouse */}
         <meta
           name="description"
-          content="Servicios premium de catering en España: cortador de jamón ibérico en vivo, barra de bebidas y aperitivos gourmet, y camareros profesionales."
+          content="Maestros cortadores de jamón, barra de bebidas y camareros para bodas y eventos. Servicio en Barcelona y resto de España. Pide presupuesto en 24h."
         />
         <meta
           name="keywords"
