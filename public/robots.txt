@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Bloquear rutas de administración
+Disallow: /admin/
+Disallow: /admin/*
+
+# Bloquear rutas de autenticación
+Disallow: /api/auth/
+Disallow: /api/auth/*
+
+# Bloquear archivos específicos de login/logout
+Disallow: /login
+Disallow: /logout
+
+# Sitemap
+Sitemap: https://elpernilet.com/sitemap.xml
