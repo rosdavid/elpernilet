@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     siteName: "elpernilet",
     images: [
       {
-        url: "/elegant-spanish-event-catering-ham-carving.jpg",
+        url: "/elpernilet-event-image.webp",
         width: 1200,
         height: 630,
         alt: "Servicios de catering elpernilet",
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     title: "elpernilet - Servicios premium de catering",
     description:
       "Cortador de jamón en vivo y servicios de catering para eventos",
-    images: ["/elegant-spanish-event-catering-ham-carving.jpg"],
+    images: ["/elpernilet-event-image.webp"],
   },
   robots: {
     index: true,
@@ -126,7 +126,7 @@ export default function RootLayout({
         <meta property="og:site_name" content="elpernilet" />
         <meta
           property="og:image"
-          content="https://elpernilet.com/elegant-spanish-event-catering-ham-carving.jpg"
+          content="https://elpernilet.com/elpernilet-event-image.webp"
         />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -147,15 +147,15 @@ export default function RootLayout({
         />
         <meta
           name="twitter:image"
-          content="https://elpernilet.com/elegant-spanish-event-catering-ham-carving.jpg"
+          content="https://elpernilet.com/elpernilet-event-image.webp"
         />
 
         {/* Preload critical resources */}
         <link
           rel="preload"
-          href="/elegant-spanish-event-catering-ham-carving.jpg"
+          href="/elpernilet-event-image.webp"
           as="image"
-          type="image/jpeg"
+          type="image/webp"
         />
         <link
           rel="preload"
