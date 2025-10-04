@@ -1,5 +1,6 @@
 import { Mail, Phone, MapPin } from "lucide-react";
 import Image from "next/image";
+import { CookieSettingsButton } from "./cookie-settings-button";
 
 export function Footer() {
   return (
@@ -13,7 +14,8 @@ export function Footer() {
                 alt="elpernilet"
                 width={240}
                 height={64}
-                className="h-16 w-auto"
+                className="h-16"
+                style={{ width: "auto" }}
               />
             </div>
             <p className="text-primary-foreground/80 leading-relaxed">
@@ -51,11 +53,40 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-primary-foreground/20 pt-8 text-center text-primary-foreground/60">
-          <p>
-            &copy; {new Date().getFullYear()} elpernilet. Todos los derechos
-            reservados.
-          </p>
+        <div className="border-t border-primary-foreground/20 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-primary-foreground/60">
+              &copy; {new Date().getFullYear()} elpernilet. Todos los derechos
+              reservados.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 text-sm text-primary-foreground/60">
+              <a
+                href="/aviso-legal"
+                className="hover:text-primary-foreground transition-colors"
+              >
+                Aviso Legal
+              </a>
+              <a
+                href="/privacidad"
+                className="hover:text-primary-foreground transition-colors"
+              >
+                Privacidad
+              </a>
+              <a
+                href="/cookies"
+                className="hover:text-primary-foreground transition-colors"
+              >
+                Cookies
+              </a>
+              <a
+                href="/terminos"
+                className="hover:text-primary-foreground transition-colors"
+              >
+                Términos
+              </a>
+              <CookieSettingsButton />
+            </div>
+          </div>
         </div>
       </div>
     </footer>

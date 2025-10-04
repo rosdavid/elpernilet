@@ -1,6 +1,7 @@
 // app/layout.tsx
 import type React from "react";
 import type { Metadata } from "next";
+import { CookieBanner } from "@/components/cookie-banner";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Roboto } from "next/font/google";
@@ -153,12 +154,6 @@ export default function RootLayout({
         {/* Preload critical resources */}
         <link
           rel="preload"
-          href="/elpernilet-event-image.webp"
-          as="image"
-          type="image/webp"
-        />
-        <link
-          rel="preload"
           href="/elpernilet-logo.svg"
           as="image"
           type="image/svg+xml"
@@ -227,6 +222,7 @@ export default function RootLayout({
       </head>
       <body className={`${roboto.variable} font-sans`}>
         {children}
+        <CookieBanner />
         <Toaster
           position="top-right"
           expand={true}
