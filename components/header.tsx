@@ -119,6 +119,12 @@ export function Header() {
             >
               Preguntas frecuentes
             </button>
+            <Link
+              href="/blog"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+            >
+              Blog
+            </Link>
             <Button
               onClick={() => navigateToSection("contact")}
               className="bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
@@ -175,6 +181,13 @@ export function Header() {
               >
                 Preguntas frecuentes
               </button>
+              <Link
+                href="/blog"
+                className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2 cursor-pointer"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Blog
+              </Link>
               <Button
                 onClick={() => navigateToSection("contact")}
                 className="bg-primary text-primary-foreground hover:bg-primary/90 w-full cursor-pointer"

@@ -1,6 +1,10 @@
 User-agent: *
 Allow: /
 
+# Promover indexación del blog
+Allow: /blog/
+Allow: /blog/*
+
 # Bloquear rutas de administración
 Disallow: /admin/
 Disallow: /admin/*
@@ -13,5 +17,8 @@ Disallow: /api/auth/*
 Disallow: /login
 Disallow: /logout
 
-# Sitemap
+# Crawl-delay para ser respetuosos
+Crawl-delay: 1
+
+# Sitemaps
 Sitemap: https://elpernilet.com/sitemap.xml

@@ -41,11 +41,18 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold mb-4">Servicios</h4>
+            <h4 className="text-lg font-semibold mb-4">Enlaces Útiles</h4>
             <ul className="space-y-2 text-primary-foreground/80">
+              <li>
+                <a
+                  href="/blog"
+                  className="hover:text-primary-foreground transition-colors"
+                >
+                  Blog
+                </a>
+              </li>
               <li>Cortador de jamón en vivo</li>
               <li>Barra de bebidas y aperitivos</li>
-              <li>Servicio de camareros</li>
               <li>Eventos corporativos</li>
               <li>Eventos privados</li>
             </ul>
