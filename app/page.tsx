@@ -5,6 +5,7 @@ import { About } from "@/components/about";
 import { EventGallery } from "@/components/event-gallery";
 import { OurStory } from "@/components/our-story";
 import { FAQ } from "@/components/faq";
+import { BlogPreview } from "@/components/blog-preview";
 import { ContactForm } from "@/components/contact-form";
 import { Footer } from "@/components/footer";
 
@@ -18,6 +19,7 @@ export default function Home() {
       <EventGallery />
       <OurStory />
       <FAQ />
+      <BlogPreview />
       <ContactForm />
       <Footer />
     </main>
