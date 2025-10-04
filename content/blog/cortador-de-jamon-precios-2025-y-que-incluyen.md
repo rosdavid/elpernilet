@@ -5,7 +5,7 @@ excerpt: "Descubre cuánto cuesta un cortador de jamón en Barcelona en 2025, qu
 author: "elpernilet"
 category: "Guías"
 tags: ["cortador de jamón", "bodas", "eventos", "precios-2025", "tarifas"]
-image: "/evento-privado-1.webp"
+image: "/event-image.webp"
 published: true
 ---
 

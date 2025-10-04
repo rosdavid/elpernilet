@@ -112,9 +112,9 @@ export default function BlogPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Header />
-      <main className="min-h-screen pt-20">
+      <main className="min-h-screen">
         {/* Hero Section */}
-        <section className="py-16 bg-gradient-to-b from-background to-accent/20">
+        <section className="pt-20 pb-12 md:pt-24 md:pb-16 bg-gradient-to-b from-background to-accent/20">
           <div className="w-full max-w-7xl mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6">
@@ -131,7 +131,7 @@ export default function BlogPage() {
 
         {/* Featured Post */}
         {featuredPost && (
-          <section className="py-16">
+          <section className="py-12 md:py-16">
             <div className="w-full max-w-7xl mx-auto px-4">
               <div className="mb-8">
                 <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-2">
@@ -241,7 +241,7 @@ export default function BlogPage() {
 
         {/* Posts Grid */}
         {otherPosts.length > 0 && (
-          <section className="py-16">
+          <section className="py-12 md:py-16">
             <div className="w-full max-w-7xl mx-auto px-4">
               <div className="mb-12">
                 <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-2">
@@ -321,7 +321,7 @@ export default function BlogPage() {
 
         {/* Empty State */}
         {posts.length === 0 && (
-          <section className="py-24">
+          <section className="py-16 md:py-24">
             <div className="w-full max-w-7xl mx-auto px-4 text-center">
               <div className="max-w-md mx-auto">
                 <h2 className="text-2xl font-serif font-bold text-foreground mb-4">
