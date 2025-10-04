@@ -4,6 +4,7 @@ import { Services } from "@/components/services";
 import { About } from "@/components/about";
 import { EventGallery } from "@/components/event-gallery";
 import { OurStory } from "@/components/our-story";
+import { FAQ } from "@/components/faq";
 import { ContactForm } from "@/components/contact-form";
 import { Footer } from "@/components/footer";
 
@@ -16,6 +17,7 @@ export default function Home() {
       <About />
       <EventGallery />
       <OurStory />
+      <FAQ />
       <ContactForm />
       <Footer />
     </main>
