@@ -3,7 +3,7 @@
 export function OurStory() {
   return (
     <section id="our-story" className="py-24 bg-accent/30">
-      <div className="container mx-auto px-4">
+      <div className="w-full max-w-7xl mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Media Content - Image or Video */}
           <div className="relative">

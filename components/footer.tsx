@@ -5,7 +5,7 @@ import { CookieSettingsButton } from "./cookie-settings-button";
 export function Footer() {
   return (
     <footer className="bg-primary text-primary-foreground py-16">
-      <div className="container mx-auto px-4">
+      <div className="w-full max-w-7xl mx-auto px-4">
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           <div>
             <div className="mb-4">
@@ -14,8 +14,7 @@ export function Footer() {
                 alt="elpernilet"
                 width={240}
                 height={64}
-                className="h-16"
-                style={{ width: "auto" }}
+                className="h-16 w-auto"
               />
             </div>
             <p className="text-primary-foreground/80 leading-relaxed">

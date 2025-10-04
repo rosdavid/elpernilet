@@ -33,7 +33,7 @@ export const Hero = memo(() => {
         </video>
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 text-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 text-center">
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif mb-6 text-balance text-foreground">
           Experiencias gastronómicas excepcionales para bodas y eventos
           inolvidables

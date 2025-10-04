@@ -117,7 +117,23 @@
   * {
     @apply border-border outline-ring/50;
   }
+
+  html,
   body {
     @apply bg-background text-foreground;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  /* Fix para headers fijos en móviles */
+  body {
+    position: relative;
+  }
+
+  /* Prevenir bounce scroll en iOS que puede afectar headers fijos */
+  html {
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
   }
 }

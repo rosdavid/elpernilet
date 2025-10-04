@@ -61,21 +61,28 @@ export function Header() {
   }, [pathname]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border">
-      <div className="container mx-auto px-4">
+    <header
+      className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border"
+      style={{
+        position: "fixed",
+        top: 0,
+        transform: "translate3d(0, 0, 0)",
+        willChange: "transform",
+      }}
+    >
+      <div className="w-full max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link
             href="/"
-            className="text-xl font-serif font-semibold text-foreground hover:text-primary transition-colors cursor-pointer"
+            className="text-xl font-serif font-semibold text-foreground hover:text-primary transition-colors cursor-pointer flex-shrink-0"
           >
             <Image
               src="/elpernilet-logo.svg"
               alt="elpernilet"
               width={240}
               height={64}
-              className="h-16"
-              style={{ width: "auto" }}
+              className="h-12 sm:h-16 w-auto"
               priority
             />
           </Link>

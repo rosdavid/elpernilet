@@ -24,7 +24,7 @@ export const About = memo(() => {
   const youtubeVideoId = "CSIkAkGXwfs";
   return (
     <section id="about" className="py-24 md:py-32">
-      <div className="container mx-auto px-4">
+      <div className="w-full max-w-7xl mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif mb-6 text-balance">
