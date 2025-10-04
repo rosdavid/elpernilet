@@ -27,7 +27,7 @@ export const Hero = memo(() => {
           loop
           muted
           playsInline
-          className="w-full h-full object-cover opacity-30"
+          className="w-full h-full object-cover opacity-25"
         >
           <source src="/hero-video.mp4" type="video/mp4" />
         </video>
