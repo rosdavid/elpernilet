@@ -26,11 +26,11 @@ export function Footer() {
             <div className="space-y-3 text-primary-foreground/80">
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5" />
-                <span>+34 931 30 78 32</span>
+                <a href="tel:+34654127391">+34 654 12 73 91</a>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5" />
-                <span>hola@elpernilet.com</span>
+                <a href="mailto:hola@elpernilet.com">hola@elpernilet.com</a>
               </div>
               <div className="flex items-center gap-3">
                 <MapPin className="w-5 h-5" />
