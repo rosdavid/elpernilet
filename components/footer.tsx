@@ -1,5 +1,6 @@
 import { Mail, Phone, MapPin } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { CookieSettingsButton } from "./cookie-settings-button";
 
 export function Footer() {
@@ -44,12 +45,12 @@ export function Footer() {
             <h4 className="text-lg font-semibold mb-4">Enlaces Útiles</h4>
             <ul className="space-y-2 text-primary-foreground/80">
               <li>
-                <a
+                <Link
                   href="/blog"
                   className="hover:text-primary-foreground transition-colors"
                 >
                   Blog
-                </a>
+                </Link>
               </li>
               <li>Cortador de jamón en vivo</li>
               <li>Barra de bebidas y aperitivos</li>
@@ -66,30 +67,30 @@ export function Footer() {
               reservados.
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm text-primary-foreground/60">
-              <a
+              <Link
                 href="/aviso-legal"
                 className="hover:text-primary-foreground transition-colors"
               >
                 Aviso Legal
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/privacidad"
                 className="hover:text-primary-foreground transition-colors"
               >
                 Privacidad
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/cookies"
                 className="hover:text-primary-foreground transition-colors"
               >
                 Cookies
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/terminos"
                 className="hover:text-primary-foreground transition-colors"
               >
                 Términos
-              </a>
+              </Link>
               <CookieSettingsButton />
             </div>
           </div>

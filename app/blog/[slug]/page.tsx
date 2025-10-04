@@ -50,7 +50,6 @@ export async function generateMetadata({
     ],
     authors: [{ name: post.author }],
     category: post.category,
-    publishedTime: post.date,
     alternates: {
       canonical: `https://elpernilet.com/blog/${slug}`,
     },
