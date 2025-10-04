@@ -49,7 +49,8 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "elpernilet - Servicios premium de catering en España",
+    title:
+      "Servicio de cortador de jamón para bodas y eventos en Barcelona | elpernilet",
     description:
       "Cortador de jamón ibérico en vivo, barra de bebidas gourmet y camareros profesionales para eventos corporativos y privados.",
     url: "https://elpernilet.com",
@@ -67,7 +68,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "elpernilet - Servicios premium de catering",
+    title:
+      "Servicio de cortador de jamón para bodas y eventos en Barcelona | elpernilet",
     description:
       "Cortador de jamón en vivo y servicios de catering para eventos",
     images: ["/elpernilet-event-image.webp"],
@@ -115,7 +117,7 @@ export default function RootLayout({
         {/* Open Graph tags explícitos */}
         <meta
           property="og:title"
-          content="elpernilet - Servicios premium de catering en España"
+          content="Servicio de cortador de jamón para bodas y eventos en Barcelona | elpernilet"
         />
         <meta
           property="og:description"
@@ -140,7 +142,7 @@ export default function RootLayout({
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="elpernilet - Servicios premium de catering"
+          content="Servicio de cortador de jamón para bodas y eventos en Barcelona | elpernilet"
         />
         <meta
           name="twitter:description"
@@ -168,7 +170,7 @@ export default function RootLayout({
               "@type": "FoodEstablishment",
               name: "elpernilet",
               description:
-                "Servicios premium de catering para eventos: cortador de jamón ibérico en vivo, barra de bebidas y aperitivos, y camareros profesionales.",
+                "Servicios premium para eventos: cortador de jamón ibérico en vivo, barra de bebidas y aperitivos, y camareros profesionales.",
               url: "https://elpernilet.com",
               telephone: "+34-931-307-832",
               address: {
