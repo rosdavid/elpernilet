@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Play } from "lucide-react";
-import Image from "next/image";
 import { useState, useCallback, memo } from "react";
 import { VideoModal } from "@/components/video-modal";
 
@@ -31,20 +30,13 @@ export const Hero = memo(() => {
           className="w-full h-full object-cover opacity-30"
         >
           <source src="/hero-video.mp4" type="video/mp4" />
-          {/* Fallback image if video doesn't load */}
-          <Image
-            src="/elegant-spanish-event-catering-ham-carving.jpg"
-            alt="Elegant event catering"
-            className="w-full h-full object-cover"
-            fill
-            priority
-          />
         </video>
       </div>
 
       <div className="relative z-10 container mx-auto px-4 text-center">
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif mb-6 text-balance text-foreground">
-          Experiencias gastronómicas excepcionales
+          Experiencias gastronómicas excepcionales para bodas y eventos
+          inolvidables
         </h1>
         <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto mb-12 text-pretty leading-relaxed">
           Servicios premium para eventos en España. Cortador de jamón en vivo,
