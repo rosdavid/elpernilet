@@ -66,14 +66,14 @@ const events = [
     image: "/evento-boda-4.webp",
     location: "Sitges, Barcelona",
     eventType: "Boda",
-    venue: null,
+    venue: "Villa Caprici",
     service: "Corte de Jamón en Vivo",
   },
   {
     image: "/evento-boda-5.webp",
     location: "Sitges, Barcelona",
     eventType: "Boda",
-    venue: null,
+    venue: "Villa Caprici",
     service: "Servicio de Camareros",
   },
 ];
