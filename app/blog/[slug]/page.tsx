@@ -20,16 +20,17 @@ import {
 } from "lucide-react";
 
 interface BlogPostPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 // Generar metadata dinámica para SEO
 export async function generateMetadata({
   params,
 }: BlogPostPageProps): Promise<Metadata> {
-  const post = await getPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     return {
@@ -51,7 +52,7 @@ export async function generateMetadata({
     category: post.category,
     publishedTime: post.date,
     alternates: {
-      canonical: `https://elpernilet.com/blog/${post.slug}`,
+      canonical: `https://elpernilet.com/blog/${slug}`,
     },
     robots: {
       index: true,
@@ -67,7 +68,7 @@ export async function generateMetadata({
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      url: `https://elpernilet.com/blog/${post.slug}`,
+      url: `https://elpernilet.com/blog/${slug}`,
       siteName: "elpernilet",
       locale: "es_ES",
       type: "article",
@@ -116,7 +117,8 @@ export async function generateStaticParams() {
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = await getPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     notFound();
@@ -151,7 +153,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     dateModified: post.date,
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://elpernilet.com/blog/${post.slug}`,
+      "@id": `https://elpernilet.com/blog/${slug}`,
     },
     articleSection: post.category,
     keywords: post.tags.join(", "),
