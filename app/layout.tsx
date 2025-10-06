@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { CookieBanner } from "@/components/cookie-banner";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { WhatsAppFloat } from "@/components/whatsapp-float";
 import { Roboto } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
@@ -225,6 +226,7 @@ export default function RootLayout({
       <body className={`${roboto.variable} font-sans`}>
         {children}
         <CookieBanner />
+        <WhatsAppFloat />
         <Toaster
           position="top-right"
           expand={true}
