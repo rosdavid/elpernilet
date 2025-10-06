@@ -118,7 +118,9 @@ export function EventGallery() {
 
   // Efecto para manejar eventos globales durante el arrastre
   useEffect(() => {
-    if (!isDragging) return;
+    if (!isDragging || !sliderRef.current) return;
+
+    const sliderElement = sliderRef.current;
 
     const handleGlobalMouseMove = (e: MouseEvent) => {
       if (!isDragging) return;
@@ -149,8 +151,26 @@ export function EventGallery() {
     const handleGlobalTouchMove = (e: TouchEvent) => {
       if (!isDragging) return;
 
-      const currentX = e.touches[0].clientX;
-      const currentY = e.touches[0].clientY;
+      // Verificar si el touch está dentro del área del slider con un margen de tolerancia
+      const rect = sliderElement.getBoundingClientRect();
+      const touch = e.touches[0];
+      const margin = 50; // Margen de tolerancia en píxeles
+      const isInsideSlider =
+        touch.clientX >= rect.left - margin &&
+        touch.clientX <= rect.right + margin &&
+        touch.clientY >= rect.top - margin &&
+        touch.clientY <= rect.bottom + margin;
+
+      // Si el touch sale del área del slider (con margen), cancelar el drag
+      if (!isInsideSlider) {
+        setIsDragging(false);
+        setDragOffset(0);
+        setDragDirection(null);
+        return;
+      }
+
+      const currentX = touch.clientX;
+      const currentY = touch.clientY;
       const diffX = currentX - dragStartX;
       const diffY = currentY - dragStartY;
 
@@ -158,33 +178,41 @@ export function EventGallery() {
       if (dragDirection === null) {
         const absX = Math.abs(diffX);
         const absY = Math.abs(diffY);
-        const threshold = 15; // Umbral más alto para mejor detección
+        const threshold = 25;
 
-        // Solo determinar dirección si hay movimiento suficiente
         if (absX > threshold || absY > threshold) {
-          if (absY > absX) {
-            // Es scroll vertical, cancelar el drag completamente
+          const ratio = absX / absY;
+
+          if (ratio < 0.5) {
+            // Claramente vertical
             setDragDirection("vertical");
             setIsDragging(false);
             setDragOffset(0);
             return;
-          } else {
-            // Es drag horizontal, continuar
+          } else if (ratio > 2) {
+            // Claramente horizontal
             setDragDirection("horizontal");
+          } else {
+            // Movimiento diagonal o ambiguo, cancelar
+            setIsDragging(false);
+            setDragOffset(0);
+            return;
           }
         } else {
-          // Movimiento muy pequeño, no hacer nada
           return;
         }
       }
 
       // Solo proceder si es un drag horizontal confirmado
       if (dragDirection === "horizontal") {
-        // Solo prevenir el comportamiento por defecto si el evento es cancelable
         if (e.cancelable) {
           e.preventDefault();
         }
         setDragOffset(diffX);
+      } else if (dragDirection === "vertical") {
+        setIsDragging(false);
+        setDragOffset(0);
+        return;
       }
     };
 
@@ -194,8 +222,10 @@ export function EventGallery() {
 
       // Solo cambiar página si fue un drag horizontal válido
       if (dragDirection === "horizontal") {
-        const threshold = 50;
-        if (Math.abs(dragOffset) > threshold) {
+        const threshold = 75;
+        const velocity = Math.abs(dragOffset);
+
+        if (velocity > threshold) {
           if (dragOffset > 0) {
             prevSlide();
           } else {
@@ -251,11 +281,19 @@ export function EventGallery() {
   const handleTouchStart = (e: React.TouchEvent) => {
     // Solo manejar si es un solo toque
     if (e.touches.length === 1) {
-      setIsDragging(true);
-      setDragStartX(e.touches[0].clientX);
-      setDragStartY(e.touches[0].clientY);
-      setDragOffset(0);
-      setDragDirection(null);
+      const target = e.target as HTMLElement;
+      const isOnCard = target.closest(".group"); // Las cards tienen la clase 'group'
+      const isOnSliderContainer = target.closest(".slider-container");
+
+      // Solo iniciar drag si el touch es en el contenedor del slider pero no en una card
+      // O si es en los espacios entre cards
+      if (isOnSliderContainer && !isOnCard) {
+        setIsDragging(true);
+        setDragStartX(e.touches[0].clientX);
+        setDragStartY(e.touches[0].clientY);
+        setDragOffset(0);
+        setDragDirection(null);
+      }
     }
   };
 
@@ -275,7 +313,7 @@ export function EventGallery() {
         <div className="relative max-w-7xl mx-auto">
           {/* Slider container */}
           <div
-            className="overflow-hidden cursor-grab active:cursor-grabbing"
+            className="overflow-hidden cursor-grab active:cursor-grabbing slider-container"
             ref={sliderRef}
             onMouseDown={handleMouseDown}
             onTouchStart={handleTouchStart}
