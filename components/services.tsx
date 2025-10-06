@@ -12,7 +12,7 @@ const services = [
     icon: Wine,
     title: "Barra de bebidas y aperitivos",
     description:
-      "Selección premium de bebidas, cócteles artesanales y aperitivos gourmet preparados por nuestro equipo de expertos bartenders y chefs.",
+      "Selección premium de bebidas, cócteles artesanales y aperitivos gourmet preparados por nuestro equipo de expertos.",
   },
   {
     icon: Users,
@@ -31,8 +31,8 @@ export function Services() {
             Nuestros servicios
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-pretty leading-relaxed">
-            Ofrecemos servicios de catering premium diseñados para hacer de su
-            evento una experiencia inolvidable
+            Ofrecemos servicios premium diseñados para hacer de su evento una
+            experiencia inolvidable
           </p>
         </div>
 

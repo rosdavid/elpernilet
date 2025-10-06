@@ -18,11 +18,11 @@ export function BlogPreview() {
       <div className="w-full max-w-7xl mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif mb-6 text-balance">
-            Últimos artículos
+            Nuestro blog
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-pretty leading-relaxed">
-            Consejos de expertos, tendencias gastronómicas y secretos del
-            catering premium para hacer de tus eventos una experiencia
+            Consejos de expertos, tendencias gastronómicas y secretos del mundo
+            del jamón y de servicios para hacer de tus eventos una experiencia
             inolvidable
           </p>
         </div>
