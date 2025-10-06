@@ -53,9 +53,9 @@ export default function AdminLogin() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <Card className="w-full max-w-md">
+      <Card className="w-full max-w-md p-6">
         <CardHeader className="text-center">
-          <div className="mx-auto w-12 h-12 bg-primary rounded-full flex items-center justify-center mb-4">
+          <div className="mx-auto w-12 h-12 bg-primary rounded-full flex items-center justify-center mb-4 p-4">
             <Lock className="w-6 h-6 text-primary-foreground" />
           </div>
           <CardTitle className="text-2xl">Panel de Administración</CardTitle>

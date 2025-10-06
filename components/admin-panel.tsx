@@ -244,7 +244,7 @@ export const AdminPanel = memo(() => {
               await fetch("/api/auth/logout", { method: "POST" });
               window.location.href = "/admin/login";
             }}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 cursor-pointer"
           >
             <LogOut className="h-4 w-4" />
             Cerrar Sesión
@@ -254,7 +254,7 @@ export const AdminPanel = memo(() => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Lista de contactos */}
           <div className="lg:col-span-2">
-            <Card>
+            <Card className="pt-4">
               <CardHeader>
                 <CardTitle>
                   Solicitudes de Contacto ({contacts.length})
@@ -326,7 +326,7 @@ export const AdminPanel = memo(() => {
 
           {/* Detalles del contacto seleccionado */}
           <div className="lg:col-span-1">
-            <Card>
+            <Card className="py-4">
               <CardHeader>
                 <CardTitle>Detalles del Contacto</CardTitle>
                 <CardDescription>
