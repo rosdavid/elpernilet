@@ -19,6 +19,7 @@ export function WhatsAppFloat() {
   const [isVisible, setIsVisible] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [cookieBannerVisible, setCookieBannerVisible] = useState(false);
+  const [tooltipShown, setTooltipShown] = useState(false);
 
   // Tu número de teléfono (sin espacios, guiones ni símbolos, solo números)
   const phoneNumber = "34654127391"; // +34 654 12 73 91
@@ -35,10 +36,24 @@ export function WhatsAppFloat() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 3000); // Aparece después de 3 segundos
+    }, 1000); // Aparece después de 1 segundo
 
     return () => clearTimeout(timer);
   }, []);
+
+  // Mostrar tooltip automáticamente a los 1 segundo
+  useEffect(() => {
+    if (!isVisible) return;
+
+    const tooltipTimer = setTimeout(() => {
+      if (!tooltipShown) {
+        setIsExpanded(true);
+        setTooltipShown(true);
+      }
+    }, 1250); // Mostrar tooltip 1 segundo después de que aparezca el botón
+
+    return () => clearTimeout(tooltipTimer);
+  }, [isVisible, tooltipShown]);
 
   // Detectar si el banner de cookies está visible
   useEffect(() => {
@@ -66,8 +81,12 @@ export function WhatsAppFloat() {
     };
   }, []);
 
-  const toggleExpanded = () => {
-    setIsExpanded(!isExpanded);
+  const closeTooltip = () => {
+    setIsExpanded(false);
+  };
+
+  const handleWhatsAppClick = () => {
+    setIsExpanded(false); // Cerrar tooltip al hacer clic en WhatsApp
   };
 
   if (!isVisible) return null;
@@ -83,7 +102,7 @@ export function WhatsAppFloat() {
         <div className="absolute bottom-20 right-0 mb-2">
           <div className="bg-white rounded-lg shadow-lg border p-3 w-60 relative">
             <button
-              onClick={toggleExpanded}
+              onClick={closeTooltip}
               className="absolute top-2 right-2 text-gray-400 hover:text-gray-600 cursor-pointer"
               aria-label="Cerrar"
             >
@@ -107,6 +126,7 @@ export function WhatsAppFloat() {
           target="_blank"
           rel="noopener noreferrer"
           onMouseEnter={() => setIsExpanded(true)}
+          onClick={handleWhatsAppClick}
           className="flex items-center justify-center bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-110 group cursor-pointer"
           aria-label="Contactar por WhatsApp"
         >
