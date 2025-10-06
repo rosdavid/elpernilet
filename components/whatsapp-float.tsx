@@ -125,7 +125,6 @@ export function WhatsAppFloat() {
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          onMouseEnter={() => setIsExpanded(true)}
           onClick={handleWhatsAppClick}
           className="flex items-center justify-center bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-110 group cursor-pointer"
           aria-label="Contactar por WhatsApp"
