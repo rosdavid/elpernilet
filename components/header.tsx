@@ -19,7 +19,8 @@ export function Header() {
     if (pathname === "/") {
       const element = document.getElementById(sectionId);
       if (element) {
-        const headerHeight = 80;
+        // Altura adaptativa del header según el dispositivo
+        const headerHeight = window.innerWidth < 768 ? 64 : 80;
         const elementPosition = element.offsetTop - headerHeight;
 
         window.scrollTo({
@@ -29,7 +30,6 @@ export function Header() {
       }
     } else {
       // Si estamos en otra página, navegar con transición más suave
-      // Usar replace en lugar de push para evitar historial innecesario
       router.push(`/#${sectionId}`, { scroll: false });
     }
   };
@@ -39,21 +39,19 @@ export function Header() {
     if (pathname === "/" && typeof window !== "undefined") {
       const hash = window.location.hash.substring(1);
       if (hash) {
-        // Delay más largo para asegurar que toda la página esté cargada
         const timeoutId = setTimeout(() => {
           const element = document.getElementById(hash);
           if (element) {
-            // Calcular la posición considerando el header fijo
-            const headerHeight = 80; // altura del header
+            // Altura adaptativa del header según el dispositivo
+            const headerHeight = window.innerWidth < 768 ? 64 : 80;
             const elementPosition = element.offsetTop - headerHeight;
 
-            // Scroll suave manual para mejor control
             window.scrollTo({
               top: elementPosition,
               behavior: "smooth",
             });
           }
-        }, 500); // Delay más largo para evitar el salto
+        }, 500);
 
         return () => clearTimeout(timeoutId);
       }
@@ -62,16 +60,15 @@ export function Header() {
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border"
+      className="fixed top-0 left-0 right-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border transition-all duration-300 ease-in-out"
       style={{
         position: "fixed",
-        top: 0,
         transform: "translate3d(0, 0, 0)",
         willChange: "transform",
       }}
     >
       <div className="w-full max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link
             href="/"
@@ -83,6 +80,7 @@ export function Header() {
               width={240}
               height={64}
               className="h-12 sm:h-16 w-auto"
+              style={{ width: "auto" }}
               priority
             />
           </Link>
@@ -136,67 +134,77 @@ export function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-foreground cursor-pointer"
+            className="md:hidden p-2 text-foreground cursor-pointer transition-transform duration-200 hover:scale-105"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? (
-              <X className="h-6 w-6" />
+              <X className="h-6 w-6 transition-transform duration-200 rotate-90" />
             ) : (
-              <Menu className="h-6 w-6" />
+              <Menu className="h-6 w-6 transition-transform duration-200" />
             )}
           </button>
         </div>
 
         {/* Mobile Navigation */}
-        {mobileMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-border">
-            <div className="flex flex-col gap-4">
-              <button
-                onClick={() => navigateToSection("services")}
-                className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2 cursor-pointer"
-              >
-                Servicios
-              </button>
-              <button
-                onClick={() => navigateToSection("about")}
-                className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2 cursor-pointer"
-              >
-                Nosotros
-              </button>
-              <button
-                onClick={() => navigateToSection("gallery")}
-                className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2 cursor-pointer"
-              >
-                Galería
-              </button>
-              <button
-                onClick={() => navigateToSection("our-story")}
-                className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2 cursor-pointer"
-              >
-                Sobre nosotros
-              </button>
-              <button
-                onClick={() => navigateToSection("faq")}
-                className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2 cursor-pointer"
-              >
-                Preguntas frecuentes
-              </button>
-              <Link
-                href="/blog"
-                className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2 cursor-pointer"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Blog
-              </Link>
-              <Button
-                onClick={() => navigateToSection("contact")}
-                className="bg-primary text-primary-foreground hover:bg-primary/90 w-full cursor-pointer"
-              >
-                Contáctanos
-              </Button>
-            </div>
-          </nav>
-        )}
+        <nav
+          className={`md:hidden border-t border-border overflow-hidden transition-all duration-300 ease-in-out ${
+            mobileMenuOpen
+              ? "max-h-96 opacity-100 py-4"
+              : "max-h-0 opacity-0 py-0"
+          }`}
+        >
+          <div
+            className={`flex flex-col gap-4 transition-all duration-300 ease-in-out ${
+              mobileMenuOpen
+                ? "translate-y-0 opacity-100"
+                : "-translate-y-4 opacity-0"
+            }`}
+          >
+            <button
+              onClick={() => navigateToSection("services")}
+              className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2 cursor-pointer"
+            >
+              Servicios
+            </button>
+            <button
+              onClick={() => navigateToSection("about")}
+              className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2 cursor-pointer"
+            >
+              Nosotros
+            </button>
+            <button
+              onClick={() => navigateToSection("gallery")}
+              className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2 cursor-pointer"
+            >
+              Galería
+            </button>
+            <button
+              onClick={() => navigateToSection("our-story")}
+              className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2 cursor-pointer"
+            >
+              Sobre nosotros
+            </button>
+            <button
+              onClick={() => navigateToSection("faq")}
+              className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2 cursor-pointer"
+            >
+              Preguntas frecuentes
+            </button>
+            <Link
+              href="/blog"
+              className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2 cursor-pointer"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Blog
+            </Link>
+            <Button
+              onClick={() => navigateToSection("contact")}
+              className="bg-primary text-primary-foreground hover:bg-primary/90 w-full cursor-pointer"
+            >
+              Contáctanos
+            </Button>
+          </div>
+        </nav>
       </div>
     </header>
   );
