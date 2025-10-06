@@ -12,7 +12,7 @@ import { Calendar, Clock, User, ArrowRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "Blog - Consejos y tendencias en catering | elpernilet",
   description:
-    "Descubre los últimos consejos, tendencias y secretos del mundo del catering premium. Guías para eventos, bodas y celebraciones inolvidables.",
+    "Descubre los últimos consejos, tendencias y secretos del mundo de los eventos y servicios. Guías para eventos, bodas y celebraciones inolvidables.",
   keywords: [
     "blog catering España",
     "consejos eventos bodas",
@@ -38,9 +38,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Blog elpernilet - Consejos y tendencias en catering",
-    description:
-      "Descubre los secretos del catering premium y las últimas tendencias en eventos.",
+    title: "Blog elpernilet - Consejos y tendencias para eventos",
+    description: "Descubre los secretos y las últimas tendencias para eventos.",
     url: "https://elpernilet.com/blog",
     siteName: "elpernilet",
     locale: "es_ES",
@@ -50,15 +49,14 @@ export const metadata: Metadata = {
         url: "https://elpernilet.com/elpernilet-event-image.webp",
         width: 1200,
         height: 630,
-        alt: "Blog elpernilet - Consejos de catering premium",
+        alt: "Blog elpernilet - Consejos y tendencias para eventos",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blog elpernilet - Consejos y tendencias en catering",
-    description:
-      "Descubre los secretos del catering premium y las últimas tendencias en eventos.",
+    title: "Blog elpernilet - Consejos y tendencias para eventos",
+    description: "Descubre los secretos y las últimas tendencias para eventos.",
     creator: "@elpernilet",
     site: "@elpernilet",
     images: ["https://elpernilet.com/elpernilet-event-image.webp"],
@@ -114,16 +112,15 @@ export default function BlogPage() {
       <Header />
       <main className="min-h-screen">
         {/* Hero Section */}
-        <section className="pt-20 pb-12 md:pt-24 md:pb-16 bg-gradient-to-b from-background to-accent/20">
-          <div className="w-full max-w-7xl mx-auto px-4">
+        <section className="pt-24 pb-12 md:pt-24 md:pb-16 bg-gradient-to-b from-background to-accent/20">
+          <div className="w-full max-w-7xl mx-auto px-4 pt-20">
             <div className="text-center max-w-3xl mx-auto">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6">
                 Blog elpernilet
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                Consejos de expertos, tendencias gastronómicas y secretos del
-                catering premium para hacer de tus eventos una experiencia
-                inolvidable.
+                Consejos de expertos, tendencias gastronómicas y secretos para
+                hacer de tus eventos una experiencia inolvidable.
               </p>
             </div>
           </div>
