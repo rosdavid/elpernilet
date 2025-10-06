@@ -85,7 +85,9 @@ export function EventGallery() {
   const [dragStartX, setDragStartX] = useState(0);
   const [dragStartY, setDragStartY] = useState(0);
   const [dragOffset, setDragOffset] = useState(0);
-  const [isHorizontalDrag, setIsHorizontalDrag] = useState(false);
+  const [dragDirection, setDragDirection] = useState<
+    "horizontal" | "vertical" | null
+  >(null);
   const sliderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -127,16 +129,21 @@ export function EventGallery() {
     const handleGlobalMouseUp = () => {
       if (!isDragging) return;
       setIsDragging(false);
-      const threshold = 50;
-      if (Math.abs(dragOffset) > threshold) {
-        if (dragOffset > 0) {
-          prevSlide();
-        } else {
-          nextSlide();
+
+      // Solo cambiar página si fue un drag horizontal
+      if (dragDirection === "horizontal") {
+        const threshold = 50;
+        if (Math.abs(dragOffset) > threshold) {
+          if (dragOffset > 0) {
+            prevSlide();
+          } else {
+            nextSlide();
+          }
         }
       }
+
       setDragOffset(0);
-      setIsHorizontalDrag(false);
+      setDragDirection(null);
     };
 
     const handleGlobalTouchMove = (e: TouchEvent) => {
@@ -148,27 +155,31 @@ export function EventGallery() {
       const diffY = currentY - dragStartY;
 
       // Si aún no hemos determinado la dirección del drag
-      if (!isHorizontalDrag) {
+      if (dragDirection === null) {
         const absX = Math.abs(diffX);
         const absY = Math.abs(diffY);
+        const threshold = 15; // Umbral más alto para mejor detección
 
-        // Si el movimiento vertical es mayor que el horizontal, es scroll vertical
-        if (absY > absX && absY > 10) {
-          // Es scroll vertical, cancelar el drag
-          setIsDragging(false);
-          setDragOffset(0);
-          return;
-        } else if (absX > absY && absX > 10) {
-          // Es drag horizontal, continuar
-          setIsHorizontalDrag(true);
-        } else if (absX < 5 && absY < 5) {
+        // Solo determinar dirección si hay movimiento suficiente
+        if (absX > threshold || absY > threshold) {
+          if (absY > absX) {
+            // Es scroll vertical, cancelar el drag completamente
+            setDragDirection("vertical");
+            setIsDragging(false);
+            setDragOffset(0);
+            return;
+          } else {
+            // Es drag horizontal, continuar
+            setDragDirection("horizontal");
+          }
+        } else {
           // Movimiento muy pequeño, no hacer nada
           return;
         }
       }
 
       // Solo proceder si es un drag horizontal confirmado
-      if (isHorizontalDrag) {
+      if (dragDirection === "horizontal") {
         // Solo prevenir el comportamiento por defecto si el evento es cancelable
         if (e.cancelable) {
           e.preventDefault();
@@ -182,7 +193,7 @@ export function EventGallery() {
       setIsDragging(false);
 
       // Solo cambiar página si fue un drag horizontal válido
-      if (isHorizontalDrag) {
+      if (dragDirection === "horizontal") {
         const threshold = 50;
         if (Math.abs(dragOffset) > threshold) {
           if (dragOffset > 0) {
@@ -194,7 +205,7 @@ export function EventGallery() {
       }
 
       setDragOffset(0);
-      setIsHorizontalDrag(false);
+      setDragDirection(null);
     };
 
     document.addEventListener("mousemove", handleGlobalMouseMove);
@@ -217,7 +228,7 @@ export function EventGallery() {
     dragStartX,
     dragStartY,
     dragOffset,
-    isHorizontalDrag,
+    dragDirection,
     prevSlide,
     nextSlide,
   ]);
@@ -233,7 +244,7 @@ export function EventGallery() {
     setDragStartX(e.clientX);
     setDragStartY(e.clientY);
     setDragOffset(0);
-    setIsHorizontalDrag(false);
+    setDragDirection(null);
   };
 
   // Event handlers para touch
@@ -244,7 +255,7 @@ export function EventGallery() {
       setDragStartX(e.touches[0].clientX);
       setDragStartY(e.touches[0].clientY);
       setDragOffset(0);
-      setIsHorizontalDrag(false);
+      setDragDirection(null);
     }
   };
 
