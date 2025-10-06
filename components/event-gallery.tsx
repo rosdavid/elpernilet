@@ -13,6 +13,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 
 const events = [
+  // ...existing events...
   {
     image: "/evento-boda-1.webp",
     location: "Sallent, Barcelona",
@@ -84,27 +85,30 @@ export function EventGallery() {
   const [isDragging, setIsDragging] = useState(false);
   const [dragStartX, setDragStartX] = useState(0);
   const [dragOffset, setDragOffset] = useState(0);
+  const [startTime, setStartTime] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setItemsPerView(1);
-      } else {
-        setItemsPerView(3);
+      const newItemsPerView = window.innerWidth < 768 ? 1 : 3;
+
+      // Solo resetear la página si realmente cambió el número de items por vista
+      if (newItemsPerView !== itemsPerView) {
+        setItemsPerView(newItemsPerView);
+        // Solo resetear si la página actual sería inválida con el nuevo layout
+        const newTotalPages = Math.ceil(events.length / newItemsPerView);
+        setCurrentPage((prev) => (prev >= newTotalPages ? 0 : prev));
       }
-      setCurrentPage(0); // Reset al cambiar tamaño
     };
 
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [itemsPerView]);
 
-  // Calcular el número total de páginas
   const totalPages = Math.ceil(events.length / itemsPerView);
 
-  // Funciones de navegación centralizadas
   const goToNextPage = useCallback(() => {
     setCurrentPage((prev) => (prev + 1 >= totalPages ? 0 : prev + 1));
   }, [totalPages]);
@@ -122,65 +126,131 @@ export function EventGallery() {
     [totalPages]
   );
 
-  // Manejo de eventos de arrastre (swipe)
-  useEffect(() => {
-    if (!isDragging) return;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const diff = e.clientX - dragStartX;
-      setDragOffset(diff);
-    };
-
-    const handleTouchMove = (e: TouchEvent) => {
-      const diff = e.touches[0].clientX - dragStartX;
-      setDragOffset(diff);
-    };
-
-    const handleEnd = () => {
-      setIsDragging(false);
-      const threshold = 50;
-
-      if (Math.abs(dragOffset) > threshold) {
-        if (dragOffset > 0) {
-          goToPrevPage();
-        } else {
-          goToNextPage();
-        }
-      }
-
-      setDragOffset(0);
-    };
-
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("touchmove", handleTouchMove, { passive: true });
-    document.addEventListener("mouseup", handleEnd);
-    document.addEventListener("touchend", handleEnd);
-
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("touchmove", handleTouchMove);
-      document.removeEventListener("mouseup", handleEnd);
-      document.removeEventListener("touchend", handleEnd);
-    };
-  }, [isDragging, dragStartX, dragOffset, goToNextPage, goToPrevPage]);
-
-  // Event handlers simplificados
-  const handleDragStart = (clientX: number) => {
+  // Manejo mejorado de drag/swipe
+  const handleDragStart = useCallback((clientX: number) => {
     setIsDragging(true);
     setDragStartX(clientX);
     setDragOffset(0);
-  };
+    setStartTime(Date.now());
+  }, []);
 
-  const handleMouseDown = (e: React.MouseEvent) => {
-    e.preventDefault();
-    handleDragStart(e.clientX);
-  };
+  const handleDragMove = useCallback(
+    (clientX: number) => {
+      if (!isDragging) return;
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    if (e.touches.length === 1) {
-      handleDragStart(e.touches[0].clientX);
+      const diff = clientX - dragStartX;
+      // Limitar el movimiento para evitar que se vaya demasiado lejos
+      const maxOffset = window.innerWidth * 0.3;
+      const limitedOffset = Math.max(-maxOffset, Math.min(maxOffset, diff));
+      setDragOffset(limitedOffset);
+    },
+    [isDragging, dragStartX]
+  );
+
+  const handleDragEnd = useCallback(() => {
+    if (!isDragging) return;
+
+    setIsDragging(false);
+    const timeDiff = Date.now() - startTime;
+    const velocity = Math.abs(dragOffset) / timeDiff;
+
+    // Thresholds más sensibles para móvil
+    const threshold = window.innerWidth < 768 ? 30 : 50;
+    const velocityThreshold = 0.3;
+
+    if (Math.abs(dragOffset) > threshold || velocity > velocityThreshold) {
+      if (dragOffset > 0) {
+        goToPrevPage();
+      } else {
+        goToNextPage();
+      }
     }
-  };
+
+    setDragOffset(0);
+  }, [isDragging, dragOffset, startTime, goToNextPage, goToPrevPage]);
+
+  // Event handlers específicos para cada tipo de input
+  const handleMouseDown = useCallback(
+    (e: React.MouseEvent) => {
+      // Solo activar en desktop
+      if (window.innerWidth >= 768) {
+        e.preventDefault();
+        handleDragStart(e.clientX);
+      }
+    },
+    [handleDragStart]
+  );
+
+  const handleMouseMove = useCallback(
+    (e: MouseEvent) => {
+      if (isDragging) {
+        handleDragMove(e.clientX);
+      }
+    },
+    [isDragging, handleDragMove]
+  );
+
+  const handleMouseUp = useCallback(() => {
+    handleDragEnd();
+  }, [handleDragEnd]);
+
+  const handleTouchStart = useCallback(
+    (e: React.TouchEvent) => {
+      if (e.touches.length === 1) {
+        handleDragStart(e.touches[0].clientX);
+      }
+    },
+    [handleDragStart]
+  );
+
+  const handleTouchMove = useCallback(
+    (e: TouchEvent) => {
+      if (isDragging && e.touches.length === 1) {
+        // Prevenir scroll solo en dirección horizontal
+        if (Math.abs(e.touches[0].clientX - dragStartX) > 10) {
+          e.preventDefault();
+        }
+        handleDragMove(e.touches[0].clientX);
+      }
+    },
+    [isDragging, dragStartX, handleDragMove]
+  );
+
+  const handleTouchEnd = useCallback(() => {
+    handleDragEnd();
+  }, [handleDragEnd]);
+
+  // Effect para manejar eventos globales solo cuando sea necesario
+  useEffect(() => {
+    if (!isDragging || !containerRef.current) return;
+
+    const container = containerRef.current;
+
+    // Usar listeners en el contenedor en lugar del document
+    container.addEventListener("mousemove", handleMouseMove, {
+      passive: false,
+    });
+    container.addEventListener("mouseup", handleMouseUp, { passive: true });
+    container.addEventListener("mouseleave", handleMouseUp, { passive: true });
+    container.addEventListener("touchmove", handleTouchMove, {
+      passive: false,
+    });
+    container.addEventListener("touchend", handleTouchEnd, { passive: true });
+
+    return () => {
+      container.removeEventListener("mousemove", handleMouseMove);
+      container.removeEventListener("mouseup", handleMouseUp);
+      container.removeEventListener("mouseleave", handleMouseUp);
+      container.removeEventListener("touchmove", handleTouchMove);
+      container.removeEventListener("touchend", handleTouchEnd);
+    };
+  }, [
+    isDragging,
+    handleMouseMove,
+    handleMouseUp,
+    handleTouchMove,
+    handleTouchEnd,
+  ]);
 
   return (
     <section id="gallery" className="py-24 md:py-32 bg-secondary/30">
@@ -195,21 +265,27 @@ export function EventGallery() {
           </p>
         </div>
 
-        <div className="relative max-w-7xl mx-auto">
+        <div className="relative max-w-7xl mx-auto" ref={containerRef}>
           {/* Slider container */}
           <div
-            className="overflow-hidden cursor-grab active:cursor-grabbing slider-container"
+            className="overflow-hidden select-none touch-pan-y"
+            style={{
+              cursor: isDragging ? "grabbing" : "grab",
+              touchAction: "pan-y pinch-zoom",
+            }}
             ref={sliderRef}
             onMouseDown={handleMouseDown}
             onTouchStart={handleTouchStart}
           >
             <div
-              className="flex transition-transform duration-500 ease-in-out"
+              className="flex will-change-transform"
               style={{
                 transform: `translateX(calc(-${
                   currentPage * 100
                 }% + ${dragOffset}px))`,
-                transition: isDragging ? "none" : "transform 0.5s ease-in-out",
+                transition: isDragging
+                  ? "none"
+                  : "transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
               }}
             >
               {Array.from({ length: totalPages }).map((_, pageIndex) => (
@@ -236,6 +312,7 @@ export function EventGallery() {
                               sizes="(max-width: 768px) 100vw, 33vw"
                               className="object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
                               priority={pageIndex === 0 && eventIndex === 0}
+                              draggable={false}
                             />
                             <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
                           </div>
