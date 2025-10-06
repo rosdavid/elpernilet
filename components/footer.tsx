@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Instagram } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { CookieSettingsButton } from "./cookie-settings-button";
@@ -21,6 +21,19 @@ export function Footer() {
             <p className="text-primary-foreground/80 leading-relaxed">
               Servicios de corte de jamón y personal de catering en España
             </p>
+
+            {/* Redes Sociales */}
+            <div className="flex gap-4 mt-6">
+              <a
+                href="https://instagram.com/elpernilet"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary-foreground/60 hover:text-primary-foreground transition-colors duration-200 hover:scale-110 transform"
+                aria-label="Síguenos en Instagram"
+              >
+                <Instagram className="w-6 h-6" />
+              </a>
+            </div>
           </div>
 
           <div>
