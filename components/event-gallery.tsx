@@ -9,7 +9,7 @@ import {
   DraftingCompass,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 
 const events = [
@@ -81,6 +81,10 @@ const events = [
 export function EventGallery() {
   const [itemsPerView, setItemsPerView] = useState(3);
   const [currentPage, setCurrentPage] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStartX, setDragStartX] = useState(0);
+  const [dragOffset, setDragOffset] = useState(0);
+  const sliderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -100,16 +104,101 @@ export function EventGallery() {
   // Calcular el número total de páginas
   const totalPages = Math.ceil(events.length / itemsPerView);
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setCurrentPage((prev) => (prev + 1 >= totalPages ? 0 : prev + 1));
-  };
+  }, [totalPages]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     setCurrentPage((prev) => (prev === 0 ? totalPages - 1 : prev - 1));
-  };
+  }, [totalPages]);
+
+  // Efecto para manejar eventos globales durante el arrastre
+  useEffect(() => {
+    if (!isDragging) return;
+
+    const handleGlobalMouseMove = (e: MouseEvent) => {
+      if (!isDragging) return;
+      const diff = e.clientX - dragStartX;
+      setDragOffset(diff);
+    };
+
+    const handleGlobalMouseUp = () => {
+      if (!isDragging) return;
+      setIsDragging(false);
+      const threshold = 50;
+      if (Math.abs(dragOffset) > threshold) {
+        if (dragOffset > 0) {
+          prevSlide();
+        } else {
+          nextSlide();
+        }
+      }
+      setDragOffset(0);
+    };
+
+    const handleGlobalTouchMove = (e: TouchEvent) => {
+      if (!isDragging) return;
+
+      // Solo prevenir el comportamiento por defecto si el evento es cancelable
+      if (e.cancelable) {
+        e.preventDefault();
+      }
+
+      const diff = e.touches[0].clientX - dragStartX;
+      setDragOffset(diff);
+    };
+
+    const handleGlobalTouchEnd = () => {
+      if (!isDragging) return;
+      setIsDragging(false);
+      const threshold = 50;
+      if (Math.abs(dragOffset) > threshold) {
+        if (dragOffset > 0) {
+          prevSlide();
+        } else {
+          nextSlide();
+        }
+      }
+      setDragOffset(0);
+    };
+
+    document.addEventListener("mousemove", handleGlobalMouseMove);
+    document.addEventListener("mouseup", handleGlobalMouseUp);
+    document.addEventListener("touchmove", handleGlobalTouchMove, {
+      passive: false,
+    });
+    document.addEventListener("touchend", handleGlobalTouchEnd, {
+      passive: true,
+    });
+
+    return () => {
+      document.removeEventListener("mousemove", handleGlobalMouseMove);
+      document.removeEventListener("mouseup", handleGlobalMouseUp);
+      document.removeEventListener("touchmove", handleGlobalTouchMove);
+      document.removeEventListener("touchend", handleGlobalTouchEnd);
+    };
+  }, [isDragging, dragStartX, dragOffset, prevSlide, nextSlide]);
 
   const goToPage = (page: number) => {
     setCurrentPage(page);
+  };
+
+  // Event handlers para mouse
+  const handleMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsDragging(true);
+    setDragStartX(e.clientX);
+    setDragOffset(0);
+  };
+
+  // Event handlers para touch
+  const handleTouchStart = (e: React.TouchEvent) => {
+    // Solo manejar si es un solo toque
+    if (e.touches.length === 1) {
+      setIsDragging(true);
+      setDragStartX(e.touches[0].clientX);
+      setDragOffset(0);
+    }
   };
 
   return (
@@ -127,11 +216,19 @@ export function EventGallery() {
 
         <div className="relative max-w-7xl mx-auto">
           {/* Slider container */}
-          <div className="overflow-hidden">
+          <div
+            className="overflow-hidden cursor-grab active:cursor-grabbing"
+            ref={sliderRef}
+            onMouseDown={handleMouseDown}
+            onTouchStart={handleTouchStart}
+          >
             <div
               className="flex transition-transform duration-500 ease-in-out"
               style={{
-                transform: `translateX(-${currentPage * 100}%)`,
+                transform: `translateX(calc(-${
+                  currentPage * 100
+                }% + ${dragOffset}px))`,
+                transition: isDragging ? "none" : "transform 0.5s ease-in-out",
               }}
             >
               {Array.from({ length: totalPages }).map((_, pageIndex) => (
