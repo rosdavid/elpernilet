@@ -83,11 +83,7 @@ export function EventGallery() {
   const [currentPage, setCurrentPage] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [dragStartX, setDragStartX] = useState(0);
-  const [dragStartY, setDragStartY] = useState(0);
   const [dragOffset, setDragOffset] = useState(0);
-  const [dragDirection, setDragDirection] = useState<
-    "horizontal" | "vertical" | null
-  >(null);
   const sliderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -108,192 +104,81 @@ export function EventGallery() {
   // Calcular el número total de páginas
   const totalPages = Math.ceil(events.length / itemsPerView);
 
-  const nextSlide = useCallback(() => {
+  // Funciones de navegación centralizadas
+  const goToNextPage = useCallback(() => {
     setCurrentPage((prev) => (prev + 1 >= totalPages ? 0 : prev + 1));
   }, [totalPages]);
 
-  const prevSlide = useCallback(() => {
+  const goToPrevPage = useCallback(() => {
     setCurrentPage((prev) => (prev === 0 ? totalPages - 1 : prev - 1));
   }, [totalPages]);
 
-  // Efecto para manejar eventos globales durante el arrastre
+  const goToPage = useCallback(
+    (page: number) => {
+      if (page >= 0 && page < totalPages) {
+        setCurrentPage(page);
+      }
+    },
+    [totalPages]
+  );
+
+  // Manejo de eventos de arrastre (swipe)
   useEffect(() => {
-    if (!isDragging || !sliderRef.current) return;
+    if (!isDragging) return;
 
-    const sliderElement = sliderRef.current;
-
-    const handleGlobalMouseMove = (e: MouseEvent) => {
-      if (!isDragging) return;
+    const handleMouseMove = (e: MouseEvent) => {
       const diff = e.clientX - dragStartX;
       setDragOffset(diff);
     };
 
-    const handleGlobalMouseUp = () => {
-      if (!isDragging) return;
-      setIsDragging(false);
-
-      // Solo cambiar página si fue un drag horizontal
-      if (dragDirection === "horizontal") {
-        const threshold = 50;
-        if (Math.abs(dragOffset) > threshold) {
-          if (dragOffset > 0) {
-            prevSlide();
-          } else {
-            nextSlide();
-          }
-        }
-      }
-
-      setDragOffset(0);
-      setDragDirection(null);
+    const handleTouchMove = (e: TouchEvent) => {
+      const diff = e.touches[0].clientX - dragStartX;
+      setDragOffset(diff);
     };
 
-    const handleGlobalTouchMove = (e: TouchEvent) => {
-      if (!isDragging) return;
+    const handleEnd = () => {
+      setIsDragging(false);
+      const threshold = 50;
 
-      // Verificar si el touch está dentro del área del slider con un margen de tolerancia
-      const rect = sliderElement.getBoundingClientRect();
-      const touch = e.touches[0];
-      const margin = 50; // Margen de tolerancia en píxeles
-      const isInsideSlider =
-        touch.clientX >= rect.left - margin &&
-        touch.clientX <= rect.right + margin &&
-        touch.clientY >= rect.top - margin &&
-        touch.clientY <= rect.bottom + margin;
-
-      // Si el touch sale del área del slider (con margen), cancelar el drag
-      if (!isInsideSlider) {
-        setIsDragging(false);
-        setDragOffset(0);
-        setDragDirection(null);
-        return;
-      }
-
-      const currentX = touch.clientX;
-      const currentY = touch.clientY;
-      const diffX = currentX - dragStartX;
-      const diffY = currentY - dragStartY;
-
-      // Si aún no hemos determinado la dirección del drag
-      if (dragDirection === null) {
-        const absX = Math.abs(diffX);
-        const absY = Math.abs(diffY);
-        const threshold = 25;
-
-        if (absX > threshold || absY > threshold) {
-          const ratio = absX / absY;
-
-          if (ratio < 0.5) {
-            // Claramente vertical
-            setDragDirection("vertical");
-            setIsDragging(false);
-            setDragOffset(0);
-            return;
-          } else if (ratio > 2) {
-            // Claramente horizontal
-            setDragDirection("horizontal");
-          } else {
-            // Movimiento diagonal o ambiguo, cancelar
-            setIsDragging(false);
-            setDragOffset(0);
-            return;
-          }
+      if (Math.abs(dragOffset) > threshold) {
+        if (dragOffset > 0) {
+          goToPrevPage();
         } else {
-          return;
-        }
-      }
-
-      // Solo proceder si es un drag horizontal confirmado
-      if (dragDirection === "horizontal") {
-        if (e.cancelable) {
-          e.preventDefault();
-        }
-        setDragOffset(diffX);
-      } else if (dragDirection === "vertical") {
-        setIsDragging(false);
-        setDragOffset(0);
-        return;
-      }
-    };
-
-    const handleGlobalTouchEnd = () => {
-      if (!isDragging) return;
-      setIsDragging(false);
-
-      // Solo cambiar página si fue un drag horizontal válido
-      if (dragDirection === "horizontal") {
-        const threshold = 75;
-        const velocity = Math.abs(dragOffset);
-
-        if (velocity > threshold) {
-          if (dragOffset > 0) {
-            prevSlide();
-          } else {
-            nextSlide();
-          }
+          goToNextPage();
         }
       }
 
       setDragOffset(0);
-      setDragDirection(null);
     };
 
-    document.addEventListener("mousemove", handleGlobalMouseMove);
-    document.addEventListener("mouseup", handleGlobalMouseUp);
-    document.addEventListener("touchmove", handleGlobalTouchMove, {
-      passive: false,
-    });
-    document.addEventListener("touchend", handleGlobalTouchEnd, {
-      passive: true,
-    });
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("touchmove", handleTouchMove, { passive: true });
+    document.addEventListener("mouseup", handleEnd);
+    document.addEventListener("touchend", handleEnd);
 
     return () => {
-      document.removeEventListener("mousemove", handleGlobalMouseMove);
-      document.removeEventListener("mouseup", handleGlobalMouseUp);
-      document.removeEventListener("touchmove", handleGlobalTouchMove);
-      document.removeEventListener("touchend", handleGlobalTouchEnd);
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("touchmove", handleTouchMove);
+      document.removeEventListener("mouseup", handleEnd);
+      document.removeEventListener("touchend", handleEnd);
     };
-  }, [
-    isDragging,
-    dragStartX,
-    dragStartY,
-    dragOffset,
-    dragDirection,
-    prevSlide,
-    nextSlide,
-  ]);
+  }, [isDragging, dragStartX, dragOffset, goToNextPage, goToPrevPage]);
 
-  const goToPage = (page: number) => {
-    setCurrentPage(page);
+  // Event handlers simplificados
+  const handleDragStart = (clientX: number) => {
+    setIsDragging(true);
+    setDragStartX(clientX);
+    setDragOffset(0);
   };
 
-  // Event handlers para mouse
   const handleMouseDown = (e: React.MouseEvent) => {
     e.preventDefault();
-    setIsDragging(true);
-    setDragStartX(e.clientX);
-    setDragStartY(e.clientY);
-    setDragOffset(0);
-    setDragDirection(null);
+    handleDragStart(e.clientX);
   };
 
-  // Event handlers para touch
   const handleTouchStart = (e: React.TouchEvent) => {
-    // Solo manejar si es un solo toque
     if (e.touches.length === 1) {
-      const target = e.target as HTMLElement;
-      const isOnCard = target.closest(".group"); // Las cards tienen la clase 'group'
-      const isOnSliderContainer = target.closest(".slider-container");
-
-      // Solo iniciar drag si el touch es en el contenedor del slider pero no en una card
-      // O si es en los espacios entre cards
-      if (isOnSliderContainer && !isOnCard) {
-        setIsDragging(true);
-        setDragStartX(e.touches[0].clientX);
-        setDragStartY(e.touches[0].clientY);
-        setDragOffset(0);
-        setDragDirection(null);
-      }
+      handleDragStart(e.touches[0].clientX);
     }
   };
 
@@ -388,7 +273,7 @@ export function EventGallery() {
                 variant="outline"
                 size="icon"
                 className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-background/95 backdrop-blur shadow-lg hover:bg-background hover:shadow-xl hover:scale-110 z-10 transition-all duration-300 cursor-pointer"
-                onClick={prevSlide}
+                onClick={goToPrevPage}
               >
                 <ChevronLeft className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
               </Button>
@@ -397,7 +282,7 @@ export function EventGallery() {
                 variant="outline"
                 size="icon"
                 className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-background/95 backdrop-blur shadow-lg hover:bg-background hover:shadow-xl hover:scale-110 z-10 transition-all duration-300 cursor-pointer"
-                onClick={nextSlide}
+                onClick={goToNextPage}
               >
                 <ChevronRight className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
               </Button>
