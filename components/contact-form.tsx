@@ -44,6 +44,8 @@ export const ContactForm = memo(() => {
             "eventType",
             "eventDate",
             "clientType",
+            "guestCount",
+            "budgetRange",
             "message",
           ].map((key) => [key, formData.get(key)])
         );
@@ -170,7 +172,7 @@ export const ContactForm = memo(() => {
                   </div>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-6">
+                <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="eventType" className="text-sm font-medium">
                       Tipo de evento *
@@ -208,23 +210,88 @@ export const ContactForm = memo(() => {
                       min={new Date().toISOString().split("T")[0]}
                     />
                   </div>
+                </div>
 
+                <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="clientType" className="text-sm font-medium">
-                      Tipo de cliente *
+                    <Label htmlFor="guestCount" className="text-sm font-medium">
+                      Número aproximado de invitados *
                     </Label>
-                    <Select name="clientType" required>
-                      <SelectTrigger id="clientType" className="h-11">
-                        <SelectValue placeholder="Seleccione tipo de cliente" />
+                    <Select name="guestCount" required>
+                      <SelectTrigger id="guestCount" className="h-11">
+                        <SelectValue placeholder="Seleccione número de invitados" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="particular">Particular</SelectItem>
-                        <SelectItem value="professional">
-                          Profesional
+                        <SelectItem value="0-20">0-20 invitados</SelectItem>
+                        <SelectItem value="20-50">20-50 invitados</SelectItem>
+                        <SelectItem value="51-100">51-100 invitados</SelectItem>
+                        <SelectItem value="101-150">
+                          101-150 invitados
+                        </SelectItem>
+                        <SelectItem value="151-200">
+                          151-200 invitados
+                        </SelectItem>
+                        <SelectItem value="201-300">
+                          201-300 invitados
+                        </SelectItem>
+                        <SelectItem value="301-500">
+                          301-500 invitados
+                        </SelectItem>
+                        <SelectItem value="500+">
+                          Más de 500 invitados
                         </SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
+
+                  <div className="space-y-2">
+                    <Label
+                      htmlFor="budgetRange"
+                      className="text-sm font-medium"
+                    >
+                      Rango de presupuesto aproximado *
+                    </Label>
+                    <Select name="budgetRange" required>
+                      <SelectTrigger id="budgetRange" className="h-11">
+                        <SelectValue placeholder="Seleccione rango de presupuesto" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="0-500">0€ - 500€</SelectItem>
+                        <SelectItem value="500-1000">500€ - 1.000€</SelectItem>
+                        <SelectItem value="1000-2000">
+                          1.000€ - 2.000€
+                        </SelectItem>
+                        <SelectItem value="2000-3500">
+                          2.000€ - 3.500€
+                        </SelectItem>
+                        <SelectItem value="3500-5000">
+                          3.500€ - 5.000€
+                        </SelectItem>
+                        <SelectItem value="5000-7500">
+                          5.000€ - 7.500€
+                        </SelectItem>
+                        <SelectItem value="7500+">Más de 7.500€</SelectItem>
+                        <SelectItem value="flexible">
+                          Flexible / A consultar
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="clientType" className="text-sm font-medium">
+                    Tipo de cliente *
+                  </Label>
+                  <Select name="clientType" required>
+                    <SelectTrigger id="clientType" className="h-11">
+                      <SelectValue placeholder="Seleccione tipo de cliente" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="particular">Particular</SelectItem>
+                      <SelectItem value="professional">Profesional</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 <div className="space-y-2">
@@ -235,7 +302,7 @@ export const ContactForm = memo(() => {
                     id="message"
                     name="message"
                     required
-                    placeholder="Cuéntenos sobre su evento: número de invitados, servicios que necesita, cuanto quieres gastarte..."
+                    placeholder="Cuéntenos sobre su evento: servicios específicos que necesita, ubicación, detalles especiales..."
                     rows={6}
                     className="resize-none"
                   />

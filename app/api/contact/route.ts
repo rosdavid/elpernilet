@@ -10,6 +10,8 @@ export interface ContactSubmission {
   event_type: string;
   event_date: string;
   client_type: string;
+  guest_count: string;
+  budget_range: string;
   message: string;
   submitted_at: string;
   status: "pending" | "contacted" | "closed" | "rejected";
@@ -29,6 +31,8 @@ export async function POST(request: NextRequest) {
       "eventType",
       "eventDate",
       "clientType",
+      "guestCount",
+      "budgetRange",
       "message",
     ];
     const missingFields = requiredFields.filter((field) => !body[field]);
@@ -52,6 +56,8 @@ export async function POST(request: NextRequest) {
       event_type: body.eventType,
       event_date: body.eventDate,
       client_type: body.clientType,
+      guest_count: body.guestCount,
+      budget_range: body.budgetRange,
       message: body.message,
     });
 
@@ -67,6 +73,8 @@ export async function POST(request: NextRequest) {
           event_type: body.eventType,
           event_date: body.eventDate,
           client_type: body.clientType,
+          guest_count: body.guestCount,
+          budget_range: body.budgetRange,
           message: body.message,
           status: "pending",
         },

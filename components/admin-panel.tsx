@@ -25,7 +25,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Eye, Phone, Mail, Calendar, User, LogOut, Save } from "lucide-react";
+import {
+  Eye,
+  Phone,
+  Mail,
+  Calendar,
+  User,
+  LogOut,
+  Save,
+  Users,
+  Euro,
+} from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 
@@ -38,6 +48,8 @@ interface ContactSubmission {
   event_type: string;
   event_date: string;
   client_type: string;
+  guest_count: string;
+  budget_range: string;
   message: string;
   submitted_at: string;
   status: "pending" | "contacted" | "closed" | "rejected";
@@ -211,6 +223,34 @@ export const AdminPanel = memo(() => {
     return types[eventType] || eventType;
   };
 
+  const getGuestCountLabel = (guestCount: string) => {
+    const counts: { [key: string]: string } = {
+      "0-20": "0-20 invitados",
+      "20-50": "20-50 invitados",
+      "51-100": "51-100 invitados",
+      "101-150": "101-150 invitados",
+      "151-200": "151-200 invitados",
+      "201-300": "201-300 invitados",
+      "301-500": "301-500 invitados",
+      "500+": "Más de 500 invitados",
+    };
+    return counts[guestCount] || guestCount;
+  };
+
+  const getBudgetRangeLabel = (budgetRange: string) => {
+    const budgets: { [key: string]: string } = {
+      "0-500": "€0 - €500",
+      "500-1000": "€500 - €1,000",
+      "1000-2000": "€1,000 - €2,000",
+      "2000-3500": "2.000€ - 3.500€",
+      "3500-5000": "3.500€ - 5.000€",
+      "5000-7500": "5.000€ - 7.500€",
+      "7500+": "Más de 7.500€",
+      flexible: "Flexible / A consultar",
+    };
+    return budgets[budgetRange] || budgetRange;
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 p-8">
@@ -271,6 +311,8 @@ export const AdminPanel = memo(() => {
                         <TableHead>Cliente</TableHead>
                         <TableHead>Evento</TableHead>
                         <TableHead>Fecha</TableHead>
+                        <TableHead>Invitados</TableHead>
+                        <TableHead>Presupuesto</TableHead>
                         <TableHead>Estado</TableHead>
                         <TableHead>Recibido</TableHead>
                         <TableHead>Acciones</TableHead>
@@ -296,6 +338,16 @@ export const AdminPanel = memo(() => {
                             {new Date(contact.event_date).toLocaleDateString(
                               "es-ES"
                             )}
+                          </TableCell>
+                          <TableCell>
+                            <div className="text-sm">
+                              {getGuestCountLabel(contact.guest_count)}
+                            </div>
+                          </TableCell>
+                          <TableCell>
+                            <div className="text-sm">
+                              {getBudgetRangeLabel(contact.budget_range)}
+                            </div>
                           </TableCell>
                           <TableCell>
                             {getStatusBadge(contact.status)}
@@ -399,6 +451,25 @@ export const AdminPanel = memo(() => {
                           {new Date(
                             selectedContact.event_date
                           ).toLocaleDateString("es-ES")}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Información de invitados y presupuesto */}
+                    <div>
+                      <h4 className="font-semibold mb-3 flex items-center">
+                        <Users className="h-4 w-4 mr-2" />
+                        Invitados y Presupuesto
+                      </h4>
+                      <div className="space-y-2 text-sm">
+                        <p>
+                          <strong>Invitados:</strong>{" "}
+                          {getGuestCountLabel(selectedContact.guest_count)}
+                        </p>
+                        <p className="flex items-center">
+                          <Euro className="h-4 w-4 mr-1" />
+                          <strong>Presupuesto:</strong>{" "}
+                          {getBudgetRangeLabel(selectedContact.budget_range)}
                         </p>
                       </div>
                     </div>
