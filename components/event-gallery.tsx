@@ -83,7 +83,9 @@ export function EventGallery() {
   const [currentPage, setCurrentPage] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [dragStartX, setDragStartX] = useState(0);
+  const [dragStartY, setDragStartY] = useState(0);
   const [dragOffset, setDragOffset] = useState(0);
+  const [isHorizontalDrag, setIsHorizontalDrag] = useState(false);
   const sliderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -134,32 +136,65 @@ export function EventGallery() {
         }
       }
       setDragOffset(0);
+      setIsHorizontalDrag(false);
     };
 
     const handleGlobalTouchMove = (e: TouchEvent) => {
       if (!isDragging) return;
 
-      // Solo prevenir el comportamiento por defecto si el evento es cancelable
-      if (e.cancelable) {
-        e.preventDefault();
+      const currentX = e.touches[0].clientX;
+      const currentY = e.touches[0].clientY;
+      const diffX = currentX - dragStartX;
+      const diffY = currentY - dragStartY;
+
+      // Si aún no hemos determinado la dirección del drag
+      if (!isHorizontalDrag) {
+        const absX = Math.abs(diffX);
+        const absY = Math.abs(diffY);
+
+        // Si el movimiento vertical es mayor que el horizontal, es scroll vertical
+        if (absY > absX && absY > 10) {
+          // Es scroll vertical, cancelar el drag
+          setIsDragging(false);
+          setDragOffset(0);
+          return;
+        } else if (absX > absY && absX > 10) {
+          // Es drag horizontal, continuar
+          setIsHorizontalDrag(true);
+        } else if (absX < 5 && absY < 5) {
+          // Movimiento muy pequeño, no hacer nada
+          return;
+        }
       }
 
-      const diff = e.touches[0].clientX - dragStartX;
-      setDragOffset(diff);
+      // Solo proceder si es un drag horizontal confirmado
+      if (isHorizontalDrag) {
+        // Solo prevenir el comportamiento por defecto si el evento es cancelable
+        if (e.cancelable) {
+          e.preventDefault();
+        }
+        setDragOffset(diffX);
+      }
     };
 
     const handleGlobalTouchEnd = () => {
       if (!isDragging) return;
       setIsDragging(false);
-      const threshold = 50;
-      if (Math.abs(dragOffset) > threshold) {
-        if (dragOffset > 0) {
-          prevSlide();
-        } else {
-          nextSlide();
+
+      // Solo cambiar página si fue un drag horizontal válido
+      if (isHorizontalDrag) {
+        const threshold = 50;
+        if (Math.abs(dragOffset) > threshold) {
+          if (dragOffset > 0) {
+            prevSlide();
+          } else {
+            nextSlide();
+          }
         }
       }
+
       setDragOffset(0);
+      setIsHorizontalDrag(false);
     };
 
     document.addEventListener("mousemove", handleGlobalMouseMove);
@@ -177,7 +212,15 @@ export function EventGallery() {
       document.removeEventListener("touchmove", handleGlobalTouchMove);
       document.removeEventListener("touchend", handleGlobalTouchEnd);
     };
-  }, [isDragging, dragStartX, dragOffset, prevSlide, nextSlide]);
+  }, [
+    isDragging,
+    dragStartX,
+    dragStartY,
+    dragOffset,
+    isHorizontalDrag,
+    prevSlide,
+    nextSlide,
+  ]);
 
   const goToPage = (page: number) => {
     setCurrentPage(page);
@@ -188,7 +231,9 @@ export function EventGallery() {
     e.preventDefault();
     setIsDragging(true);
     setDragStartX(e.clientX);
+    setDragStartY(e.clientY);
     setDragOffset(0);
+    setIsHorizontalDrag(false);
   };
 
   // Event handlers para touch
@@ -197,7 +242,9 @@ export function EventGallery() {
     if (e.touches.length === 1) {
       setIsDragging(true);
       setDragStartX(e.touches[0].clientX);
+      setDragStartY(e.touches[0].clientY);
       setDragOffset(0);
+      setIsHorizontalDrag(false);
     }
   };
 
