@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { X } from "lucide-react";
 
 // Componente del icono de WhatsApp original
@@ -16,6 +17,7 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 );
 
 export function WhatsAppFloat() {
+  const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [cookieBannerVisible, setCookieBannerVisible] = useState(false);
@@ -50,7 +52,7 @@ export function WhatsAppFloat() {
         setIsExpanded(true);
         setTooltipShown(true);
       }
-    }, 1250); // Mostrar tooltip 1 segundo después de que aparezca el botón
+    }, 1000); // Mostrar tooltip 1 segundo después de que aparezca el botón
 
     return () => clearTimeout(tooltipTimer);
   }, [isVisible, tooltipShown]);
@@ -88,6 +90,11 @@ export function WhatsAppFloat() {
   const handleWhatsAppClick = () => {
     setIsExpanded(false); // Cerrar tooltip al hacer clic en WhatsApp
   };
+
+  // No mostrar en rutas de administración
+  if (pathname.startsWith("/admin")) {
+    return null;
+  }
 
   if (!isVisible) return null;
 
