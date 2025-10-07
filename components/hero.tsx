@@ -39,8 +39,8 @@ export const Hero = memo(() => {
           inolvidables
         </h1>
         <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto mb-12 text-pretty leading-relaxed">
-          Servicios premium para eventos en España. Cortador de jamón en vivo,
-          barra de bebidas y aperitivos, y servicio de camareros profesionales.
+          Servicios premium para eventos. Cortador de jamón en vivo, barra de
+          bebidas y aperitivos, y servicio de camareros profesionales.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button

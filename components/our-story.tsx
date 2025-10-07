@@ -5,7 +5,7 @@ export function OurStory() {
     <section id="our-story" className="py-24 bg-accent/30">
       <div className="w-full max-w-7xl mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Media Content - Image or Video */}
+          {/* Media Content */}
           <div className="relative">
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
               <video
@@ -29,24 +29,23 @@ export function OurStory() {
               Nuestra Historia
             </div>
             <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground leading-tight">
-              Pasión por la Gastronomía Española
+              Pasión por la Gastronomía Tradicional
             </h2>
             <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
               <p>
                 elpernilet nació de una pasión compartida por la excelencia
                 gastronómica y el arte de crear experiencias inolvidables.
                 Fundada por un equipo de profesionales con más de 20 años de
-                experiencia en el sector de la hostelería de lujo, nuestra
-                empresa se ha convertido en la clara referencia en servicios
-                para eventos en toda España.
+                experiencia en el sector de la hostelería, nuestra empresa se ha
+                convertido en la clara referencia en servicios para eventos.
               </p>
               <p>
-                Nos especializamos en llevar la auténtica tradición culinaria
-                española a cada evento, desde el arte ancestral del cortado de
-                jamón ibérico hasta la creación de barras de aperitivos y
-                bebidas que sorprenden a los paladares más exigentes. Cada
-                miembro de nuestro equipo es un profesional certificado y
-                apasionado por su oficio.
+                Nos especializamos en llevar la auténtica tradición culinaria a
+                cada evento, desde el arte ancestral del cortado de jamón
+                ibérico hasta la creación de barras de aperitivos y bebidas que
+                sorprenden a los paladares más exigentes. Cada miembro de
+                nuestro equipo es un profesional certificado y apasionado por su
+                oficio.
               </p>
               <p>
                 Lo que nos diferencia es nuestro compromiso inquebrantable con
