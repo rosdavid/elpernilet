@@ -2,7 +2,7 @@
 title: "Cortador de jamón: precios 2025 y qué incluyen"
 date: "2025-10-04"
 excerpt: "Descubre cuánto cuesta un cortador de jamón en 2025, qué incluye el servicio, extras, raciones por invitado y ejemplos para bodas y eventos."
-author: "Xavier Ros Cortés (Maestro cortador)"
+author: "Xavier Ros"
 category: "Guías"
 tags: ["cortador de jamón", "bodas", "eventos", "precios-2025", "tarifas"]
 image: "/event-image.webp"
