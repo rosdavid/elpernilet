@@ -34,7 +34,6 @@ import {
   LogOut,
   Save,
   Users,
-  Euro,
 } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
@@ -359,6 +358,7 @@ export const AdminPanel = memo(() => {
                           </TableCell>
                           <TableCell>
                             <Button
+                              className="cursor-pointer"
                               variant="outline"
                               size="sm"
                               onClick={() => setSelectedContact(contact)}
@@ -466,8 +466,7 @@ export const AdminPanel = memo(() => {
                           <strong>Invitados:</strong>{" "}
                           {getGuestCountLabel(selectedContact.guest_count)}
                         </p>
-                        <p className="flex items-center">
-                          <Euro className="h-4 w-4 mr-1" />
+                        <p>
                           <strong>Presupuesto:</strong>{" "}
                           {getBudgetRangeLabel(selectedContact.budget_range)}
                         </p>
@@ -526,7 +525,7 @@ export const AdminPanel = memo(() => {
                             updateContactNotes(selectedContact.id, notes)
                           }
                           disabled={isUpdatingNotes}
-                          className="flex items-center gap-1"
+                          className="flex items-center gap-1 cursor-pointer"
                         >
                           <Save className="h-3 w-3" />
                           {isUpdatingNotes ? "Guardando..." : "Guardar"}
