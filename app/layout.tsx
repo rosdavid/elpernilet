@@ -5,6 +5,7 @@ import { CookieBanner } from "@/components/cookie-banner";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
+import { GoogleAnalytics } from "@/components/google-analytics";
 import { Roboto } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
@@ -367,6 +368,7 @@ export default function RootLayout({
         />
         <Analytics />
         <SpeedInsights />
+        <GoogleAnalytics GA_MEASUREMENT_ID="G-D99RVH7B6J" />
       </body>
     </html>
   );

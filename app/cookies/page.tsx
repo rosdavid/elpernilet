@@ -74,6 +74,10 @@ export default function CookiesPage() {
                       <strong>Vercel Speed Insights</strong>: Para métricas de
                       rendimiento del sitio
                     </li>
+                    <li>
+                      <strong>Google Analytics (GA4)</strong>: Para estadísticas
+                      detalladas de uso y comportamiento de usuarios
+                    </li>
                   </ul>
                 </div>
 

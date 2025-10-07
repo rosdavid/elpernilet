@@ -5,6 +5,7 @@ import type React from "react";
 import { useState, memo, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { trackFormSubmission, trackConversion } from "@/hooks/use-analytics";
 import {
   Card,
   CardContent,
@@ -61,6 +62,10 @@ export const ContactForm = memo(() => {
         const result = await response.json();
 
         if (result.success) {
+          // Tracking de conversión exitosa
+          trackFormSubmission("contact_form");
+          trackConversion("contact_form_submitted", "lead_generation");
+
           toast.success("¡Formulario enviado correctamente!", {
             description:
               "Nos pondremos en contacto con usted en menos de 24 horas.",

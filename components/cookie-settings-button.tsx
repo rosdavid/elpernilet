@@ -67,6 +67,26 @@ export function CookieSettingsButton() {
           () => {};
       }
     }
+
+    // Aplicar preferencias a Google Analytics
+    if (typeof window !== "undefined") {
+      const windowWithGtag = window as Window & {
+        gtag?: (...args: unknown[]) => void;
+      };
+      if (windowWithGtag.gtag) {
+        if (prefs.analytics) {
+          // Otorgar consentimiento para analytics
+          windowWithGtag.gtag("consent", "update", {
+            analytics_storage: "granted",
+          });
+        } else {
+          // Denegar consentimiento para analytics
+          windowWithGtag.gtag("consent", "update", {
+            analytics_storage: "denied",
+          });
+        }
+      }
+    }
   };
 
   return (

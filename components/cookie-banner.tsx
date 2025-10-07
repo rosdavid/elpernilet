@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 
-// Extend Window interface to include Vercel Analytics
+// Extend Window interface to include Vercel Analytics and Google Analytics
 declare global {
   interface Window {
     va?: (...args: unknown[]) => void;
@@ -71,9 +71,28 @@ export function CookieBanner() {
 
     // Aplicar preferencias a Vercel Analytics
     if (!prefs.analytics) {
-      // Desactivar analytics si no está consentido
       if (typeof window !== "undefined") {
         window.va = () => {};
+      }
+    }
+
+    // Aplicar preferencias a Google Analytics
+    if (typeof window !== "undefined") {
+      const windowWithGtag = window as Window & {
+        gtag?: (...args: unknown[]) => void;
+      };
+      if (windowWithGtag.gtag) {
+        if (prefs.analytics) {
+          // Otorgar consentimiento para analytics
+          windowWithGtag.gtag("consent", "update", {
+            analytics_storage: "granted",
+          });
+        } else {
+          // Denegar consentimiento para analytics
+          windowWithGtag.gtag("consent", "update", {
+            analytics_storage: "denied",
+          });
+        }
       }
     }
   };
