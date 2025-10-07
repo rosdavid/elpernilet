@@ -9,8 +9,14 @@ import { useRouter, usePathname } from "next/navigation";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
+
+  // Función para abrir/cerrar el menú móvil
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
 
   const navigateToSection = (sectionId: string) => {
     setMobileMenuOpen(false);
@@ -19,8 +25,12 @@ export function Header() {
     if (pathname === "/") {
       const element = document.getElementById(sectionId);
       if (element) {
-        // Altura adaptativa del header según el dispositivo
-        const headerHeight = window.innerWidth < 768 ? 64 : 80;
+        // Solo aplicar offset si el header está fijo (después de scroll)
+        const headerHeight = isScrolled
+          ? window.innerWidth < 768
+            ? 64
+            : 80
+          : 0;
         const elementPosition = element.offsetTop - headerHeight;
 
         window.scrollTo({
@@ -34,6 +44,17 @@ export function Header() {
     }
   };
 
+  // Manejar el scroll para hacer el header sticky
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 50); // Se vuelve sticky después de 50px de scroll
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   // Manejar el scroll cuando se carga la página con un hash
   useEffect(() => {
     if (pathname === "/" && typeof window !== "undefined") {
@@ -42,12 +63,10 @@ export function Header() {
         const timeoutId = setTimeout(() => {
           const element = document.getElementById(hash);
           if (element) {
-            // Altura adaptativa del header según el dispositivo
-            const headerHeight = window.innerWidth < 768 ? 64 : 80;
-            const elementPosition = element.offsetTop - headerHeight;
-
+            // Como inicialmente el header es estático, no necesitamos offset
+            // El header se volverá sticky después del scroll
             window.scrollTo({
-              top: elementPosition,
+              top: element.offsetTop,
               behavior: "smooth",
             });
           }
@@ -60,9 +79,12 @@ export function Header() {
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border transition-all duration-300 ease-in-out"
+      className={`w-full z-50 border-b border-border transition-all duration-300 ease-in-out ${
+        isScrolled
+          ? "fixed top-0 left-0 right-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 shadow-sm"
+          : "relative bg-background"
+      }`}
       style={{
-        position: "fixed",
         transform: "translate3d(0, 0, 0)",
         willChange: "transform",
       }}
@@ -123,6 +145,12 @@ export function Header() {
             >
               Blog
             </Link>
+            <button
+              onClick={() => navigateToSection("online-store")}
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+            >
+              Tienda Online
+            </button>
             <Button
               onClick={() => navigateToSection("contact")}
               className="bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
@@ -133,7 +161,7 @@ export function Header() {
 
           {/* Mobile Menu Button */}
           <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            onClick={toggleMobileMenu}
             className="md:hidden p-2 text-foreground cursor-pointer transition-transform duration-200 hover:scale-105"
             aria-label="Toggle menu"
           >
@@ -144,68 +172,80 @@ export function Header() {
             )}
           </button>
         </div>
-
-        {/* Mobile Navigation */}
-        <nav
-          className={`md:hidden border-t border-border overflow-hidden transition-all duration-300 ease-in-out ${
-            mobileMenuOpen
-              ? "max-h-96 opacity-100 py-4"
-              : "max-h-0 opacity-0 py-0"
-          }`}
-        >
-          <div
-            className={`flex flex-col gap-4 transition-all duration-300 ease-in-out ${
-              mobileMenuOpen
-                ? "translate-y-0 opacity-100"
-                : "-translate-y-4 opacity-0"
-            }`}
-          >
-            <button
-              onClick={() => navigateToSection("services")}
-              className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2 cursor-pointer"
-            >
-              Servicios
-            </button>
-            <button
-              onClick={() => navigateToSection("about")}
-              className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2 cursor-pointer"
-            >
-              Nosotros
-            </button>
-            <button
-              onClick={() => navigateToSection("gallery")}
-              className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2 cursor-pointer"
-            >
-              Galería
-            </button>
-            <button
-              onClick={() => navigateToSection("our-story")}
-              className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2 cursor-pointer"
-            >
-              Sobre nosotros
-            </button>
-            <button
-              onClick={() => navigateToSection("faq")}
-              className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2 cursor-pointer"
-            >
-              Preguntas frecuentes
-            </button>
-            <Link
-              href="/blog"
-              className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2 cursor-pointer"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Blog
-            </Link>
-            <Button
-              onClick={() => navigateToSection("contact")}
-              className="bg-primary text-primary-foreground hover:bg-primary/90 w-full cursor-pointer"
-            >
-              Contáctanos
-            </Button>
-          </div>
-        </nav>
       </div>
+
+      {/* Mobile Navigation Overlay */}
+      {mobileMenuOpen && (
+        <div
+          className="md:hidden fixed top-16 left-0 right-0 bottom-0 bg-black/50 backdrop-blur-sm z-40"
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          <nav
+            className={`absolute top-0 left-0 right-0 bg-background border-b border-border shadow-lg transition-all duration-300 ease-in-out ${
+              mobileMenuOpen
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 -translate-y-4"
+            }`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="w-full max-w-7xl mx-auto px-4 py-6">
+              <div className="flex flex-col gap-4">
+                <button
+                  onClick={() => navigateToSection("services")}
+                  className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-3 cursor-pointer border-b border-border/30 last:border-b-0"
+                >
+                  Servicios
+                </button>
+                <button
+                  onClick={() => navigateToSection("about")}
+                  className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-3 cursor-pointer border-b border-border/30 last:border-b-0"
+                >
+                  Nosotros
+                </button>
+                <button
+                  onClick={() => navigateToSection("gallery")}
+                  className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-3 cursor-pointer border-b border-border/30 last:border-b-0"
+                >
+                  Galería
+                </button>
+                <button
+                  onClick={() => navigateToSection("our-story")}
+                  className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-3 cursor-pointer border-b border-border/30 last:border-b-0"
+                >
+                  Sobre nosotros
+                </button>
+                <button
+                  onClick={() => navigateToSection("faq")}
+                  className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-3 cursor-pointer border-b border-border/30 last:border-b-0"
+                >
+                  Preguntas frecuentes
+                </button>
+                <Link
+                  href="/blog"
+                  className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-3 cursor-pointer border-b border-border/30 last:border-b-0"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Blog
+                </Link>
+                <button
+                  onClick={() => navigateToSection("online-store")}
+                  className="text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-3 cursor-pointer border-b border-border/30 last:border-b-0"
+                >
+                  Tienda Online
+                </button>
+                <div className="pt-4">
+                  <Button
+                    onClick={() => navigateToSection("contact")}
+                    className="bg-primary text-primary-foreground hover:bg-primary/90 w-full cursor-pointer"
+                  >
+                    Contáctanos
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }

@@ -11,7 +11,7 @@ export default function TermsPage() {
   return (
     <main className="min-h-screen bg-background">
       <Header />
-      <div className="min-h-screen bg-background pt-20">
+      <div className="min-h-screen bg-background pt-8">
         <div className="container mx-auto px-4 py-16 max-w-4xl">
           <h1 className="text-4xl font-bold mb-8">Términos de Uso</h1>
 

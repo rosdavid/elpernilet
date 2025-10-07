@@ -112,8 +112,8 @@ export default function BlogPage() {
       <Header />
       <main className="min-h-screen">
         {/* Hero Section */}
-        <section className="pt-24 pb-12 md:pt-24 md:pb-16 bg-gradient-to-b from-background to-accent/20">
-          <div className="w-full max-w-7xl mx-auto px-4 pt-20">
+        <section className="pt-8 pb-12 md:pt-12 md:pb-16 bg-gradient-to-b from-background to-accent/20">
+          <div className="w-full max-w-7xl mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6">
                 Blog elpernilet
