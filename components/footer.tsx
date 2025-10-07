@@ -65,7 +65,14 @@ export function Footer() {
                   Blog
                 </Link>
               </li>
-              <li>Cortador de jamón en vivo</li>
+              <li>
+                <Link
+                  href="/cortador-jamon"
+                  className="hover:text-primary-foreground transition-colors"
+                >
+                  Cortador de jamón en vivo
+                </Link>
+              </li>
               <li>Barra de bebidas y aperitivos</li>
               <li>Eventos corporativos</li>
               <li>Eventos privados</li>
