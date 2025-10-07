@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { Header } from "@/components/header";
 import { Hero } from "@/components/hero";
 import { Services } from "@/components/services";
@@ -9,6 +10,12 @@ import { BlogPreview } from "@/components/blog-preview";
 import { OnlineStore } from "@/components/online-store";
 import { ContactForm } from "@/components/contact-form";
 import { Footer } from "@/components/footer";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://elpernilet.com/",
+  },
+};
 
 export default function Home() {
   return (

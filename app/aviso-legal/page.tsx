@@ -5,6 +5,9 @@ import { Footer } from "@/components/footer";
 export const metadata: Metadata = {
   title: "Aviso Legal | elpernilet",
   description: "Aviso legal del sitio web elpernilet",
+  alternates: {
+    canonical: "https://elpernilet.com/aviso-legal",
+  },
 };
 
 export default function LegalPage() {

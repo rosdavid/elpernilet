@@ -5,6 +5,9 @@ import { Footer } from "@/components/footer";
 export const metadata: Metadata = {
   title: "Política de Cookies | elpernilet",
   description: "Información sobre el uso de cookies en elpernilet",
+  alternates: {
+    canonical: "https://elpernilet.com/cookies",
+  },
 };
 
 export default function CookiesPage() {

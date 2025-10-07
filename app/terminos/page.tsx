@@ -5,6 +5,9 @@ import { Footer } from "@/components/footer";
 export const metadata: Metadata = {
   title: "Términos de Uso | elpernilet",
   description: "Términos y condiciones de uso del sitio web elpernilet",
+  alternates: {
+    canonical: "https://elpernilet.com/terminos",
+  },
 };
 
 export default function TermsPage() {

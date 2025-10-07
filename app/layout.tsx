@@ -112,8 +112,7 @@ export default function RootLayout({
           content="index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
         />
 
-        {/* Canonical URL */}
-        <link rel="canonical" href="https://elpernilet.com/" />
+        {/* Canonical URL será definido por cada página individualmente */}
 
         {/* Open Graph tags explícitos */}
         <meta

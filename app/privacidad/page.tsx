@@ -5,6 +5,9 @@ import { Footer } from "@/components/footer";
 export const metadata: Metadata = {
   title: "Política de Privacidad | elpernilet",
   description: "Política de privacidad y protección de datos de elpernilet",
+  alternates: {
+    canonical: "https://elpernilet.com/privacidad",
+  },
 };
 
 export default function PrivacyPage() {
