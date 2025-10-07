@@ -169,6 +169,10 @@ export default function BlogPage() {
                           }
                         )}
                       </div>
+                      <div className="flex items-center text-sm text-muted-foreground">
+                        <Clock className="w-4 h-4 mr-1" />
+                        {featuredPost.readingTime}
+                      </div>
                     </div>
 
                     <h3 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-4 leading-tight">
@@ -184,10 +188,6 @@ export default function BlogPage() {
                         <div className="flex items-center">
                           <User className="w-4 h-4 mr-1" />
                           {featuredPost.author}
-                        </div>
-                        <div className="flex items-center">
-                          <Clock className="w-4 h-4 mr-1" />
-                          {featuredPost.readingTime}
                         </div>
                       </div>
 
