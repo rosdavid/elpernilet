@@ -1,19 +1,21 @@
 ---
 title: "Cortador de jamón: precios 2025 y qué incluyen"
 date: "2025-10-04"
-excerpt: "Descubre cuánto cuesta un cortador de jamón en Barcelona en 2025, qué incluye el servicio, extras, raciones por invitado y ejemplos para bodas y eventos."
-author: "elpernilet"
+excerpt: "Descubre cuánto cuesta un cortador de jamón en 2025, qué incluye el servicio, extras, raciones por invitado y ejemplos para bodas y eventos."
+author: "Xavier Ros Cortés (Maestro cortador)"
 category: "Guías"
 tags: ["cortador de jamón", "bodas", "eventos", "precios-2025", "tarifas"]
 image: "/event-image.webp"
 published: true
 ---
 
-# ¿Cuánto cuesta un cortador de jamón en Barcelona en 2025? Guía completa para bodas y eventos
+**[Pídenos presupuesto de forma rápida →](/#contact)**
 
-Contratar un **cortador de jamón en Barcelona** es un acierto para bodas y eventos corporativos. Pero… ¿**cuánto cuesta** realmente? En esta guía clara y sin rodeos verás **rangos de precio habituales**, **qué incluye el servicio**, cómo calcular **raciones por invitado**, y **extras** que pueden mover el presupuesto (desplazamiento, horas extra, barra de bebidas, servicio de camareros, etc.).
+# ¿Cuánto cuesta un cortador de jamón en 2025? Guía completa para bodas y eventos
 
-> **Resumen rápido:** en Barcelona, un servicio profesional de corte suele partir de **€180–€250** por hora o **€250–€450** por evento sencillo, y desde **€300–€600** cuando se incluyen **montaje, materiales premium y coordinación**. Los **packs** que añaden **barra de bebidas** y **camareros** elevan el ticket, pero **mejoran la experiencia y la logística**.
+Contratar un **cortador de jamón** es un acierto para bodas y eventos corporativos. Pero… ¿**cuánto cuesta** realmente? En esta guía clara y sin rodeos verás **rangos de precio habituales**, **qué incluye el servicio**, cómo calcular **raciones por invitado**, y **extras** que pueden mover el presupuesto (desplazamiento, horas extra, barra de bebidas, servicio de camareros, etc.).
+
+> **Resumen rápido:** un servicio profesional de corte suele partir de **€180–€250** por hora o **€250–€450** por evento sencillo, y desde **€300–€600** cuando se incluyen **montaje, materiales premium y coordinación**. Los **packs** que añaden **barra de bebidas** y **camareros** elevan el ticket, pero **mejoran la experiencia y la logística**.
 
 ---
 
@@ -33,7 +35,7 @@ Contratar un **cortador de jamón en Barcelona** es un acierto para bodas y even
 
 **3) Logística y desplazamiento**
 
-- Distancias dentro de **Barcelona ciudad** o **área metropolitana**.
+- Distancias dentro del rango de la empresa.
 - Accesos al venue (parking, carga/descarga, ascensores).
 - Montaje especial (escenario, wedding planner, timings con catering).
 
@@ -56,7 +58,7 @@ Contratar un **cortador de jamón en Barcelona** es un acierto para bodas y even
 
 ---
 
-## Rangos de precio orientativos (Barcelona 2025)
+## Rangos de precio orientativos (año 2025)
 
 > **Ojo:** los importes son orientativos. El precio final depende del **alcance**, la **calidad** del jamón y la **logística**.
 
@@ -103,7 +105,7 @@ Contratar un **cortador de jamón en Barcelona** es un acierto para bodas y even
 - **Barra de bebidas** (básica o premium).
 - **Camareros** de apoyo.
 - **Horas extra** (más de 3 h de servicio).
-- **Desplazamiento** fuera de BCN ciudad / peajes / parking.
+- **Desplazamiento** fuera de la zona local de la empresa / peajes / parking.
 - **Cartelería personalizada** (nombres, fecha, origen del jamón).
 
 ---
@@ -163,7 +165,7 @@ Contratar un **cortador de jamón en Barcelona** es un acierto para bodas y even
 - Montaje estético, limpieza y retirada
 - _Desde_ **€900** (jamón no incluido)
 
-> ¿Quieres un presupuesto cerrado y ajustado a tu evento? **[Pídenos presupuesto en 24 h →](/#contact)**
+> ¿Quieres un presupuesto cerrado y ajustado a tu evento? **[Pídenos presupuesto de forma rápida →](/#contact)**
 
 ---
 
@@ -178,8 +180,8 @@ Para un cóctel típico, **2–3 horas**. En bodas grandes o ferias, podemos amp
 **¿Qué pasa con lo que sobra?**  
 Podemos **envasarlo al vacío** en sobres de 100–150 g (si se contrata) o **devolverlo** en bandejas cerradas.
 
-**¿Viajáis fuera de Barcelona?**  
-Sí. Trabajamos en **provincia de Barcelona** y nos desplazamos por **Cataluña y España** (se aplican gastos de transporte/tiempo).
+**¿Viajáis fuera de vuestra zona local?**  
+Sí. Trabajamos en **Cataluña** y nos desplazamos por **España** (se aplican gastos de transporte/tiempo).
 
 **¿Ofrecéis barra de bebidas y camareros?**  
 Sí. Tenemos **packs** que incluyen **barra** (básica o premium) y **camareros** para una experiencia completa.
