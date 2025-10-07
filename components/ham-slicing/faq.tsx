@@ -73,75 +73,96 @@ export function HamSlicingFAQ() {
     }
   };
 
+  // JSON-LD para FAQs
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
-    <section
-      id="faq"
-      className="py-24 bg-gradient-to-b from-accent/10 to-background"
-    >
-      <div className="w-full max-w-4xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <Badge
-            variant="secondary"
-            className="mb-4 bg-red-100 text-red-800 border-red-200"
-          >
-            Preguntas Frecuentes
-          </Badge>
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
-            Resolvemos tus Dudas
-          </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Todo lo que necesitas saber sobre nuestro servicio de cortador de
-            jamón. Si tienes más preguntas, no dudes en contactarnos
-          </p>
-        </div>
-
-        <Card className="border-2 border-red-50">
-          <CardContent className="p-0">
-            <Accordion type="single" collapsible className="w-full">
-              {faqs.map((faq, index) => (
-                <AccordionItem
-                  key={index}
-                  value={`item-${index}`}
-                  className="border-red-50"
-                >
-                  <AccordionTrigger className="px-6 py-4 text-left hover:bg-red-50/50 [&[data-state=open]]:bg-red-50 cursor-pointer">
-                    <div className="flex items-center gap-3">
-                      <HelpCircle className="w-5 h-5 text-red-700 flex-shrink-0" />
-                      <span className="font-medium">{faq.question}</span>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="px-6 pb-4">
-                    <div className="pl-8 text-muted-foreground leading-relaxed">
-                      {faq.answer}
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </CardContent>
-        </Card>
-
-        {/* Contact CTA */}
-        <div className="mt-12 text-center">
-          <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-red-100">
-            <h3 className="text-2xl font-serif font-bold text-foreground mb-4">
-              ¿No encuentras la respuesta?
-            </h3>
-            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Nuestro equipo está aquí para ayudarte. Contáctanos y resolveremos
-              todas tus dudas sobre el servicio de cortador de jamón.
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <section
+        id="faq"
+        className="py-24 bg-gradient-to-b from-accent/10 to-background"
+      >
+        <div className="w-full max-w-4xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <Badge
+              variant="secondary"
+              className="mb-4 bg-red-100 text-red-800 border-red-200"
+            >
+              Preguntas Frecuentes
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
+              Resolvemos tus Dudas
+            </h2>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Todo lo que necesitas saber sobre nuestro servicio de cortador de
+              jamón. Si tienes más preguntas, no dudes en contactarnos
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                onClick={navigateToContactForm}
-                className="bg-red-700 hover:bg-red-800 cursor-pointer"
-              >
-                Contactar Ahora
-              </Button>
+          </div>
+
+          <Card className="border-2 border-red-50">
+            <CardContent className="p-0">
+              <Accordion type="single" collapsible className="w-full">
+                {faqs.map((faq, index) => (
+                  <AccordionItem
+                    key={index}
+                    value={`item-${index}`}
+                    className="border-red-50"
+                  >
+                    <AccordionTrigger className="px-6 py-4 text-left hover:bg-red-50/50 [&[data-state=open]]:bg-red-50 cursor-pointer">
+                      <div className="flex items-center gap-3">
+                        <HelpCircle className="w-5 h-5 text-red-700 flex-shrink-0" />
+                        <span className="font-medium">{faq.question}</span>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-6 pb-4">
+                      <div className="pl-8 text-muted-foreground leading-relaxed">
+                        {faq.answer}
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </CardContent>
+          </Card>
+
+          {/* Contact CTA */}
+          <div className="mt-12 text-center">
+            <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-red-100">
+              <h3 className="text-2xl font-serif font-bold text-foreground mb-4">
+                ¿No encuentras la respuesta?
+              </h3>
+              <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+                Nuestro equipo está aquí para ayudarte. Contáctanos y
+                resolveremos todas tus dudas sobre el servicio de cortador de
+                jamón.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  onClick={navigateToContactForm}
+                  className="bg-red-700 hover:bg-red-800 cursor-pointer"
+                >
+                  Contactar Ahora
+                </Button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

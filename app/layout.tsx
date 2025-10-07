@@ -161,63 +161,196 @@ export default function RootLayout({
           type="image/svg+xml"
         />
 
-        {/* JSON-LD Schema */}
+        {/* JSON-LD Schema - Caterer */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "FoodEstablishment",
+              "@type": "Caterer",
+              "@id": "https://elpernilet.com/#Caterer",
               name: "elpernilet",
+              alternateName: "elpernilet - Servicios de Catering Premium",
               description:
-                "Servicios premium para eventos: cortador de jamón ibérico en vivo, barra de bebidas y aperitivos, y camareros profesionales.",
+                "Servicios premium para eventos: cortador de jamón ibérico en vivo, barra de bebidas y aperitivos, y camareros profesionales en toda España.",
               url: "https://elpernilet.com",
-              telephone: "+34-931-307-832",
+              telephone: "+34654127391",
+              email: "hola@elpernilet.com",
+              foundingDate: "2015",
+              currenciesAccepted: "EUR",
+              paymentAccepted: "Transferencia bancaria, Tarjeta de crédito",
+              priceRange: "€€-€€€",
               address: {
                 "@type": "PostalAddress",
+                streetAddress: "Carrer Nou, 41",
+                addressLocality: "Navarcles",
+                postalCode: "08270",
+                addressRegion: "Barcelona",
                 addressCountry: "ES",
-                addressLocality: "España",
               },
-              servesCuisine: "Spanish",
-              priceRange: "€€",
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: "5",
-                reviewCount: "50",
+              geo: {
+                "@type": "GeoCoordinates",
+                latitude: 41.7891,
+                longitude: 1.9034,
               },
-              sameAs: [
-                "https://www.instagram.com/elpernilet",
-                "https://www.facebook.com/elpernilet",
+              areaServed: [
+                {
+                  "@type": "Country",
+                  name: "España",
+                },
+                {
+                  "@type": "AdministrativeArea",
+                  name: "Cataluña",
+                },
+                {
+                  "@type": "City",
+                  name: "Barcelona",
+                },
+                {
+                  "@type": "City",
+                  name: "Madrid",
+                },
+                {
+                  "@type": "City",
+                  name: "Valencia",
+                },
+                {
+                  "@type": "AdministrativeArea",
+                  name: "Andalucía",
+                },
               ],
-              hasMenu: {
-                "@type": "Menu",
-                hasMenuSection: [
+              serviceArea: {
+                "@type": "Country",
+                name: "España",
+              },
+              hasOfferCatalog: {
+                "@type": "OfferCatalog",
+                name: "Servicios de Catering Premium",
+                itemListElement: [
                   {
-                    "@type": "MenuSection",
-                    name: "Servicios de Catering",
-                    hasMenuItem: [
-                      {
-                        "@type": "MenuItem",
-                        name: "Cortador de Jamón en Vivo",
-                        description:
-                          "Maestro cortador profesional con jamón ibérico de bellota premium",
-                      },
-                      {
-                        "@type": "MenuItem",
-                        name: "Barra de Bebidas y Aperitivos",
-                        description:
-                          "Selección gourmet de bebidas premium y aperitivos artesanales",
-                      },
-                      {
-                        "@type": "MenuItem",
-                        name: "Servicio de Camareros",
-                        description:
-                          "Personal profesional y experimentado para tu evento",
-                      },
-                    ],
+                    "@type": "Offer",
+                    itemOffered: {
+                      "@type": "Service",
+                      name: "Cortador de Jamón Ibérico en Vivo",
+                      description:
+                        "Maestros cortadores profesionales con jamón ibérico premium para bodas y eventos",
+                    },
+                  },
+                  {
+                    "@type": "Offer",
+                    itemOffered: {
+                      "@type": "Service",
+                      name: "Barra de Bebidas y Aperitivos",
+                      description:
+                        "Selección gourmet de bebidas premium y aperitivos artesanales",
+                    },
+                  },
+                  {
+                    "@type": "Offer",
+                    itemOffered: {
+                      "@type": "Service",
+                      name: "Servicio de Camareros Profesionales",
+                      description:
+                        "Personal profesional y experimentado para eventos",
+                    },
                   },
                 ],
               },
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: "5.0",
+                reviewCount: "47",
+                bestRating: "5",
+                worstRating: "1",
+              },
+              review: [
+                {
+                  "@type": "Review",
+                  author: {
+                    "@type": "Person",
+                    name: "María González",
+                  },
+                  reviewRating: {
+                    "@type": "Rating",
+                    ratingValue: "5",
+                  },
+                  reviewBody:
+                    "El cortador de jamón fue el punto culminante de nuestra boda. Los invitados no paraban de hablar del espectáculo y la calidad del jamón ibérico era excepcional.",
+                },
+                {
+                  "@type": "Review",
+                  author: {
+                    "@type": "Person",
+                    name: "Carlos Ruiz",
+                  },
+                  reviewRating: {
+                    "@type": "Rating",
+                    ratingValue: "5",
+                  },
+                  reviewBody:
+                    "Profesionalidad absoluta. Llegaron puntuales, montaron todo perfectamente y el show fue impresionante. Nuestros clientes internacionales quedaron fascinados.",
+                },
+              ],
+              openingHoursSpecification: [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  dayOfWeek: [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday",
+                    "Sunday",
+                  ],
+                  opens: "00:00",
+                  closes: "23:59",
+                },
+              ],
+              sameAs: [
+                "https://www.instagram.com/elpernilet",
+                "https://www.facebook.com/elpernilet",
+                "https://www.bodas.net/food-truck-y-mesas-dulces/el-pernilet-cortador-de-jamon--e115395",
+              ],
+              logo: {
+                "@type": "ImageObject",
+                url: "https://elpernilet.com/elpernilet-logo.svg",
+                width: 240,
+                height: 64,
+              },
+              image: [
+                "https://elpernilet.com/elpernilet-event-image.webp",
+                "https://elpernilet.com/evento-boda-1.webp",
+                "https://elpernilet.com/evento-corporativo-1.webp",
+              ],
+
+              potentialAction: [
+                {
+                  "@type": "ReserveAction",
+                  target: {
+                    "@type": "EntryPoint",
+                    urlTemplate: "https://elpernilet.com/#contact",
+                  },
+                  object: {
+                    "@type": "Service",
+                    name: "Reservar Servicio de Catering",
+                  },
+                },
+              ],
+              knowsAbout: [
+                "Cortador de jamón ibérico",
+                "Jamón de bellota",
+                "Catering para bodas",
+                "Eventos corporativos",
+                "Barra de bebidas premium",
+                "Servicio de camareros",
+                "Gastronomía española",
+                "Eventos en Cataluña",
+                "Catering Barcelona",
+                "Maestro jamonero",
+              ],
+              slogan:
+                "Experiencias gastronómicas excepcionales para eventos inolvidables",
             }),
           }}
         />

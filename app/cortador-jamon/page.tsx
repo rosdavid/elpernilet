@@ -11,25 +11,26 @@ import { HamSlicingFAQ } from "@/components/ham-slicing/faq";
 import { HamSlicingCTA } from "@/components/ham-slicing/cta";
 
 export const metadata: Metadata = {
-  title: "Cortadores de Jamón Profesionales para Bodas y Eventos | elpernilet",
+  title:
+    "Cortadores de Jamón Profesionales para Bodas y Eventos | elpernilet Barcelona",
   description:
-    "Maestros cortadores de jamón ibérico para bodas, eventos corporativos y celebraciones. Espectáculo gastronómico en vivo. Presupuesto gratuito en 24h.",
+    "Maestros cortadores de jamón ibérico para bodas, eventos corporativos y celebraciones en Barcelona y toda España. Espectáculo gastronómico en vivo. Presupuesto gratuito en 24h.",
   keywords: [
-    "cortador de jamón",
-    "maestro cortador jamón",
-    "jamón ibérico bodas",
-    "cortador jamón eventos",
-    "corte jamón en vivo",
-    "jamón ibérico Barcelona",
-    "cortador jamón profesional",
-    "jamón bodega eventos",
-    "espectáculo corte jamón",
-    "maestro jamonero",
-    "cortador jamón Madrid",
-    "jamón bellota eventos",
-    "show cooking jamón",
-    "corte jamón artesanal",
-    "jamón premium eventos",
+    "cortador de jamón Barcelona",
+    "maestro cortador jamón Catalunya",
+    "jamón ibérico bodas Barcelona",
+    "cortador jamón eventos España",
+    "corte jamón en vivo Barcelona",
+    "jamón ibérico bellota eventos",
+    "cortador jamón profesional España",
+    "jamón bodega eventos Barcelona",
+    "espectáculo corte jamón Catalunya",
+    "maestro jamonero profesional",
+    "cortador jamón Madrid Valencia",
+    "jamón premium eventos España",
+    "show cooking jamón Barcelona",
+    "corte jamón artesanal eventos",
+    "catering jamón ibérico España",
   ],
   alternates: {
     canonical: "https://elpernilet.com/cortador-jamon",
@@ -59,24 +60,74 @@ export const metadata: Metadata = {
       "Maestros cortadores de jamón ibérico para eventos. Espectáculo gastronómico en vivo.",
     images: ["https://elpernilet.com/cortador-jamon-hero.webp"],
   },
+  other: {
+    "geo.region": "ES-CT",
+    "geo.placename": "Barcelona, Navarcles",
+    "geo.position": "41.7891;1.9034",
+    ICBM: "41.7891, 1.9034",
+    "business.contact_data.locality": "Navarcles",
+    "business.contact_data.region": "Barcelona",
+    "business.contact_data.country": "Spain",
+  },
 };
 
 export default function CortadorJamonPage() {
-  const jsonLd = {
+  const serviceJsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
     name: "Cortadores de Jamón Profesionales",
     description:
       "Servicio de maestros cortadores de jamón ibérico para bodas, eventos corporativos y celebraciones privadas",
     provider: {
-      "@type": "Organization",
+      "@type": "Caterer",
+      "@id": "https://elpernilet.com/#Caterer",
       name: "elpernilet",
       url: "https://elpernilet.com",
-      telephone: "+34-654-127-391",
+      telephone: "+34654127391",
+      email: "hola@elpernilet.com",
       address: {
         "@type": "PostalAddress",
+        streetAddress: "Carrer Nou, 41",
+        addressLocality: "Navarcles",
+        postalCode: "08270",
+        addressRegion: "Barcelona",
         addressCountry: "ES",
-        addressLocality: "Barcelona",
+      },
+      areaServed: {
+        "@type": "Country",
+        name: "España",
+      },
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Servicios de Cortador de Jamón",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            name: "Cortador de Jamón Esencial",
+            price: "350-450",
+            priceCurrency: "EUR",
+            description: "Servicio básico de cortador de jamón profesional",
+            availability: "https://schema.org/InStock",
+          },
+          {
+            "@type": "Offer",
+            name: "Cortador de Jamón Premium",
+            price: "500-650",
+            priceCurrency: "EUR",
+            description:
+              "Experiencia premium con jamón de bellota y presentación gourmet",
+            availability: "https://schema.org/InStock",
+          },
+          {
+            "@type": "Offer",
+            name: "Experiencia VIP Completa",
+            price: "750-1200",
+            priceCurrency: "EUR",
+            description:
+              "Servicio completo con múltiples cortadores y equipo de apoyo",
+            availability: "https://schema.org/InStock",
+          },
+        ],
       },
     },
     areaServed: [
@@ -88,21 +139,47 @@ export default function CortadorJamonPage() {
         "@type": "AdministrativeArea",
         name: "Cataluña",
       },
+      {
+        "@type": "City",
+        name: "Barcelona",
+      },
+      {
+        "@type": "City",
+        name: "Madrid",
+      },
+      {
+        "@type": "City",
+        name: "Valencia",
+      },
     ],
     serviceType: "Catering Services",
     category: "Food Service",
+    offers: {
+      "@type": "AggregateOffer",
+      priceRange: "€350-€1200",
+      priceCurrency: "EUR",
+      availability: "https://schema.org/InStock",
+      lowPrice: "350",
+      highPrice: "1200",
+    },
     aggregateRating: {
       "@type": "AggregateRating",
-      ratingValue: "5",
+      ratingValue: "5.0",
       reviewCount: "47",
+      bestRating: "5",
+      worstRating: "1",
     },
+    additionalType: [
+      "https://schema.org/FoodService",
+      "https://schema.org/CateringBusiness",
+    ],
   };
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
       />
 
       <Header />
