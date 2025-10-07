@@ -3,8 +3,8 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 
 export const metadata: Metadata = {
-  title: "Aviso Legal | El Pernilet",
-  description: "Aviso legal del sitio web El Pernilet",
+  title: "Aviso Legal | elpernilet",
+  description: "Aviso legal del sitio web elpernilet",
 };
 
 export default function LegalPage() {
@@ -22,7 +22,7 @@ export default function LegalPage() {
               </h2>
               <div className="bg-muted p-6 rounded-lg space-y-2">
                 <p>
-                  <strong>Denominación social:</strong> El Pernilet
+                  <strong>Denominación social:</strong> elpernilet
                 </p>
                 <p>
                   <strong>Actividad:</strong> Servicios de catering y
@@ -47,7 +47,7 @@ export default function LegalPage() {
               <h2 className="text-2xl font-semibold mb-4">Objeto</h2>
               <p className="text-muted-foreground leading-relaxed">
                 El presente aviso legal regula el uso del sitio web
-                elpernilet.com, propiedad de El Pernilet. La navegación por el
+                elpernilet.com, propiedad de elpernilet. La navegación por el
                 sitio web atribuye la condición de usuario del mismo e implica
                 la aceptación plena y sin reservas de todas las disposiciones
                 incluidas en este aviso legal.
@@ -128,8 +128,8 @@ export default function LegalPage() {
               <p className="text-muted-foreground leading-relaxed">
                 Todos los contenidos del sitio web (textos, imágenes, sonidos,
                 audio, vídeo, diseños, creatividades, software, etc.) son
-                propiedad de El Pernilet o de terceros que han autorizado su
-                uso, y están protegidos por derechos de propiedad intelectual e
+                propiedad de elpernilet o de terceros que han autorizado su uso,
+                y están protegidos por derechos de propiedad intelectual e
                 industrial.
               </p>
             </section>

@@ -3,8 +3,8 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 
 export const metadata: Metadata = {
-  title: "Política de Privacidad | El Pernilet",
-  description: "Política de privacidad y protección de datos de El Pernilet",
+  title: "Política de Privacidad | elpernilet",
+  description: "Política de privacidad y protección de datos de elpernilet",
 };
 
 export default function PrivacyPage() {
@@ -22,7 +22,7 @@ export default function PrivacyPage() {
               </h2>
               <div className="bg-muted p-6 rounded-lg">
                 <p>
-                  <strong>Denominación social:</strong> El Pernilet
+                  <strong>Denominación social:</strong> elpernilet
                 </p>
                 <p>
                   <strong>Actividad:</strong> Servicios de catering y eventos

@@ -3,8 +3,8 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 
 export const metadata: Metadata = {
-  title: "Términos de Uso | El Pernilet",
-  description: "Términos y condiciones de uso del sitio web El Pernilet",
+  title: "Términos de Uso | elpernilet",
+  description: "Términos y condiciones de uso del sitio web elpernilet",
 };
 
 export default function TermsPage() {
