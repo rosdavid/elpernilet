@@ -9,15 +9,9 @@ import { Separator } from "@/components/ui/separator";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { ShareButtons } from "@/components/share-buttons";
 import { getPostBySlug, getAllPosts, getRelatedPosts } from "@/lib/blog";
-import {
-  Calendar,
-  Clock,
-  User,
-  ArrowLeft,
-  ArrowRight,
-  Share2,
-} from "lucide-react";
+import { Calendar, Clock, User, ArrowLeft, ArrowRight } from "lucide-react";
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -89,7 +83,7 @@ export async function generateMetadata({
               url: "https://elpernilet.com/elpernilet-event-image.webp",
               width: 1200,
               height: 630,
-              alt: "elpernilet - Servicios de catering premium",
+              alt: "elpernilet - Servicios de corte de jamón en vivo para eventos",
             },
           ],
     },
@@ -215,14 +209,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <Clock className="w-4 h-4 mr-2" />
                   {post.readingTime}
                 </div>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  <Share2 className="w-4 h-4 mr-2" />
-                  Compartir
-                </Button>
+                <ShareButtons
+                  url={`/blog/${slug}`}
+                  title={post.title}
+                  description={post.excerpt}
+                />
               </div>
             </div>
 
