@@ -6,6 +6,7 @@ import { EventGallery } from "@/components/event-gallery";
 import { OurStory } from "@/components/our-story";
 import { FAQ } from "@/components/faq";
 import { BlogPreview } from "@/components/blog-preview";
+import { OnlineStore } from "@/components/online-store";
 import { ContactForm } from "@/components/contact-form";
 import { Footer } from "@/components/footer";
 
@@ -20,6 +21,7 @@ export default function Home() {
       <OurStory />
       <FAQ />
       <BlogPreview />
+      <OnlineStore />
       <ContactForm />
       <Footer />
     </main>
