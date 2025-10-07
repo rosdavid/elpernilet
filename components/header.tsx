@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
@@ -10,16 +10,23 @@ import { useRouter, usePathname } from "next/navigation";
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [desktopServicesOpen, setDesktopServicesOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
 
   // Función para abrir/cerrar el menú móvil
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
+    // Cerrar el dropdown de servicios cuando se cierra el menú móvil
+    if (mobileMenuOpen) {
+      setMobileServicesOpen(false);
+    }
   };
 
   const navigateToSection = (sectionId: string) => {
     setMobileMenuOpen(false);
+    setMobileServicesOpen(false);
 
     // Si estamos en la página principal, hacer scroll
     if (pathname === "/") {
@@ -105,12 +112,45 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-            <button
-              onClick={() => navigateToSection("services")}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground cursor-pointer"
+            <div
+              className="relative"
+              onMouseEnter={() => setDesktopServicesOpen(true)}
+              onMouseLeave={() => setDesktopServicesOpen(false)}
             >
-              Servicios
-            </button>
+              <button className="text-sm font-medium text-muted-foreground hover:text-foreground cursor-pointer flex items-center gap-1 transition-colors duration-200">
+                Servicios
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform duration-200 ${
+                    desktopServicesOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+
+              {/* Custom Dropdown */}
+              <div
+                className={`absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-border/20 transition-all duration-200 transform origin-top ${
+                  desktopServicesOpen
+                    ? "opacity-100 visible scale-100 translate-y-0"
+                    : "opacity-0 invisible scale-95 -translate-y-2"
+                }`}
+              >
+                <div className="py-2">
+                  <Link
+                    href="/cortador-jamon"
+                    className="flex items-center px-4 py-3 text-sm text-foreground hover:bg-red-50 hover:text-red-700 transition-colors duration-150 group"
+                  >
+                    <div>
+                      <div className="font-medium">Cortadores de Jamón</div>
+                      <div className="text-xs text-muted-foreground group-hover:text-red-600">
+                        Maestros cortadores profesionales
+                      </div>
+                    </div>
+                  </Link>
+
+                  <div className="mx-4 my-2 border-t border-border/30"></div>
+                </div>
+              </div>
+            </div>
             <button
               onClick={() => navigateToSection("about")}
               className="text-sm font-medium text-muted-foreground hover:text-foreground cursor-pointer"
@@ -182,12 +222,30 @@ export function Header() {
           >
             <div className="w-full max-w-7xl mx-auto px-4 py-6">
               <div className="flex flex-col gap-4">
-                <button
-                  onClick={() => navigateToSection("services")}
-                  className="text-left text-sm font-medium text-muted-foreground hover:text-foreground py-3 cursor-pointer border-b border-border/30"
-                >
-                  Servicios
-                </button>
+                <div className="border-b border-border/30">
+                  <button
+                    onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                    className="text-left text-sm font-medium text-muted-foreground hover:text-foreground py-3 cursor-pointer w-full flex items-center justify-between"
+                  >
+                    Servicios
+                    <ChevronDown
+                      className={`w-4 h-4 transition-transform ${
+                        mobileServicesOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                  {mobileServicesOpen && (
+                    <div className="pl-4 pb-3 space-y-2">
+                      <Link
+                        href="/cortador-jamon"
+                        className="block text-sm font-medium text-muted-foreground hover:text-foreground py-2 cursor-pointer"
+                        onClick={toggleMobileMenu}
+                      >
+                        Cortadores de Jamón
+                      </Link>
+                    </div>
+                  )}
+                </div>
                 <button
                   onClick={() => navigateToSection("about")}
                   className="text-left text-sm font-medium text-muted-foreground hover:text-foreground py-3 cursor-pointer border-b border-border/30"
