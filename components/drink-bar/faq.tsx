@@ -15,7 +15,7 @@ const faqs = [
   {
     question: "¿Qué incluye el servicio de barra de bebidas?",
     answer:
-      "Nuestro servicio incluye bartenders profesionales certificados, barra móvil completamente equipada, cristalería premium, hielo, decoración temática, selección de bebidas premium (alcoholicas y sin alcohol), cócteles artesanales, montaje y desmontaje completo, y limpieza final. Todo lo necesario para un servicio impecable.",
+      "Nuestro servicio incluye bartenders profesionales certificados o camareros de barra, barra completamente equipada, cristalería, hielo, decoración temática, selección de bebidas premium (alcoholicas y sin alcohol), cócteles artesanales, montaje y desmontaje completo, y limpieza final. Todo lo necesario para un servicio impecable. Decide lo que necesites.",
   },
   {
     question: "¿Pueden crear cócteles personalizados para mi evento?",
@@ -25,32 +25,22 @@ const faqs = [
   {
     question: "¿Cuántos bartenders incluye el servicio?",
     answer:
-      "El número de bartenders depende del tamaño del evento: para eventos de hasta 80 personas incluimos 1 bartender profesional, de 80-150 personas incluimos 2 bartenders, y para eventos mayores añadimos bartenders adicionales. Todos nuestros bartenders están certificados y tienen amplia experiencia en eventos.",
+      "El número de bartenders depende del tamaño del evento: para eventos de hasta 80 personas incluimos 1 bartender profesional, de 80-150 personas incluimos 2 bartenders, y para eventos mayores añadimos bartenders adicionales. Todos nuestros bartenders están certificados y tienen amplia experiencia en eventos. También contamos con camareros de barra para servicio más ágil.",
   },
   {
     question: "¿Qué tipos de bebidas están incluidas?",
     answer:
-      "Incluimos una amplia selección: cócteles clásicos y de autor, gin tonics premium, mojitos, cosmopolitans, bebidas sin alcohol, refrescos artesanales, aguas saborizadas, y más. Adaptamos la carta según tus preferencias y presupuesto. También ofrecemos opciones premium con licores de alta gama.",
+      "Incluimos una amplia selección: cócteles clásicos, gin tonics premium, mojitos, cosmopolitans, bebidas sin alcohol, refrescos artesanales, aguas saborizadas, y más. Adaptamos la carta según tus preferencias y presupuesto. También ofrecemos opciones premium con licores de alta gama.",
   },
   {
     question: "¿Necesito aportar algo para el servicio de barra?",
     answer:
-      "No necesitas aportar nada. Nos encargamos de todo: barra móvil, cristalería, hielo, decoración, ingredientes frescos, bebidas, y todo el equipamiento necesario. Solo necesitamos acceso a electricidad y agua. Llegamos completamente autónomos para tu comodidad.",
-  },
-  {
-    question: "¿Ofrecen servicio de show de mixología?",
-    answer:
-      "Sí, nuestros bartenders están especializados en técnicas de mixología profesional y pueden ofrecer un verdadero espectáculo: técnicas de flair bartending, preparación de cócteles con fuego, humo, nitrógeno líquido, y presentaciones espectaculares que cautivarán a tus invitados.",
+      "No necesitas aportar nada. Nos encargamos de todo: barra, cristalería, hielo, decoración, ingredientes frescos, bebidas, y todo el equipamiento necesario. Llegamos completamente autónomos para tu comodidad. Para algunos lugares contaremos con la ayuda del local donde realices tu evento para reducir costes si es necesario",
   },
   {
     question: "¿Cuál es el horario del servicio?",
     answer:
       "Nuestro servicio es completamente flexible. Típicamente ofrecemos servicios de 4-8 horas, pero podemos adaptarnos a tus necesidades específicas. Llegamos 2 horas antes para el montaje y nos quedamos hasta completar el desmontaje y limpieza. Disponibles 24/7 para eventos especiales.",
-  },
-  {
-    question: "¿Hay descuentos por contratar múltiples servicios?",
-    answer:
-      "Sí, ofrecemos paquetes especiales cuando contratas varios servicios: cortador de jamón + barra de bebidas, servicio de camareros + barra, o paquetes completos de catering. Contacta con nosotros para conocer nuestras ofertas combinadas y ahorrar en tu evento.",
   },
   {
     question: "¿Cómo se calcula el precio del servicio?",
@@ -60,7 +50,7 @@ const faqs = [
   {
     question: "¿Qué medidas de seguridad y licencias tienen?",
     answer:
-      "Contamos con todas las licencias requeridas, seguro de responsabilidad civil, certificados de manipulación de alimentos, y cumplimos todas las normativas sanitarias. Nuestros bartenders están formados en servicio responsable de alcohol y gestión de eventos seguros.",
+      "Contamos con certificados de manipulación de alimentos, y cumplimos todas las normativas sanitarias. Nuestros bartenders y camareros de barra están formados en servicio responsable de alcohol y gestión de eventos seguros.",
   },
 ];
 
