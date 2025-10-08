@@ -86,7 +86,7 @@ export function Header() {
 
   return (
     <header
-      className={`w-full z-50 border-b border-border ${
+      className={`w-full z-50 border-border ${
         isScrolled
           ? "fixed top-0 left-0 right-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 shadow-sm"
           : "relative bg-background"
