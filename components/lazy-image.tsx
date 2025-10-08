@@ -25,7 +25,7 @@ const LazyImage = memo(
     priority = false,
     sizes,
     fill = false,
-    placeholder = "blur",
+    placeholder = "empty",
     blurDataURL,
   }: LazyImageProps) => {
     const [isLoading, setIsLoading] = useState(true);
