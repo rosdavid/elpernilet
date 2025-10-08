@@ -7,34 +7,54 @@ import Image from "next/image";
 
 const galleryImages = [
   {
-    src: "/evento-boda-4.webp",
+    src: "/elpernilet-event-image.webp",
     alt: "Maestra cortadora de jamón en boda elegante",
     category: "Bodas",
+    title: "Bodas de Ensueño",
+    description: "Momentos únicos con el arte del corte tradicional",
   },
   {
     src: "/evento-boda-2.webp",
     alt: "Corte de jamón ibérico en evento corporativo",
     category: "Corporativo",
+    title: "Eventos Corporativos",
+    description:
+      "Impresiona a tus clientes con una experiencia gastronómica excepcional",
   },
   {
     src: "/evento-boda-3.webp",
     alt: "Presentación gourmet de jamón ibérico",
     category: "Presentación",
+    title: "Presentación Gourmet",
+    description: "Cada lámina cortada con precisión de maestro",
   },
   {
     src: "/evento-boda-4.webp",
     alt: "Show cooking de jamón en celebración privada",
     category: "Eventos Privados",
-  },
-  {
-    src: "/evento-boda-5.webp",
-    alt: "Montaje profesional para corte de jamón",
-    category: "Setup",
+    title: "Celebraciones Privadas",
+    description: "Convierte tu celebración en una experiencia inolvidable",
   },
   {
     src: "/evento-boda-de-oro-1.webp",
+    alt: "Técnica profesional de cortado de jamón ibérico",
+    category: "Técnica",
+    title: "Técnica Profesional",
+    description: "15+ años perfeccionando el arte del corte ibérico",
+  },
+  {
+    src: "/evento-boda-1.webp",
+    alt: "Montaje profesional para corte de jamón",
+    category: "Setup",
+    title: "Montaje Profesional",
+    description: "Todo listo para ofrecer la mejor experiencia",
+  },
+  {
+    src: "/evento-privado-2.webp",
     alt: "Degustación de jamón ibérico de bellota",
     category: "Degustación",
+    title: "Degustación Premium",
+    description: "Jamón ibérico de bellota, la máxima expresión del sabor",
   },
 ];
 
@@ -75,21 +95,44 @@ export function HamSlicingGallery() {
           {galleryImages.map((image, index) => (
             <Card
               key={index}
-              className="overflow-hidden group hover:shadow-xl transition-all duration-300 border-0"
+              className="overflow-hidden group hover:shadow-xl transition-all duration-300 border-0 cursor-pointer"
             >
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
                   src={image.src}
                   alt={image.alt}
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300"></div>
-                <div className="absolute bottom-4 left-4 right-4">
+
+                {/* Overlay responsivo */}
+                <div
+                  className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent 
+                               md:opacity-0 md:group-hover:opacity-100 
+                               opacity-100 
+                               transition-opacity duration-300 flex items-end"
+                >
+                  <div
+                    className="p-4 md:p-6 text-white 
+                                 md:transform md:translate-y-4 md:group-hover:translate-y-0 
+                                 transform-none 
+                                 md:transition-transform transition-none duration-300"
+                  >
+                    <h3 className="text-base md:text-xl font-serif font-bold mb-2">
+                      {image.title}
+                    </h3>
+                    <p className="text-xs md:text-sm text-white/90 leading-relaxed">
+                      {image.description}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Badge siempre visible */}
+                <div className="absolute top-4 left-4">
                   <Badge
                     variant="secondary"
-                    className="bg-white/90 text-foreground border-0"
+                    className="bg-white/90 text-foreground border-0 backdrop-blur-sm text-xs"
                   >
                     {image.category}
                   </Badge>
