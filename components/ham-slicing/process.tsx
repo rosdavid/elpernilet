@@ -59,14 +59,12 @@ const processSteps = [
 
 export function HamSlicingProcess() {
   const navigateToContactForm = () => {
-    // Si estamos en la página principal, hacer scroll directo
     if (window.location.pathname === "/") {
       const element = document.getElementById("contact");
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
       }
     } else {
-      // Si estamos en otra página, navegar a la principal y luego hacer scroll
       window.location.href = "/#contact";
     }
   };
@@ -134,8 +132,23 @@ export function HamSlicingProcess() {
                 )}
               </div>
 
-              {/* Image */}
-              <div className="flex-1">
+              {/* Imagen solo visible en móvil */}
+              <div className="w-full mt-6 block lg:hidden">
+                <Card className="overflow-hidden shadow-lg">
+                  <div className="relative aspect-[4/3]">
+                    <Image
+                      src={step.image}
+                      alt={`${step.title} - Proceso de cortador de jamón profesional`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
+                </Card>
+              </div>
+
+              {/* Imagen desktop */}
+              <div className="flex-1 hidden lg:block">
                 <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
                   <div className="relative aspect-[4/3]">
                     <Image
