@@ -167,7 +167,7 @@ export function Header() {
               onClick={() => navigateToSection("about")}
               className="text-sm font-medium text-muted-foreground hover:text-foreground cursor-pointer"
             >
-              Nosotros
+              Sobre nosotros
             </button>
             <button
               onClick={() => navigateToSection("gallery")}
@@ -179,7 +179,7 @@ export function Header() {
               onClick={() => navigateToSection("our-story")}
               className="text-sm font-medium text-muted-foreground hover:text-foreground cursor-pointer"
             >
-              Sobre nosotros
+              Nuestra historia
             </button>
             <button
               onClick={() => navigateToSection("faq")}
@@ -269,7 +269,7 @@ export function Header() {
                   onClick={() => navigateToSection("about")}
                   className="text-left text-sm font-medium text-muted-foreground hover:text-foreground py-3 cursor-pointer border-b border-border/30"
                 >
-                  Nosotros
+                  Sobre nosotros
                 </button>
                 <button
                   onClick={() => navigateToSection("gallery")}
@@ -281,7 +281,7 @@ export function Header() {
                   onClick={() => navigateToSection("our-story")}
                   className="text-left text-sm font-medium text-muted-foreground hover:text-foreground py-3 cursor-pointer border-b border-border/30"
                 >
-                  Sobre nosotros
+                  Nuestra historia
                 </button>
                 <button
                   onClick={() => navigateToSection("faq")}
