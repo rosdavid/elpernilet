@@ -45,9 +45,9 @@ export const ContactForm = memo(() => {
 
   const serviceOptions = [
     { value: "camareros", label: "Camareros" },
-    { value: "barra-bebidas", label: "Barra de Bebidas" },
-    { value: "barra-aperitivos", label: "Barra de Aperitivos" },
     { value: "cortador-jamon", label: "Cortador de Jamón" },
+    { value: "barra-aperitivos", label: "Barra de Aperitivos" },
+    { value: "barra-bebidas", label: "Barra de Bebidas" },
   ];
 
   const handleSubmit = useCallback(
@@ -188,6 +188,7 @@ export const ContactForm = memo(() => {
                       required
                       placeholder="Juan"
                       className="h-11"
+                      autoComplete="given-name"
                     />
                   </div>
                   <div className="space-y-2">
@@ -200,6 +201,7 @@ export const ContactForm = memo(() => {
                       required
                       placeholder="García"
                       className="h-11"
+                      autoComplete="family-name"
                     />
                   </div>
                 </div>
@@ -216,6 +218,7 @@ export const ContactForm = memo(() => {
                       required
                       placeholder="juan@ejemplo.com"
                       className="h-11"
+                      autoComplete="email"
                     />
                   </div>
                   <div className="space-y-2">
@@ -229,6 +232,7 @@ export const ContactForm = memo(() => {
                       required
                       placeholder="+34 600 000 000"
                       className="h-11"
+                      autoComplete="tel"
                     />
                   </div>
                 </div>
@@ -389,7 +393,7 @@ export const ContactForm = memo(() => {
                                         )?.label
                                     )
                                     .join(", ")} y ${services.length - 2} más`
-                              : "Seleccione servicios..."}
+                              : "Seleccione uno o más servicios..."}
                           </span>
                           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                         </Button>
