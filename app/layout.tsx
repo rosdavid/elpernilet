@@ -277,6 +277,10 @@ export default function RootLayout({
                   },
                   reviewBody:
                     "El cortador de jamón fue el punto culminante de nuestra boda. Los invitados no paraban de hablar del espectáculo y la calidad del jamón ibérico era excepcional.",
+                  itemReviewed: {
+                    "@type": "Service",
+                    name: "Cortador de Jamón Ibérico en Vivo",
+                  },
                 },
                 {
                   "@type": "Review",
@@ -290,6 +294,10 @@ export default function RootLayout({
                   },
                   reviewBody:
                     "Profesionalidad absoluta. Llegaron puntuales, montaron todo perfectamente y el show fue impresionante. Nuestros clientes internacionales quedaron fascinados.",
+                  itemReviewed: {
+                    "@type": "Service",
+                    name: "Cortador de Jamón Ibérico en Vivo",
+                  },
                 },
               ],
               openingHoursSpecification: [
