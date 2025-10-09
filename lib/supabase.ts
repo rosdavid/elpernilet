@@ -15,6 +15,9 @@ export interface ContactSubmission {
   event_type: string;
   event_date: string;
   client_type: string;
+  guest_count: string;
+  budget_range: string;
+  services: string[];
   message: string;
   status: "pending" | "contacted" | "closed" | "rejected";
   notes?: string;

@@ -49,6 +49,7 @@ interface ContactSubmission {
   client_type: string;
   guest_count: string;
   budget_range: string;
+  services: string[];
   message: string;
   submitted_at: string;
   status: "pending" | "contacted" | "closed" | "rejected";
@@ -265,6 +266,13 @@ export const AdminPanel = memo(() => {
     );
   }
 
+  const serviceLabels: { [key: string]: string } = {
+    camareros: "Camareros",
+    "barra-bebidas": "Barra de Bebidas",
+    "barra-aperitivos": "Barra de Aperitivos",
+    "cortador-jamon": "Cortador de Jamón",
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-7xl mx-auto">
@@ -312,6 +320,7 @@ export const AdminPanel = memo(() => {
                         <TableHead>Fecha</TableHead>
                         <TableHead>Invitados</TableHead>
                         <TableHead>Presupuesto</TableHead>
+                        <TableHead>Servicios</TableHead>
                         <TableHead>Estado</TableHead>
                         <TableHead>Recibido</TableHead>
                         <TableHead>Acciones</TableHead>
@@ -346,6 +355,19 @@ export const AdminPanel = memo(() => {
                           <TableCell>
                             <div className="text-sm">
                               {getBudgetRangeLabel(contact.budget_range)}
+                            </div>
+                          </TableCell>
+                          <TableCell>
+                            <div className="flex gap-1">
+                              {contact.services.map((service) => (
+                                <Badge
+                                  key={service}
+                                  variant="secondary"
+                                  className="text-xs"
+                                >
+                                  {serviceLabels[service] || service}
+                                </Badge>
+                              ))}
                             </div>
                           </TableCell>
                           <TableCell>
@@ -470,6 +492,22 @@ export const AdminPanel = memo(() => {
                           <strong>Presupuesto:</strong>{" "}
                           {getBudgetRangeLabel(selectedContact.budget_range)}
                         </p>
+                      </div>
+                    </div>
+
+                    {/* Servicios */}
+                    <div>
+                      <h4 className="font-semibold mb-3">Servicios</h4>
+                      <div className="flex flex-wrap gap-1">
+                        {selectedContact.services.map((service) => (
+                          <Badge
+                            key={service}
+                            variant="secondary"
+                            className="text-xs"
+                          >
+                            {serviceLabels[service] || service}
+                          </Badge>
+                        ))}
                       </div>
                     </div>
 

@@ -23,9 +23,32 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+} from "@/components/ui/command";
+import { Check, ChevronsUpDown } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export const ContactForm = memo(() => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [services, setServices] = useState<string[]>([]);
+  const [open, setOpen] = useState(false);
+
+  const serviceOptions = [
+    { value: "camareros", label: "Camareros" },
+    { value: "barra-bebidas", label: "Barra de Bebidas" },
+    { value: "barra-aperitivos", label: "Barra de Aperitivos" },
+    { value: "cortador-jamon", label: "Cortador de Jamón" },
+  ];
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
@@ -35,21 +58,53 @@ export const ContactForm = memo(() => {
       try {
         const formData = new FormData(e.currentTarget);
 
+        if (services.length === 0) {
+          toast.error("Seleccione al menos un servicio.");
+          setIsSubmitting(false);
+          return;
+        }
+
         // Optimizar creación del objeto
-        const data = Object.fromEntries(
-          [
-            "firstName",
-            "lastName",
-            "email",
-            "phone",
-            "eventType",
-            "eventDate",
-            "clientType",
-            "guestCount",
-            "budgetRange",
-            "message",
-          ].map((key) => [key, formData.get(key)])
-        );
+        const data: {
+          firstName: FormDataEntryValue | null;
+          lastName: FormDataEntryValue | null;
+          email: FormDataEntryValue | null;
+          phone: FormDataEntryValue | null;
+          eventType: FormDataEntryValue | null;
+          eventDate: FormDataEntryValue | null;
+          clientType: FormDataEntryValue | null;
+          guestCount: FormDataEntryValue | null;
+          budgetRange: FormDataEntryValue | null;
+          message: FormDataEntryValue | null;
+          services: string[];
+        } = {
+          ...(Object.fromEntries(
+            [
+              "firstName",
+              "lastName",
+              "email",
+              "phone",
+              "eventType",
+              "eventDate",
+              "clientType",
+              "guestCount",
+              "budgetRange",
+              "message",
+            ].map((key) => [key, formData.get(key)])
+          ) as {
+            firstName: FormDataEntryValue | null;
+            lastName: FormDataEntryValue | null;
+            email: FormDataEntryValue | null;
+            phone: FormDataEntryValue | null;
+            eventType: FormDataEntryValue | null;
+            eventDate: FormDataEntryValue | null;
+            clientType: FormDataEntryValue | null;
+            guestCount: FormDataEntryValue | null;
+            budgetRange: FormDataEntryValue | null;
+            message: FormDataEntryValue | null;
+          }),
+          services,
+        };
 
         const response = await fetch("/api/contact", {
           method: "POST",
@@ -72,6 +127,7 @@ export const ContactForm = memo(() => {
             duration: 5000,
           });
           (e.target as HTMLFormElement).reset();
+          setServices([]);
         } else {
           toast.error("Error al enviar el formulario", {
             description: result.message || "Por favor, inténtelo de nuevo.",
@@ -89,7 +145,7 @@ export const ContactForm = memo(() => {
         setIsSubmitting(false);
       }
     },
-    []
+    [services]
   );
 
   return (
@@ -284,19 +340,94 @@ export const ContactForm = memo(() => {
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="clientType" className="text-sm font-medium">
-                    Tipo de cliente *
-                  </Label>
-                  <Select name="clientType" required>
-                    <SelectTrigger id="clientType" className="h-11">
-                      <SelectValue placeholder="Seleccione tipo de cliente" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="particular">Particular</SelectItem>
-                      <SelectItem value="professional">Profesional</SelectItem>
-                    </SelectContent>
-                  </Select>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="clientType" className="text-sm font-medium">
+                      Tipo de cliente *
+                    </Label>
+                    <Select name="clientType" required>
+                      <SelectTrigger id="clientType" className="h-11">
+                        <SelectValue placeholder="Seleccione tipo de cliente" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="particular">Particular</SelectItem>
+                        <SelectItem value="professional">
+                          Profesional
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-sm font-medium">
+                      Servicios requeridos *
+                    </Label>
+                    <Popover open={open} onOpenChange={setOpen}>
+                      <PopoverTrigger asChild>
+                        <Button
+                          variant="outline"
+                          role="combobox"
+                          aria-expanded={open}
+                          className="w-full h-11 justify-between"
+                        >
+                          <span className="flex-1 text-left">
+                            {services.length > 0
+                              ? services.length <= 2
+                                ? services
+                                    .map(
+                                      (s) =>
+                                        serviceOptions.find(
+                                          (o) => o.value === s
+                                        )?.label
+                                    )
+                                    .join(", ")
+                                : `${services
+                                    .slice(0, 2)
+                                    .map(
+                                      (s) =>
+                                        serviceOptions.find(
+                                          (o) => o.value === s
+                                        )?.label
+                                    )
+                                    .join(", ")} y ${services.length - 2} más`
+                              : "Seleccione servicios..."}
+                          </span>
+                          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-full p-0">
+                        <Command>
+                          <CommandInput placeholder="Buscar servicios..." />
+                          <CommandEmpty>
+                            No se encontraron servicios.
+                          </CommandEmpty>
+                          <CommandGroup>
+                            {serviceOptions.map((service) => (
+                              <CommandItem
+                                key={service.value}
+                                onSelect={() => {
+                                  setServices((prev) =>
+                                    prev.includes(service.value)
+                                      ? prev.filter((s) => s !== service.value)
+                                      : [...prev, service.value]
+                                  );
+                                }}
+                              >
+                                <Check
+                                  className={cn(
+                                    "mr-2 h-4 w-4",
+                                    services.includes(service.value)
+                                      ? "opacity-100"
+                                      : "opacity-0"
+                                  )}
+                                />
+                                {service.label}
+                              </CommandItem>
+                            ))}
+                          </CommandGroup>
+                        </Command>
+                      </PopoverContent>
+                    </Popover>
+                  </div>
                 </div>
 
                 <div className="space-y-2">
@@ -307,7 +438,7 @@ export const ContactForm = memo(() => {
                     id="message"
                     name="message"
                     required
-                    placeholder="Cuéntenos sobre su evento: servicios específicos que necesita, ubicación, detalles especiales..."
+                    placeholder="Cuéntenos sobre su evento: ubicación, servicios extras que no figuran en la lista, detalles especiales..."
                     rows={6}
                     className="resize-none"
                   />

@@ -12,6 +12,7 @@ export interface ContactSubmission {
   client_type: string;
   guest_count: string;
   budget_range: string;
+  services: string[];
   message: string;
   submitted_at: string;
   status: "pending" | "contacted" | "closed" | "rejected";
@@ -33,6 +34,7 @@ export async function POST(request: NextRequest) {
       "clientType",
       "guestCount",
       "budgetRange",
+      "services",
       "message",
     ];
     const missingFields = requiredFields.filter((field) => !body[field]);
@@ -48,6 +50,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    if (!Array.isArray(body.services) || body.services.length === 0) {
+      return NextResponse.json(
+        { success: false, message: "Debe seleccionar al menos un servicio." },
+        { status: 400 }
+      );
+    }
+
     console.log("Attempting to insert data:", {
       first_name: body.firstName,
       last_name: body.lastName,
@@ -58,6 +67,7 @@ export async function POST(request: NextRequest) {
       client_type: body.clientType,
       guest_count: body.guestCount,
       budget_range: body.budgetRange,
+      services: body.services,
       message: body.message,
     });
 
@@ -75,6 +85,7 @@ export async function POST(request: NextRequest) {
           client_type: body.clientType,
           guest_count: body.guestCount,
           budget_range: body.budgetRange,
+          services: body.services,
           message: body.message,
           status: "pending",
         },
