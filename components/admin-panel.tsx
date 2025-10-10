@@ -59,6 +59,7 @@ interface ContactSubmission {
 
 export const AdminPanel = memo(() => {
   const [contacts, setContacts] = useState<ContactSubmission[]>([]);
+  const [search, setSearch] = useState("");
   const [selectedContact, setSelectedContact] =
     useState<ContactSubmission | null>(null);
   const [loading, setLoading] = useState(true);
@@ -82,7 +83,12 @@ export const AdminPanel = memo(() => {
   // Nueva función para borrar contacto
   const deleteContact = useCallback(
     async (id: string) => {
-      if (!window.confirm("¿Seguro que quieres borrar esta solicitud?")) return;
+      if (
+        !window.confirm(
+          "¿Seguro que quieres borrar esta solicitud? Esta opción no se puede revertir"
+        )
+      )
+        return;
       try {
         const response = await fetch("/api/contact", {
           method: "DELETE",
@@ -250,13 +256,13 @@ export const AdminPanel = memo(() => {
 
   const getGuestCountLabel = (guestCount: string) => {
     const counts: { [key: string]: string } = {
-      "0-20": "0-20 invitados",
-      "20-50": "20-50 invitados",
-      "51-100": "51-100 invitados",
-      "101-150": "101-150 invitados",
-      "151-200": "151-200 invitados",
-      "201-300": "201-300 invitados",
-      "301-500": "301-500 invitados",
+      "0-20": "0 - 20 invitados",
+      "20-50": "20 - 50 invitados",
+      "51-100": "51 - 100 invitados",
+      "101-150": "101 - 150 invitados",
+      "151-200": "151 - 200 invitados",
+      "201-300": "201 - 300 invitados",
+      "301-500": "301 - 500 invitados",
       "500+": "Más de 500 invitados",
     };
     return counts[guestCount] || guestCount;
@@ -328,12 +334,25 @@ export const AdminPanel = memo(() => {
           <div className="lg:col-span-2">
             <Card className="pt-4">
               <CardHeader>
-                <CardTitle>
-                  Solicitudes de Contacto ({contacts.length})
-                </CardTitle>
-                <CardDescription>
-                  Lista de todas las solicitudes recibidas
-                </CardDescription>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 w-full">
+                  <div>
+                    <CardTitle>
+                      Solicitudes de Contacto ({contacts.length})
+                    </CardTitle>
+                    <CardDescription>
+                      Lista de todas las solicitudes recibidas
+                    </CardDescription>
+                  </div>
+                  <div className="w-full sm:w-auto">
+                    <input
+                      type="text"
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
+                      placeholder="Buscar por nombre, email, teléfono, ID..."
+                      className="border border-gray-300 rounded px-3 py-2 text-sm w-full sm:w-[260px]"
+                    />
+                  </div>
+                </div>
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
@@ -355,86 +374,98 @@ export const AdminPanel = memo(() => {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {contacts.map((contact) => (
-                        <TableRow key={contact.id}>
-                          <TableCell>
-                            <span className="font-mono text-xs text-gray-500">
-                              {contact.id}
-                            </span>
-                          </TableCell>
-                          <TableCell>
-                            <div>
-                              <div className="font-medium">
-                                {contact.first_name} {contact.last_name}
+                      {contacts
+                        .filter((contact) => {
+                          const term = search.trim().toLowerCase();
+                          if (!term) return true;
+                          return (
+                            contact.id.toLowerCase().includes(term) ||
+                            contact.first_name.toLowerCase().includes(term) ||
+                            contact.last_name.toLowerCase().includes(term) ||
+                            contact.email.toLowerCase().includes(term) ||
+                            contact.phone.toLowerCase().includes(term)
+                          );
+                        })
+                        .map((contact) => (
+                          <TableRow key={contact.id}>
+                            <TableCell>
+                              <span className="font-mono text-xs text-gray-500">
+                                {contact.id}
+                              </span>
+                            </TableCell>
+                            <TableCell>
+                              <div>
+                                <div className="font-medium">
+                                  {contact.first_name} {contact.last_name}
+                                </div>
+                                <div className="text-sm text-gray-500">
+                                  {contact.email}
+                                </div>
                               </div>
-                              <div className="text-sm text-gray-500">
-                                {contact.email}
+                            </TableCell>
+                            <TableCell>
+                              {getEventTypeLabel(contact.event_type)}
+                            </TableCell>
+                            <TableCell>
+                              {new Date(contact.event_date).toLocaleDateString(
+                                "es-ES"
+                              )}
+                            </TableCell>
+                            <TableCell>
+                              <div className="text-sm">
+                                {getGuestCountLabel(contact.guest_count)}
                               </div>
-                            </div>
-                          </TableCell>
-                          <TableCell>
-                            {getEventTypeLabel(contact.event_type)}
-                          </TableCell>
-                          <TableCell>
-                            {new Date(contact.event_date).toLocaleDateString(
-                              "es-ES"
-                            )}
-                          </TableCell>
-                          <TableCell>
-                            <div className="text-sm">
-                              {getGuestCountLabel(contact.guest_count)}
-                            </div>
-                          </TableCell>
-                          <TableCell>
-                            <div className="text-sm">
-                              {getBudgetRangeLabel(contact.budget_range)}
-                            </div>
-                          </TableCell>
-                          <TableCell>
-                            <div className="flex gap-1">
-                              {contact.services.map((service) => (
-                                <Badge
-                                  key={service}
-                                  variant="secondary"
-                                  className="text-xs"
+                            </TableCell>
+                            <TableCell>
+                              <div className="text-sm">
+                                {getBudgetRangeLabel(contact.budget_range)}
+                              </div>
+                            </TableCell>
+                            <TableCell>
+                              <div className="flex gap-1">
+                                {contact.services.map((service) => (
+                                  <Badge
+                                    key={service}
+                                    variant="secondary"
+                                    className="text-xs"
+                                  >
+                                    {serviceLabels[service] || service}
+                                  </Badge>
+                                ))}
+                              </div>
+                            </TableCell>
+                            <TableCell>
+                              {getStatusBadge(contact.status)}
+                            </TableCell>
+                            <TableCell>
+                              {new Date(
+                                contact.submitted_at
+                              ).toLocaleDateString("es-ES")}
+                            </TableCell>
+                            <TableCell className="sticky right-0 bg-gray-50 z-10">
+                              <div className="flex flex-col gap-2 items-end">
+                                <Button
+                                  className="cursor-pointer w-[90px] justify-start"
+                                  variant="outline"
+                                  size="sm"
+                                  onClick={() => setSelectedContact(contact)}
                                 >
-                                  {serviceLabels[service] || service}
-                                </Badge>
-                              ))}
-                            </div>
-                          </TableCell>
-                          <TableCell>
-                            {getStatusBadge(contact.status)}
-                          </TableCell>
-                          <TableCell>
-                            {new Date(contact.submitted_at).toLocaleDateString(
-                              "es-ES"
-                            )}
-                          </TableCell>
-                          <TableCell className="sticky right-0 bg-gray-50 z-10">
-                            <div className="flex flex-col gap-2 items-end">
-                              <Button
-                                className="cursor-pointer w-[90px] justify-start"
-                                variant="outline"
-                                size="sm"
-                                onClick={() => setSelectedContact(contact)}
-                              >
-                                <Eye className="h-4 w-4 mr-1" />
-                                Ver
-                              </Button>
-                              <Button
-                                className="cursor-pointer w-[90px] justify-start"
-                                variant="destructive"
-                                size="sm"
-                                onClick={() => deleteContact(contact.id)}
-                              >
-                                <Trash2 className="h-4 w-4 mr-1" />
-                                Borrar
-                              </Button>
-                            </div>
-                          </TableCell>
-                        </TableRow>
-                      ))}
+                                  <Eye className="h-4 w-4 mr-1" />
+                                  Ver
+                                </Button>
+                                <Button
+                                  className="cursor-pointer w-[90px] justify-start"
+                                  variant="destructive"
+                                  size="sm"
+                                  onClick={() => deleteContact(contact.id)}
+                                >
+                                  <Trash2 className="h-4 w-4 mr-1" />
+                                  Borrar
+                                </Button>
+                              </div>
+                            </TableCell>
+                          </TableRow>
+                        ))}
                     </TableBody>
                   </Table>
                 </div>
