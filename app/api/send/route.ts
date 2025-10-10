@@ -8,8 +8,19 @@ export async function POST(...args: [Request]) {
     const reqBody = await (typeof Request !== "undefined"
       ? args[0].json()
       : Promise.resolve({}));
-    const { firstName, lastName, email, phone, eventType, eventDate, message } =
-      reqBody;
+    const {
+      firstName,
+      lastName,
+      email,
+      phone,
+      eventType,
+      eventDate,
+      message,
+      clientType,
+      guestCount,
+      budgetRange,
+      services,
+    } = reqBody;
 
     const { data, error } = await resend.emails.send({
       from: "Notificaciones <notificaciones@notificaciones.elpernilet.com>",
@@ -23,6 +34,10 @@ export async function POST(...args: [Request]) {
         eventType,
         eventDate,
         message,
+        clientType,
+        guestCount,
+        budgetRange,
+        services,
       }),
     });
 
