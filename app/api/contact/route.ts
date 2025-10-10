@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
+import { Resend } from "resend";
+const resend = new Resend(process.env.RESEND_API_KEY);
 import { supabaseAdmin } from "@/lib/supabase-admin";
 
 export async function DELETE(request: NextRequest) {
@@ -136,6 +138,32 @@ export async function POST(request: NextRequest) {
         { success: false, message: `Error de base de datos: ${error.message}` },
         { status: 500 }
       );
+    }
+
+    // Enviar email de aviso con Resend
+    try {
+      await resend.emails.send({
+        from: "notificaciones@notificaciones.elpernilet.com",
+        to: "hola@elpernilet.com",
+        subject: "Nueva solicitud de contacto recibida",
+        html: `
+          <h2>¡Nueva solicitud de contacto!</h2>
+          <p><strong>Nombre:</strong> ${body.firstName} ${body.lastName}</p>
+          <p><strong>Email:</strong> ${body.email}</p>
+          <p><strong>Teléfono:</strong> ${body.phone}</p>
+          <p><strong>Tipo de cliente:</strong> ${body.clientType}</p>
+          <p><strong>Tipo de evento:</strong> ${body.eventType}</p>
+          <p><strong>Fecha:</strong> ${body.eventDate}</p>
+          <p><strong>Número de invitados:</strong> ${body.guestCount}</p>
+          <p><strong>Rango de presupuesto:</strong> ${body.budgetRange}</p>
+          <p><strong>Servicios interesados:</strong> ${body.services.join(
+            ", "
+          )}</p>
+          <p><strong>Mensaje:</strong> ${body.message}</p>
+        `,
+      });
+    } catch (mailError) {
+      console.error("Error enviando email de aviso:", mailError);
     }
 
     console.log("Successfully inserted data:", data);

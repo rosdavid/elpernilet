@@ -92,7 +92,7 @@ export function WhatsAppFloat() {
   };
 
   // No mostrar en rutas de administración
-  if (pathname.startsWith("/admin")) {
+  if (pathname && pathname.startsWith("/admin")) {
     return null;
   }
 

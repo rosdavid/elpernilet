@@ -106,6 +106,7 @@ export const ContactForm = memo(() => {
           services,
         };
 
+        // Enviar solicitud a la API principal
         const response = await fetch("/api/contact", {
           method: "POST",
           headers: {
@@ -115,6 +116,15 @@ export const ContactForm = memo(() => {
         });
 
         const result = await response.json();
+
+        // Enviar email de aviso a través de la API send
+        await fetch("/api/send", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
 
         if (result.success) {
           // Tracking de conversión exitosa
