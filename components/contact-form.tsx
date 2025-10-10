@@ -297,20 +297,22 @@ export const ContactForm = memo(() => {
                         <SelectValue placeholder="Seleccione número de invitados" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="0-20">0-20 invitados</SelectItem>
-                        <SelectItem value="20-50">20-50 invitados</SelectItem>
-                        <SelectItem value="51-100">51-100 invitados</SelectItem>
+                        <SelectItem value="0-20">0 - 20 invitados</SelectItem>
+                        <SelectItem value="20-50">20 - 50 invitados</SelectItem>
+                        <SelectItem value="51-100">
+                          51 - 100 invitados
+                        </SelectItem>
                         <SelectItem value="101-150">
-                          101-150 invitados
+                          101 - 150 invitados
                         </SelectItem>
                         <SelectItem value="151-200">
-                          151-200 invitados
+                          151 - 200 invitados
                         </SelectItem>
                         <SelectItem value="201-300">
-                          201-300 invitados
+                          201 - 300 invitados
                         </SelectItem>
                         <SelectItem value="301-500">
-                          301-500 invitados
+                          301 - 500 invitados
                         </SelectItem>
                         <SelectItem value="500+">
                           Más de 500 invitados
@@ -365,9 +367,7 @@ export const ContactForm = memo(() => {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="particular">Particular</SelectItem>
-                        <SelectItem value="professional">
-                          Profesional
-                        </SelectItem>
+                        <SelectItem value="profesional">Profesional</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
