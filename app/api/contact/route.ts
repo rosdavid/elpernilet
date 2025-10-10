@@ -140,6 +140,48 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Diccionarios para traducción de valores
+    const clientTypeLabels = {
+      profesional: "Profesional",
+      particular: "Particular",
+    };
+
+    const eventTypeLabels = {
+      wedding: "Boda",
+      inauguration: "Inauguración",
+      corporate: "Evento Corporativo",
+      birthday: "Cumpleaños",
+      anniversary: "Aniversario",
+      private: "Evento Privado",
+      other: "Otro",
+    };
+    const guestCountLabels = {
+      "0-20": "0 - 20 invitados",
+      "20-50": "20 - 50 invitados",
+      "51-100": "51 - 100 invitados",
+      "101-150": "101 - 150 invitados",
+      "151-200": "151 - 200 invitados",
+      "201-300": "201 - 300 invitados",
+      "301-500": "301 - 500 invitados",
+      "500+": "Más de 500 invitados",
+    };
+    const budgetRangeLabels = {
+      "0-500": "0€ - 500€",
+      "500-1000": "500€ - 1.000€",
+      "1000-2000": "1.000€ - 2.000€",
+      "2000-3500": "2.000€ - 3.500€",
+      "3500-5000": "3.500€ - 5.000€",
+      "5000-7500": "5.000€ - 7.500€",
+      "7500+": "Más de 7.500€",
+      flexible: "Flexible / A consultar",
+    };
+    const serviceLabels = {
+      camareros: "Camareros",
+      "barra-bebidas": "Barra de Bebidas",
+      "barra-aperitivos": "Barra de Aperitivos",
+      "cortador-jamon": "Cortador de Jamón",
+    };
+
     // Enviar email de aviso con Resend
     try {
       await resend.emails.send({
@@ -147,19 +189,143 @@ export async function POST(request: NextRequest) {
         to: "hola@elpernilet.com",
         subject: "Nueva solicitud de contacto recibida",
         html: `
-          <h2>¡Nueva solicitud de contacto!</h2>
-          <p><strong>Nombre:</strong> ${body.firstName} ${body.lastName}</p>
-          <p><strong>Email:</strong> ${body.email}</p>
-          <p><strong>Teléfono:</strong> ${body.phone}</p>
-          <p><strong>Tipo de cliente:</strong> ${body.clientType}</p>
-          <p><strong>Tipo de evento:</strong> ${body.eventType}</p>
-          <p><strong>Fecha:</strong> ${body.eventDate}</p>
-          <p><strong>Número de invitados:</strong> ${body.guestCount}</p>
-          <p><strong>Rango de presupuesto:</strong> ${body.budgetRange}</p>
-          <p><strong>Servicios interesados:</strong> ${body.services.join(
-            ", "
-          )}</p>
-          <p><strong>Mensaje:</strong> ${body.message}</p>
+              <div style="display:none; mso-hide:all; font-size:1px; line-height:1px; max-height:0; max-width:0; opacity:0; overflow:hidden;">
+                  Nueva solicitud de contacto recibida desde elpernilet.com
+                </div>
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#f6f7f8; font-family: sans-serif;">
+                  <tr>
+                    <td align="center" style="padding:32px 12px;">
+                      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width:560px; background:#ffffff; border-radius:14px; box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+                        <tr>
+                          <td style="height:6px; background:#111111; border-top-left-radius:14px; border-top-right-radius:14px; font-size:0; line-height:0;">&nbsp;</td>
+                        </tr>
+                        <tr>
+                          <td style="padding:28px 32px 8px 32px; text-align:center;">
+                            <div style="display:inline-block; padding:8px 12px; border:1px solid #e5e7eb; border-radius:999px; font-weight:500; font-size:12px; color:#111;">
+                              Notificación
+                            </div>
+                            <h2 style="margin:12px 0 0 0; font-weight:700; font-size:26px; line-height:1.25; color:#111111;">
+                              ¡Nueva solicitud de contacto!
+                            </h2>
+                            <p style="margin:10px 0 0 0; font-size:14px; line-height:1.5; color:#6b7280;">
+                              Se ha recibido una nueva solicitud desde el formulario de <strong>elpernilet.com</strong>.
+                            </p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="padding:0 32px;">
+                            <hr style="border:0; height:1px; background:#efefef; margin:20px 0;" />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="padding:0 24px 16px 24px;">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="table-layout:fixed; border-collapse:separate; border-spacing:8px;">
+                              <tr>
+                                <td width="50%" valign="top" style="background:#f9fafb; border:1px solid #e5e7eb; border-radius:10px; padding:10px 12px;">
+                                  <div style="font-size:12px; color:#6b7280; line-height:1.4; margin:0 0 4px 0;">Nombre</div>
+                                  <div style="font-size:14px; color:#111; font-weight:600; line-height:1.4;">${
+                                    body.firstName
+                                  } ${body.lastName}</div>
+                                </td>
+                                <td width="50%" valign="top" style="background:#f9fafb; border:1px solid #e5e7eb; border-radius:10px; padding:10px 12px;">
+                                  <div style="font-size:12px; color:#6b7280; line-height:1.4; margin:0 0 4px 0;">Email</div>
+                                  <div style="font-size:14px; color:#111; font-weight:600; line-height:1.4;">${
+                                    body.email
+                                  }</div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td width="50%" valign="top" style="background:#f9fafb; border:1px solid #e5e7eb; border-radius:10px; padding:10px 12px;">
+                                  <div style="font-size:12px; color:#6b7280; line-height:1.4; margin:0 0 4px 0;">Teléfono</div>
+                                  <div style="font-size:14px; color:#111; font-weight:600; line-height:1.4;">${
+                                    body.phone
+                                  }</div>
+                                </td>
+                                <td width="50%" valign="top" style="background:#f9fafb; border:1px solid #e5e7eb; border-radius:10px; padding:10px 12px;">
+                                  <div style="font-size:12px; color:#6b7280; line-height:1.4; margin:0 0 4px 0;">Tipo de cliente</div>
+                                  <div style="font-size:14px; color:#111; font-weight:600; line-height:1.4;">${
+                                    clientTypeLabels[body.clientType] ||
+                                    body.clientType
+                                  }</div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td width="50%" valign="top" style="background:#f9fafb; border:1px solid #e5e7eb; border-radius:10px; padding:10px 12px;">
+                                  <div style="font-size:12px; color:#6b7280; line-height:1.4; margin:0 0 4px 0;">Tipo de evento</div>
+                                  <div style="font-size:14px; color:#111; font-weight:600; line-height:1.4;">${
+                                    eventTypeLabels[body.eventType] ||
+                                    body.eventType
+                                  }</div>
+                                </td>
+                                <td width="50%" valign="top" style="background:#f9fafb; border:1px solid #e5e7eb; border-radius:10px; padding:10px 12px;">
+                                  <div style="font-size:12px; color:#6b7280; line-height:1.4; margin:0 0 4px 0;">Fecha</div>
+                                  <div style="font-size:14px; color:#111; font-weight:600; line-height:1.4;">${
+                                    body.eventDate
+                                  }</div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td width="50%" valign="top" style="background:#f9fafb; border:1px solid #e5e7eb; border-radius:10px; padding:10px 12px;">
+                                  <div style="font-size:12px; color:#6b7280; line-height:1.4; margin:0 0 4px 0;">Número de invitados</div>
+                                  <div style="font-size:14px; color:#111; font-weight:600; line-height:1.4;">${
+                                    guestCountLabels[body.guestCount] ||
+                                    body.guestCount
+                                  }</div>
+                                </td>
+                                <td width="50%" valign="top" style="background:#f9fafb; border:1px solid #e5e7eb; border-radius:10px; padding:10px 12px;">
+                                  <div style="font-size:12px; color:#6b7280; line-height:1.4; margin:0 0 4px 0;">Rango de presupuesto</div>
+                                  <div style="font-size:14px; color:#111; font-weight:600; line-height:1.4;">${
+                                    budgetRangeLabels[body.budgetRange] ||
+                                    body.budgetRange
+                                  }</div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td colspan="2" valign="top" style="background:#f9fafb; border:1px solid #e5e7eb; border-radius:10px; padding:10px 12px;">
+                                  <div style="font-size:12px; color:#6b7280; line-height:1.4; margin:0 0 4px 0;">Servicios interesados</div>
+                                  <div style="font-size:14px; color:#111; font-weight:600; line-height:1.6;">
+                                    ${
+                                      body.services && body.services.length
+                                        ? body.services
+                                            .map((s) => serviceLabels[s] || s)
+                                            .join(", ")
+                                        : "—"
+                                    }
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td colspan="2" valign="top" style="background:#fcfcfd; border:1px solid #eaeaea; border-radius:10px; padding:12px;">
+                                  <div style="font-size:12px; color:#6b7280; line-height:1.4; margin:0 0 6px 0;">Mensaje</div>
+                                  <div style="font-size:14px; color:#374151; line-height:1.6;">
+                                    ${body.message}
+                                  </div>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="padding:10px 32px 8px 32px; text-align:center;">
+                            <p style="margin:0 0 12px 0; font-size:13px; line-height:1.6; color:#6b7280;">
+                              <em>Para ver la solicitud completa o editarla, accede al panel de administración.</em>
+                            </p>
+                            <a href="https://elpernilet.com/admin" style="display:inline-block; padding:14px 22px; font-weight:700; font-size:16px; color:#ffffff; text-decoration:none; border-radius:10px; background:#111111; box-shadow:0 1px 4px rgba(0,0,0,0.10);">
+                              Acceder
+                            </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="padding:22px 24px 28px 24px; text-align:center;">
+                            <p style="margin:0; font-size:12.5px; line-height:1.6; color:#9aa3af;">
+                              elpernilet.com — Notificaciones de solicitudes
+                            </p>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
         `,
       });
     } catch (mailError) {
