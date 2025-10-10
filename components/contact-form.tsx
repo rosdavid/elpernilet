@@ -1,5 +1,7 @@
 "use client";
+//TODO: Add a text field below the form stating that once the request has been sent, a verification email will be sent. If you do not receive it, please check your spam folder.
 
+// TODO:
 import type React from "react";
 
 import { useState, memo, useCallback } from "react";
@@ -457,11 +459,17 @@ export const ContactForm = memo(() => {
                     className="resize-none"
                   />
                 </div>
-
+                <div className="text-center">
+                  <p className="text-sm text-muted-foreground">
+                    Una vez enviada la solicitud, recibirás un correo de
+                    confirmación. Si no lo recibes en unos minutos, revisa tu
+                    carpeta de spam.
+                  </p>
+                </div>
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full text-lg h-12 font-medium transition-all hover:shadow-lg cursor-pointer"
+                  className="w-full text-lg h-12 mb-6 font-medium transition-all hover:shadow-lg cursor-pointer"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Enviando..." : "Enviar solicitud"}

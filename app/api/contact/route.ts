@@ -92,20 +92,30 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Formatear eventDate a formato español (día/mes/año)
+    let eventDateEs = body.eventDate;
+    if (eventDateEs) {
+      // Si viene en formato ISO (yyyy-mm-dd), lo convertimos
+      const isoMatch = /^\d{4}-\d{2}-\d{2}$/.test(eventDateEs);
+      if (isoMatch) {
+        const [year, month, day] = eventDateEs.split("-");
+        eventDateEs = `${day}/${month}/${year}`;
+      }
+    }
+
     console.log("Attempting to insert data:", {
       first_name: body.firstName,
       last_name: body.lastName,
       email: body.email,
       phone: body.phone,
       event_type: body.eventType,
-      event_date: body.eventDate,
+      event_date: eventDateEs,
       client_type: body.clientType,
       guest_count: body.guestCount,
       budget_range: body.budgetRange,
       services: body.services,
       message: body.message,
     });
-
     // Insertar en Supabase
     const { data, error } = await supabase
       .from("contact_submissions")
@@ -116,7 +126,7 @@ export async function POST(request: NextRequest) {
           email: body.email,
           phone: body.phone,
           event_type: body.eventType,
-          event_date: body.eventDate,
+          event_date: eventDateEs,
           client_type: body.clientType,
           guest_count: body.guestCount,
           budget_range: body.budgetRange,
@@ -182,8 +192,9 @@ export async function POST(request: NextRequest) {
       "cortador-jamon": "Cortador de Jamón",
     };
 
-    // Enviar email de aviso con Resend
+    // Enviar email al admin
     try {
+      const solicitudId = data[0]?.id || "—";
       await resend.emails.send({
         from: "notificaciones@notificaciones.elpernilet.com",
         to: "hola@elpernilet.com",
@@ -191,6 +202,9 @@ export async function POST(request: NextRequest) {
         html: `
               <div style="display:none; mso-hide:all; font-size:1px; line-height:1px; max-height:0; max-width:0; opacity:0; overflow:hidden;">
                   Nueva solicitud de contacto recibida desde elpernilet.com
+                </div>
+                <div style="font-size:13px; color:#b91c1c; margin-bottom:10px; text-align:center;">
+                  <strong>ID de solicitud:</strong> ${solicitudId}
                 </div>
                 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#f6f7f8; font-family: sans-serif;">
                   <tr>
@@ -329,7 +343,182 @@ export async function POST(request: NextRequest) {
         `,
       });
     } catch (mailError) {
-      console.error("Error enviando email de aviso:", mailError);
+      console.error("Error enviando email de aviso al admin:", mailError);
+    }
+
+    // Enviar email al cliente
+    try {
+      const solicitudId = data[0]?.id || "—";
+      await resend.emails.send({
+        from: "notificaciones@notificaciones.elpernilet.com",
+        to: body.email,
+        subject: "Hemos recibido tu solicitud de presupuesto",
+        html: `
+  <div style="display:none; mso-hide:all; font-size:1px; line-height:1px; max-height:0; max-width:0; opacity:0; overflow:hidden;">
+    Hemos recibido tu solicitud. Te enviaremos un presupuesto en menos de 24 horas.
+  </div>
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#f6f7f8; font-family: sans-serif;">
+    <tr>
+      <td align="center" style="padding:32px 12px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width:560px; background:#ffffff; border-radius:14px; box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+          <tr>
+            <td style="height:6px; background:#111111; border-top-left-radius:14px; border-top-right-radius:14px; font-size:0; line-height:0;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td style="padding:18px 24px 0 24px; text-align:center;">
+              <img src="https://elpernilet.com/elpernilet-logo.svg" width="140" alt="El Pernilet" style="display:block; margin:0 auto 6px auto; border:0; outline:none; text-decoration:none;">
+              <p style="margin:0 0 16px 0; font-size:12px; color:#9aa3af;">Servicios para tus eventos</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:0 32px; text-align:center;">
+              <h2 style="margin:0; font-weight:700; font-size:26px; line-height:1.3; color:#111111;">
+                ¡Solicitud recibida!
+              </h2>
+              <p style="margin:10px 0 0 0; font-size:14px; line-height:1.6; color:#374151;">
+                Gracias por ponerte en contacto y por confiar en nosotros. En menos de 24&nbsp;h recibirás tu presupuesto acorde con la información introducida. <br>¡Esperamos verte pronto!
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:16px 32px 0 32px; text-align:center;">
+              <div style="display:inline-block; padding:8px 12px; border:1px solid #e5e7eb; background:#f9fafb; border-radius:999px; font-size:13px; color:#111;">
+                <strong>ID de solicitud:</strong> ${solicitudId}
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:16px 32px 0 32px;">
+              <hr style="border:0; height:1px; background:#efefef; margin:16px 0 8px 0;">
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:0 32px;">
+              <h3 style="margin:0 0 8px 0; font-size:16px; line-height:1.4; color:#111111;">Resumen de tu solicitud</h3>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:0 24px 16px 24px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="table-layout:fixed; border-collapse:separate; border-spacing:8px;">
+                <tr>
+                  <td width="50%" valign="top" style="background:#f9fafb; border:1px solid #e5e7eb; border-radius:10px; padding:10px 12px;">
+                    <div style="font-size:12px; color:#6b7280; margin:0 0 4px 0;">Nombre</div>
+                    <div style="font-size:14px; color:#111; font-weight:600;">${
+                      body.firstName
+                    } ${body.lastName}</div>
+                  </td>
+                  <td width="50%" valign="top" style="background:#f9fafb; border:1px solid #e5e7eb; border-radius:10px; padding:10px 12px;">
+                    <div style="font-size:12px; color:#6b7280; margin:0 0 4px 0;">Email</div>
+                    <div style="font-size:14px; color:#111; font-weight:600;">${
+                      body.email
+                    }</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="50%" valign="top" style="background:#f9fafb; border:1px solid #e5e7eb; border-radius:10px; padding:10px 12px;">
+                    <div style="font-size:12px; color:#6b7280; margin:0 0 4px 0;">Teléfono</div>
+                    <div style="font-size:14px; color:#111; font-weight:600;">${
+                      body.phone
+                    }</div>
+                  </td>
+                  <td width="50%" valign="top" style="background:#f9fafb; border:1px solid #e5e7eb; border-radius:10px; padding:10px 12px;">
+                    <div style="font-size:12px; color:#6b7280; margin:0 0 4px 0;">Tipo de cliente</div>
+                    <div style="font-size:14px; color:#111; font-weight:600;">
+                      ${clientTypeLabels[body.clientType] || body.clientType}
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="50%" valign="top" style="background:#f9fafb; border:1px solid #e5e7eb; border-radius:10px; padding:10px 12px;">
+                    <div style="font-size:12px; color:#6b7280; margin:0 0 4px 0;">Tipo de evento</div>
+                    <div style="font-size:14px; color:#111; font-weight:600;">
+                      ${eventTypeLabels[body.eventType] || body.eventType}
+                    </div>
+                  </td>
+                  <td width="50%" valign="top" style="background:#f9fafb; border:1px solid #e5e7eb; border-radius:10px; padding:10px 12px;">
+                    <div style="font-size:12px; color:#6b7280; margin:0 0 4px 0;">Fecha</div>
+                    <div style="font-size:14px; color:#111; font-weight:600;">${eventDateEs}</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="50%" valign="top" style="background:#f9fafb; border:1px solid #e5e7eb; border-radius:10px; padding:10px 12px;">
+                    <div style="font-size:12px; color:#6b7280; margin:0 0 4px 0;">Invitados</div>
+                    <div style="font-size:14px; color:#111; font-weight:600;">
+                      ${guestCountLabels[body.guestCount] || body.guestCount}
+                    </div>
+                  </td>
+                  <td width="50%" valign="top" style="background:#f9fafb; border:1px solid #e5e7eb; border-radius:10px; padding:10px 12px;">
+                    <div style="font-size:12px; color:#6b7280; margin:0 0 4px 0;">Presupuesto</div>
+                    <div style="font-size:14px; color:#111; font-weight:600;">
+                      ${budgetRangeLabels[body.budgetRange] || body.budgetRange}
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" valign="top" style="background:#f9fafb; border:1px solid #e5e7eb; border-radius:10px; padding:10px 12px;">
+                    <div style="font-size:12px; color:#6b7280; margin:0 0 4px 0;">Servicios</div>
+                    <div style="font-size:14px; color:#111; font-weight:600; line-height:1.6;">
+                      ${
+                        body.services && body.services.length
+                          ? body.services
+                              .map((s) => serviceLabels[s] || s)
+                              .join(", ")
+                          : "—"
+                      }
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" valign="top" style="background:#fcfcfd; border:1px solid #eaeaea; border-radius:10px; padding:12px;">
+                    <div style="font-size:12px; color:#6b7280; margin:0 0 6px 0;">Mensaje</div>
+                    <div style="font-size:14px; color:#374151; line-height:1.6;">
+                      ${body.message}
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:0 32px 8px 32px; text-align:center;">
+              <p style="margin:0; font-size:13px; line-height:1.6; color:#6b7280;">
+                Si necesitas modificar algún dato, envía un email a <a href="mailto:hola@elpernilet.com">hola@elpernilet.com</a> con el ID de tu solicitud como asunto y que datos se deben modificar.
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:18px 24px 26px 24px; text-align:center;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="margin:0 auto;">
+                <tr>
+                  <td align="center" style="padding:0 10px;">
+                    <a href="https://instagram.com/elpernilet" target="_blank" rel="noopener" aria-label="Instagram de El Pernilet" style="text-decoration:none; font-size:14px; color:#111;">
+                      <span style="font-size:16px; line-height:1;">📷</span>
+                      <span style="display:inline-block; margin-left:6px; vertical-align:middle;">Instagram</span>
+                    </a>
+                  </td>
+                  <td style="padding:0 6px; color:#c4c4c4; font-size:16px;">•</td>
+                  <!-- Phone -->
+                  <td align="center" style="padding:0 10px;">
+                    <a href="tel:+34654127391" aria-label="Llámanos" style="text-decoration:none; font-size:14px; color:#111;">
+                      <span style="font-size:16px; line-height:1;">📞</span>
+                      <span style="display:inline-block; margin-left:6px; vertical-align:middle;">+34 654 12 73 91</span>
+                    </a>
+                  </td>
+                </tr>
+              </table>
+              <p style="margin:12px 0 0 0; font-size:12.5px; line-height:1.6; color:#9aa3af;">
+                elpernilet.com — Servicios para tus eventos
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+        `,
+      });
+    } catch (mailError) {
+      console.error("Error enviando email de aviso al cliente:", mailError);
     }
 
     console.log("Successfully inserted data:", data);

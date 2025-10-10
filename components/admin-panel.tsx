@@ -340,6 +340,7 @@ export const AdminPanel = memo(() => {
                   <Table>
                     <TableHeader>
                       <TableRow>
+                        <TableHead>ID</TableHead>
                         <TableHead>Cliente</TableHead>
                         <TableHead>Evento</TableHead>
                         <TableHead>Fecha</TableHead>
@@ -356,6 +357,11 @@ export const AdminPanel = memo(() => {
                     <TableBody>
                       {contacts.map((contact) => (
                         <TableRow key={contact.id}>
+                          <TableCell>
+                            <span className="font-mono text-xs text-gray-500">
+                              {contact.id}
+                            </span>
+                          </TableCell>
                           <TableCell>
                             <div>
                               <div className="font-medium">
@@ -457,6 +463,12 @@ export const AdminPanel = memo(() => {
                         Información Personal
                       </h4>
                       <div className="space-y-2 text-sm">
+                        <p>
+                          <strong>ID de solicitud:</strong>{" "}
+                          <span className="font-mono text-xs text-gray-500">
+                            {selectedContact.id}
+                          </span>
+                        </p>
                         <p>
                           <strong>Nombre:</strong> {selectedContact.first_name}{" "}
                           {selectedContact.last_name}
