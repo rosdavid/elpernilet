@@ -156,12 +156,12 @@ export async function POST(request: NextRequest) {
     }
 
     // Diccionarios para traducción de valores
-    const clientTypeLabels = {
+    const clientTypeLabels: { [key: string]: string } = {
       profesional: "Profesional",
       particular: "Particular",
     };
 
-    const eventTypeLabels = {
+    const eventTypeLabels: { [key: string]: string } = {
       wedding: "Boda",
       inauguration: "Inauguración",
       corporate: "Evento Corporativo",
@@ -170,7 +170,7 @@ export async function POST(request: NextRequest) {
       private: "Evento Privado",
       other: "Otro",
     };
-    const guestCountLabels = {
+    const guestCountLabels: { [key: string]: string } = {
       "0-20": "0 - 20 invitados",
       "20-50": "20 - 50 invitados",
       "51-100": "51 - 100 invitados",
@@ -180,7 +180,7 @@ export async function POST(request: NextRequest) {
       "301-500": "301 - 500 invitados",
       "500+": "Más de 500 invitados",
     };
-    const budgetRangeLabels = {
+    const budgetRangeLabels: { [key: string]: string } = {
       "0-500": "0€ - 500€",
       "500-1000": "500€ - 1.000€",
       "1000-2000": "1.000€ - 2.000€",
@@ -190,7 +190,7 @@ export async function POST(request: NextRequest) {
       "7500+": "Más de 7.500€",
       flexible: "Flexible / A consultar",
     };
-    const serviceLabels = {
+    const serviceLabels: { [key: string]: string } = {
       camareros: "Camareros",
       "barra-bebidas": "Barra de Bebidas",
       "barra-aperitivos": "Barra de Aperitivos",
@@ -263,7 +263,7 @@ export async function POST(request: NextRequest) {
                                 <td width="50%" valign="top" style="background:#f9fafb; border:1px solid #e5e7eb; border-radius:10px; padding:10px 12px;">
                                   <div style="font-size:12px; color:#6b7280; line-height:1.4; margin:0 0 4px 0;">Tipo de cliente</div>
                                   <div style="font-size:14px; color:#111; font-weight:600; line-height:1.4;">${
-                                    clientTypeLabels[body.clientType] ||
+                                    clientTypeLabels[String(body.clientType)] ||
                                     body.clientType
                                   }</div>
                                 </td>
@@ -306,7 +306,10 @@ export async function POST(request: NextRequest) {
                                     ${
                                       body.services && body.services.length
                                         ? body.services
-                                            .map((s) => serviceLabels[s] || s)
+                                            .map(
+                                              (s: string) =>
+                                                serviceLabels[s] || s
+                                            )
                                             .join(", ")
                                         : "—"
                                     }
@@ -429,7 +432,10 @@ export async function POST(request: NextRequest) {
                   <td width="50%" valign="top" style="background:#f9fafb; border:1px solid #e5e7eb; border-radius:10px; padding:10px 12px;">
                     <div style="font-size:12px; color:#6b7280; margin:0 0 4px 0;">Tipo de cliente</div>
                     <div style="font-size:14px; color:#111; font-weight:600;">
-                      ${clientTypeLabels[body.clientType] || body.clientType}
+                      ${
+                        clientTypeLabels[String(body.clientType)] ||
+                        body.clientType
+                      }
                     </div>
                   </td>
                 </tr>
@@ -466,7 +472,7 @@ export async function POST(request: NextRequest) {
                       ${
                         body.services && body.services.length
                           ? body.services
-                              .map((s) => serviceLabels[s] || s)
+                              .map((s: string) => serviceLabels[s] || s)
                               .join(", ")
                           : "—"
                       }
