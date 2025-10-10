@@ -1,7 +1,5 @@
 "use client";
-//TODO: Add a text field below the form stating that once the request has been sent, a verification email will be sent. If you do not receive it, please check your spam folder.
 
-// TODO:
 import type React from "react";
 
 import { useState, memo, useCallback } from "react";

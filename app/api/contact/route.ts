@@ -92,15 +92,20 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Formatear eventDate a formato español (día/mes/año)
-    let eventDateEs = body.eventDate;
-    if (eventDateEs) {
-      // Si viene en formato ISO (yyyy-mm-dd), lo convertimos
-      const isoMatch = /^\d{4}-\d{2}-\d{2}$/.test(eventDateEs);
-      if (isoMatch) {
-        const [year, month, day] = eventDateEs.split("-");
-        eventDateEs = `${day}/${month}/${year}`;
-      }
+    // Convertir eventDate a formato ISO para la base de datos
+    let eventDateDb = body.eventDate;
+    // Si viene en formato dd/mm/yyyy, lo convertimos a yyyy-mm-dd
+    const esMatch = /^\d{2}\/\d{2}\/\d{4}$/.test(eventDateDb);
+    if (esMatch) {
+      const [day, month, year] = eventDateDb.split("/");
+      eventDateDb = `${year}-${month}-${day}`;
+    }
+    // Para mostrar en emails, convertir a formato español
+    let eventDateEs = eventDateDb;
+    const isoMatch = /^\d{4}-\d{2}-\d{2}$/.test(eventDateDb);
+    if (isoMatch) {
+      const [year, month, day] = eventDateDb.split("-");
+      eventDateEs = `${day}/${month}/${year}`;
     }
 
     console.log("Attempting to insert data:", {
@@ -109,7 +114,7 @@ export async function POST(request: NextRequest) {
       email: body.email,
       phone: body.phone,
       event_type: body.eventType,
-      event_date: eventDateEs,
+      event_date: eventDateDb,
       client_type: body.clientType,
       guest_count: body.guestCount,
       budget_range: body.budgetRange,
@@ -126,7 +131,7 @@ export async function POST(request: NextRequest) {
           email: body.email,
           phone: body.phone,
           event_type: body.eventType,
-          event_date: eventDateEs,
+          event_date: eventDateDb,
           client_type: body.clientType,
           guest_count: body.guestCount,
           budget_range: body.budgetRange,
@@ -273,9 +278,9 @@ export async function POST(request: NextRequest) {
                                 </td>
                                 <td width="50%" valign="top" style="background:#f9fafb; border:1px solid #e5e7eb; border-radius:10px; padding:10px 12px;">
                                   <div style="font-size:12px; color:#6b7280; line-height:1.4; margin:0 0 4px 0;">Fecha</div>
-                                  <div style="font-size:14px; color:#111; font-weight:600; line-height:1.4;">${
-                                    body.eventDate
-                                  }</div>
+                                  <div style="font-size:14px; color:#111; font-weight:600; line-height:1.4;">
+                                    ${eventDateEs}
+                                  </div>
                                 </td>
                               </tr>
                               <tr>
@@ -365,8 +370,8 @@ export async function POST(request: NextRequest) {
             <td style="height:6px; background:#111111; border-top-left-radius:14px; border-top-right-radius:14px; font-size:0; line-height:0;">&nbsp;</td>
           </tr>
           <tr>
-            <td style="padding:18px 24px 0 24px; text-align:center;">
-              <img src="https://elpernilet.com/elpernilet-logo.svg" width="140" alt="El Pernilet" style="display:block; margin:0 auto 6px auto; border:0; outline:none; text-decoration:none;">
+            <td style="padding:18px 24px 0 24px; text-align:center;"><a href="https://elpernilet.com" _blank>
+              <img src="https://elpernilet.com/elpernilet-logo.svg" width="140" alt="El Pernilet" style="display:block; margin:0 auto 6px auto; border:0; outline:none; text-decoration:none;"></a>
               <p style="margin:0 0 16px 0; font-size:12px; color:#9aa3af;">Servicios para tus eventos</p>
             </td>
           </tr>
@@ -492,15 +497,19 @@ export async function POST(request: NextRequest) {
                 <tr>
                   <td align="center" style="padding:0 10px;">
                     <a href="https://instagram.com/elpernilet" target="_blank" rel="noopener" aria-label="Instagram de El Pernilet" style="text-decoration:none; font-size:14px; color:#111;">
-                      <span style="font-size:16px; line-height:1;">📷</span>
-                      <span style="display:inline-block; margin-left:6px; vertical-align:middle;">Instagram</span>
+                      <span style="display:inline-block; vertical-align:middle;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" data-name="Line Color" xmlns="http://www.w3.org/2000/svg" class="icon line-color"><path d="M21 15v3.93a2 2 0 0 1-2.29 2A18 18 0 0 1 3.14 5.29 2 2 0 0 1 5.13 3H9a1 1 0 0 1 1 .89 10.7 10.7 0 0 0 1 3.78 1 1 0 0 1-.42 1.26l-.86.49a1 1 0 0 0-.33 1.46 14.1 14.1 0 0 0 3.69 3.69 1 1 0 0 0 1.46-.33l.49-.86a1 1 0 0 1 1.3-.38 10.7 10.7 0 0 0 3.78 1 1 1 0 0 1 .89 1" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2"/></svg>
+                      </span>
+                      <span style="display:inline-block; margin-left:6px; vertical-align:middle;">Síguenos en Instagram</span>
                     </a>
                   </td>
                   <td style="padding:0 6px; color:#c4c4c4; font-size:16px;">•</td>
                   <!-- Phone -->
                   <td align="center" style="padding:0 10px;">
                     <a href="tel:+34654127391" aria-label="Llámanos" style="text-decoration:none; font-size:14px; color:#111;">
-                      <span style="font-size:16px; line-height:1;">📞</span>
+                      <span style="display:inline-block; vertical-align:middle;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" data-name="Line Color" xmlns="http://www.w3.org/2000/svg" class="icon line-color"><path d="M21 15v3.93a2 2 0 0 1-2.29 2A18 18 0 0 1 3.14 5.29 2 2 0 0 1 5.13 3H9a1 1 0 0 1 1 .89 10.7 10.7 0 0 0 1 3.78 1 1 0 0 1-.42 1.26l-.86.49a1 1 0 0 0-.33 1.46 14.1 14.1 0 0 0 3.69 3.69 1 1 0 0 0 1.46-.33l.49-.86a1 1 0 0 1 1.3-.38 10.7 10.7 0 0 0 3.78 1 1 1 0 0 1 .89 1" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2"/></svg>
+                      </span>
                       <span style="display:inline-block; margin-left:6px; vertical-align:middle;">+34 654 12 73 91</span>
                     </a>
                   </td>
