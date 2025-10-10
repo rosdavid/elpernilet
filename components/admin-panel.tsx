@@ -34,6 +34,7 @@ import {
   LogOut,
   Save,
   Users,
+  Trash2,
 } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
@@ -63,7 +64,6 @@ export const AdminPanel = memo(() => {
   const [loading, setLoading] = useState(true);
   const [notes, setNotes] = useState("");
   const [isUpdatingNotes, setIsUpdatingNotes] = useState(false);
-
   const fetchContacts = useCallback(async () => {
     try {
       const response = await fetch("/api/contact");
@@ -78,6 +78,31 @@ export const AdminPanel = memo(() => {
       setLoading(false);
     }
   }, []);
+
+  // Nueva función para borrar contacto
+  const deleteContact = useCallback(
+    async (id: string) => {
+      if (!window.confirm("¿Seguro que quieres borrar esta solicitud?")) return;
+      try {
+        const response = await fetch("/api/contact", {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id }),
+        });
+        const result = await response.json();
+        if (response.ok && result.success) {
+          toast.success("Solicitud eliminada");
+          setContacts((prev) => prev.filter((c) => c.id !== id));
+          if (selectedContact?.id === id) setSelectedContact(null);
+        } else {
+          toast.error(result.message || "No se pudo borrar la solicitud");
+        }
+      } catch {
+        toast.error("Error de conexión");
+      }
+    },
+    [selectedContact]
+  );
 
   useEffect(() => {
     fetchContacts();
@@ -323,7 +348,9 @@ export const AdminPanel = memo(() => {
                         <TableHead>Servicios</TableHead>
                         <TableHead>Estado</TableHead>
                         <TableHead>Recibido</TableHead>
-                        <TableHead>Acciones</TableHead>
+                        <TableHead className="sticky right-0 bg-gray-50 z-10">
+                          Acciones
+                        </TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -378,16 +405,27 @@ export const AdminPanel = memo(() => {
                               "es-ES"
                             )}
                           </TableCell>
-                          <TableCell>
-                            <Button
-                              className="cursor-pointer"
-                              variant="outline"
-                              size="sm"
-                              onClick={() => setSelectedContact(contact)}
-                            >
-                              <Eye className="h-4 w-4 mr-1" />
-                              Ver
-                            </Button>
+                          <TableCell className="sticky right-0 bg-gray-50 z-10">
+                            <div className="flex flex-col gap-2 items-end">
+                              <Button
+                                className="cursor-pointer w-[90px] justify-start"
+                                variant="outline"
+                                size="sm"
+                                onClick={() => setSelectedContact(contact)}
+                              >
+                                <Eye className="h-4 w-4 mr-1" />
+                                Ver
+                              </Button>
+                              <Button
+                                className="cursor-pointer w-[90px] justify-start"
+                                variant="destructive"
+                                size="sm"
+                                onClick={() => deleteContact(contact.id)}
+                              >
+                                <Trash2 className="h-4 w-4 mr-1" />
+                                Borrar
+                              </Button>
+                            </div>
                           </TableCell>
                         </TableRow>
                       ))}

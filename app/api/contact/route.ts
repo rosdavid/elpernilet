@@ -1,5 +1,38 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
+import { supabaseAdmin } from "@/lib/supabase-admin";
+
+export async function DELETE(request: NextRequest) {
+  try {
+    const { id } = await request.json();
+
+    const { data, error } = await supabaseAdmin
+      .from("contact_submissions")
+      .delete()
+      .eq("id", id)
+      .select();
+
+    if (error) {
+      return NextResponse.json(
+        { success: false, message: "Error al borrar la solicitud" },
+        { status: 500 }
+      );
+    }
+    if (!data || data.length === 0) {
+      return NextResponse.json(
+        { success: false, message: "Contacto no encontrado" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json({ success: true, message: "Solicitud eliminada" });
+  } catch {
+    return NextResponse.json(
+      { success: false, message: "Error al borrar la solicitud" },
+      { status: 500 }
+    );
+  }
+}
 
 export interface ContactSubmission {
   id: string;
