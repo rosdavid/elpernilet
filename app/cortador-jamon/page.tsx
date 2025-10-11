@@ -79,8 +79,8 @@ export default function CortadorJamonPage() {
     description:
       "Servicio de maestros cortadores de jamón ibérico para bodas, eventos corporativos y celebraciones privadas",
     provider: {
-      "@type": "Caterer",
-      "@id": "https://elpernilet.com/#Caterer",
+      "@type": ["LocalBusiness", "Caterer"],
+      "@id": "https://elpernilet.com/#business",
       name: "elpernilet",
       url: "https://elpernilet.com",
       telephone: "+34654127391",
@@ -143,14 +143,6 @@ export default function CortadorJamonPage() {
         "@type": "City",
         name: "Barcelona",
       },
-      {
-        "@type": "City",
-        name: "Madrid",
-      },
-      {
-        "@type": "City",
-        name: "Valencia",
-      },
     ],
     serviceType: "Catering Services",
     category: "Food Service",
@@ -180,6 +172,89 @@ export default function CortadorJamonPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "¿Qué incluye el servicio de cortador de jamón?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Incluye maestro cortador profesional, jamón ibérico premium (7-9kg según el paquete) o paleta ibérica, soporte jamonero, cuchillería profesional, presentación gourmet y montaje/desmontaje completo. Coordinación previa con el venue y catering.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "¿Cuánto jamón necesito para mi evento?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Recomendamos 80-100g por persona como aperitivo, y 120-150g si es parte del menú principal. Un jamón de 8kg sirve para 80-100 invitados. Te asesoramos según el tipo de evento y duración.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "¿Cuánto tiempo antes debo reservar?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Reserva con al menos 4-6 semanas de antelación para bodas y eventos en temporada alta. Para eventos corporativos o celebraciones entre semana, 2-3 semanas suele ser suficiente.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "¿Trabajan en toda España?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Sí, ofrecemos servicio en toda España, con cobertura especial en Cataluña. Para distancias superiores a 50km, aplicamos suplemento de desplazamiento.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "¿Qué tipo de jamón utilizan?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Solo trabajamos con jamón ibérico y paletas ibéricas de máxima calidad, seleccionados de productores con stock limitado para garantizar la excelencia.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "¿Puedo personalizar el servicio?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Sí, adaptamos el servicio a tus necesidades: duración, número de invitados, espacios, coordinación con otros proveedores, acompañamientos especiales, etc. Solicita tu presupuesto personalizado.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "¿Qué pasa si sobra jamón?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Incluimos envasado al vacío de los sobrantes para que puedas llevártelos y disfrutarlos después del evento.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "¿Tienen seguro y certificaciones?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Todos nuestros cortadores están certificados profesionalmente y cumplimos con todas las normativas sanitarias y de manipulación de alimentos.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "¿Ofrecen degustación previa?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Sí, podemos organizar una degustación previa en nuestras instalaciones. Disponemos de muestras y certificados de calidad de nuestros jamones.",
+                },
+              },
+            ],
+          }),
+        }}
       />
 
       <Header />

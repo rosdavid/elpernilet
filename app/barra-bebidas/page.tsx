@@ -77,8 +77,8 @@ export default function BarraBebidas() {
     description:
       "Servicio de bartenders profesionales con barra de bebidas premium y cócteles artesanales para bodas, eventos corporativos y celebraciones privadas",
     provider: {
-      "@type": "Caterer",
-      "@id": "https://elpernilet.com/#Caterer",
+      "@type": ["LocalBusiness", "Caterer"],
+      "@id": "https://elpernilet.com/#business",
       name: "elpernilet",
       url: "https://elpernilet.com",
       telephone: "+34654127391",
@@ -109,21 +109,13 @@ export default function BarraBebidas() {
         "@type": "City",
         name: "Barcelona",
       },
-      {
-        "@type": "City",
-        name: "Madrid",
-      },
-      {
-        "@type": "City",
-        name: "Valencia",
-      },
     ],
     serviceType: "Catering Services",
     category: "Food and Beverage Service",
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "5.0",
-      reviewCount: "42",
+      reviewCount: "47",
       bestRating: "5",
       worstRating: "1",
     },
@@ -138,6 +130,81 @@ export default function BarraBebidas() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "¿Qué incluye el servicio de barra de bebidas?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Incluye bartenders profesionales certificados, barra equipada, cristalería, hielo, decoración temática, selección de bebidas premium (alcohólicas y sin alcohol), cócteles artesanales, montaje y desmontaje completo, y limpieza final.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "¿Pueden crear cócteles personalizados para mi evento?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Sí, diseñamos cartas de bebidas personalizadas, cócteles únicos y adaptados a la temática, colores corporativos o preferencias especiales. Nombres personalizados y creaciones exclusivas para tu evento.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "¿Cuántos bartenders incluye el servicio?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Incluimos 1 bartender profesional hasta 80 personas, 2 bartenders para 80-150 personas, y más para eventos grandes. Todos certificados y con experiencia en eventos premium.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "¿Qué tipos de bebidas están incluidas?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Cócteles clásicos, gin tonics premium, mojitos, cosmopolitans, bebidas sin alcohol, refrescos artesanales, aguas saborizadas y más. Adaptamos la carta según tus preferencias y presupuesto.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "¿Necesito aportar algo para el servicio de barra?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "No necesitas aportar nada. Nos encargamos de todo: barra, cristalería, hielo, decoración, ingredientes frescos, bebidas y equipamiento. Llegamos completamente autónomos para tu comodidad.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "¿Cuál es el horario del servicio?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Servicio flexible: normalmente de 4 a 8 horas, pero nos adaptamos a tus necesidades. Llegamos 2 horas antes para el montaje y nos quedamos hasta completar el desmontaje y limpieza. Disponibles 24/7 para eventos especiales.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "¿Cómo se calcula el precio del servicio?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "El precio depende del número de invitados, duración, selección de bebidas (estándar/premium), servicios adicionales, ubicación y época del año. Presupuestos personalizados en menos de 24 horas.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "¿Qué medidas de seguridad y licencias tienen?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Contamos con certificados de manipulación de alimentos y cumplimos todas las normativas sanitarias. Bartenders y camareros formados en servicio responsable de alcohol y gestión de eventos seguros.",
+                },
+              },
+            ],
+          }),
+        }}
       />
 
       <Header />
