@@ -132,7 +132,7 @@ export default function BlogPage() {
             <div className="w-full max-w-7xl mx-auto px-4">
               <div className="mb-8">
                 <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-2">
-                  Post Destacado
+                  Último Post
                 </h2>
                 <div className="w-20 h-1 bg-primary rounded"></div>
               </div>
@@ -242,7 +242,7 @@ export default function BlogPage() {
             <div className="w-full max-w-7xl mx-auto px-4">
               <div className="mb-12">
                 <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-2">
-                  Últimos Posts
+                  Más posts de tu interés
                 </h2>
                 <div className="w-20 h-1 bg-primary rounded"></div>
               </div>
@@ -280,7 +280,7 @@ export default function BlogPage() {
                       </h3>
                     </CardHeader>
 
-                    <CardContent className="pt-0">
+                    <CardContent className="py-3">
                       <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
                         {post.excerpt}
                       </p>
@@ -301,7 +301,7 @@ export default function BlogPage() {
                           <Button
                             variant="ghost"
                             size="sm"
-                            className="group/btn text-xs"
+                            className="group/btn text-xs cursor-pointer"
                           >
                             Leer
                             <ArrowRight className="w-3 h-3 ml-1 group-hover/btn:translate-x-1 transition-transform" />
