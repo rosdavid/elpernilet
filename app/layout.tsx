@@ -168,10 +168,11 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Caterer",
-              "@id": "https://elpernilet.com/#Caterer",
+              "@type": ["LocalBusiness", "Caterer"],
+              "@id": "https://www.elpernilet.com/#business",
               name: "elpernilet",
-              alternateName: "elpernilet - Servicios de Catering Premium",
+              alternateName:
+                "elpernilet - Servicios de cortador de jamón para eventos",
               description:
                 "Servicios premium para eventos: cortador de jamón ibérico en vivo, barra de bebidas y aperitivos, y camareros profesionales en toda España.",
               url: "https://elpernilet.com",
@@ -206,18 +207,6 @@ export default function RootLayout({
                 {
                   "@type": "City",
                   name: "Barcelona",
-                },
-                {
-                  "@type": "City",
-                  name: "Madrid",
-                },
-                {
-                  "@type": "City",
-                  name: "Valencia",
-                },
-                {
-                  "@type": "AdministrativeArea",
-                  name: "Andalucía",
                 },
               ],
               serviceArea: {
@@ -360,6 +349,138 @@ export default function RootLayout({
               ],
               slogan:
                 "Experiencias gastronómicas excepcionales para eventos inolvidables",
+            }),
+          }}
+        />
+        {/* JSON-LD Schema - FAQPage */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: "¿Con cuánta antelación debo reservar vuestros servicios?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Recomendamos reservar con al menos 4-6 semanas de antelación para eventos grandes. Sin embargo, también podemos acomodar solicitudes de última hora dependiendo de nuestra disponibilidad. Contáctanos lo antes posible para asegurar tu fecha.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "¿Qué incluye el servicio de cortador de jamón?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Nuestro servicio incluye un maestro cortador profesional, jamón ibérico de primera calidad, soporte jamonero, cuchillos profesionales, y todo el material necesario. El cortador permanecerá durante el tiempo acordado cortando jamón fresco para tus invitados.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "¿Ofrecéis servicio en toda España?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Sí, ofrecemos nuestros servicios en toda España, especialmente en Barcelona, Madrid, Valencia y Andalucía. Consulta disponibilidad para tu ciudad.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "¿Puedo contratar solo el cortador sin el jamón?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Sí, puedes contratar solo el servicio de cortador si ya dispones del jamón. Nos adaptamos a tus necesidades.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "¿Qué incluye el servicio de barra de bebidas?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Nuestro servicio incluye bartenders profesionales certificados o camareros de barra, barra completamente equipada, cristalería, hielo, decoración temática, selección de bebidas premium (alcohólicas y sin alcohol), cócteles artesanales, montaje y desmontaje completo, y limpieza final.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "¿Qué tipo de eventos cubrís?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Realizamos bodas, eventos corporativos, fiestas privadas, aniversarios, comuniones y cualquier tipo de celebración donde se requiera un servicio gastronómico premium.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "¿Cuánto dura el servicio de cortador de jamón?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "La duración depende del número de invitados y el tipo de evento, pero normalmente el servicio dura entre 2 y 4 horas. Nos adaptamos a tus necesidades.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "¿Qué tipo de jamón ofrecéis?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Ofrecemos jamón ibérico de bellota, jamón ibérico de cebo y paleta ibérica, siempre de máxima calidad y seleccionados para cada evento.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "¿El cortador va uniformado?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Sí, nuestros cortadores acuden uniformados y con imagen profesional acorde al evento.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "¿Puedo personalizar la barra de bebidas?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Por supuesto, personalizamos la barra según la temática del evento, preferencias de bebidas y decoración. Consúltanos para opciones especiales.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "¿Ofrecéis camareros para otros servicios?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Sí, disponemos de camareros profesionales para servicio de mesas, barra, cócteles y atención personalizada en eventos.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "¿Cómo solicito presupuesto?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Puedes solicitar presupuesto a través del formulario de contacto, WhatsApp o llamando directamente. Respondemos en menos de 24h.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "¿Qué métodos de pago aceptáis?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Aceptamos transferencia bancaria y tarjeta de crédito. Consulta condiciones para pagos fraccionados.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "¿El servicio incluye montaje y desmontaje?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Sí, todos nuestros servicios incluyen montaje, desmontaje y limpieza final del espacio utilizado.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "¿Qué pasa si hay cambios de última hora?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Nos adaptamos a cambios siempre que sea posible. Avísanos lo antes posible para ajustar el servicio a tus necesidades.",
+                  },
+                },
+              ],
             }),
           }}
         />
