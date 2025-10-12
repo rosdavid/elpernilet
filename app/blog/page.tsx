@@ -10,16 +10,16 @@ import { getAllPosts, getAllCategories } from "@/lib/blog";
 import { Calendar, Clock, User, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Blog - Consejos y tendencias en catering | elpernilet",
+  title: "Blog - Consejos y tendencias para eventos | elpernilet",
   description:
     "Descubre los últimos consejos, tendencias y secretos del mundo de los eventos y servicios. Guías para eventos, bodas y celebraciones inolvidables.",
   keywords: [
-    "blog catering España",
+    "blog eventos España",
     "consejos eventos bodas",
-    "tendencias catering",
+    "tendencias eventos",
     "jamón ibérico consejos",
     "organización eventos",
-    "catering premium blog",
+    "servicios premium blog",
     "bodas España blog",
     "eventos corporativos blog",
   ],
@@ -75,7 +75,7 @@ export default function BlogPage() {
     "@type": "Blog",
     name: "Blog elpernilet",
     description:
-      "Consejos, tendencias y secretos del mundo del catering premium",
+      "Consejos, tendencias y secretos del mundo del jamón y servicios premium",
     url: "https://elpernilet.com/blog",
     publisher: {
       "@type": "Organization",

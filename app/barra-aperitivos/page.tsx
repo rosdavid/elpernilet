@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "finger foods bodas Barcelona",
     "barra tapas eventos corporativos",
     "aperitivos premium bodas",
-    "catering aperitivos España",
+    "barra aperitivos España",
     "barra canapés bodas",
     "aperitivos artesanales eventos",
     "servicio aperitivos premium",

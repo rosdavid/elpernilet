@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     "jamón premium eventos España",
     "show cooking jamón Barcelona",
     "corte jamón artesanal eventos",
-    "catering jamón ibérico España",
+    "cortador jamón ibérico España",
   ],
   alternates: {
     canonical: "https://elpernilet.com/cortador-jamon",

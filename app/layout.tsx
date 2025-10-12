@@ -25,17 +25,17 @@ export const metadata: Metadata = {
   description:
     "Maestros cortadores de jamón, barra de bebidas y camareros para bodas y eventos. Servicio en Barcelona y resto de España. Pide presupuesto en 24h.",
   keywords: [
-    "catering España",
+    "cortador de jamón España",
     "cortador de jamón",
     "jamón ibérico",
-    "catering bodas",
+    "cortador de jamón para bodas",
     "eventos corporativos",
-    "catering profesional",
+    "cortador de jamón profesional",
     "barra de bebidas",
     "camareros eventos",
-    "catering Barcelona",
-    "catering Madrid",
-    "catering lujo España",
+    "cortador de jamón Barcelona",
+    "cortador de jamón Madrid",
+    "cortador de jamón lujo España",
     "servicios eventos",
   ],
   authors: [{ name: "elpernilet" }],
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
         url: "/elpernilet-event-image.webp",
         width: 1200,
         height: 630,
-        alt: "Servicios de catering elpernilet",
+        alt: "Cortador de jamón ibérico en vivo, barra de bebidas gourmet y camareros profesionales para eventos corporativos y privados.",
       },
     ],
     locale: "es_ES",
@@ -72,8 +72,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title:
       "Servicio de cortador de jamón para bodas y eventos en Barcelona | elpernilet",
-    description:
-      "Cortador de jamón en vivo y servicios de catering para eventos",
+    description: "Cortador de jamón en vivo y servicios para eventos",
     images: ["/elpernilet-event-image.webp"],
   },
   robots: {
@@ -104,7 +103,7 @@ export default function RootLayout({
         />
         <meta
           name="keywords"
-          content="catering España, cortador de jamón, jamón ibérico, catering bodas, eventos corporativos, catering profesional, barra de bebidas, camareros eventos"
+          content="cortador de jamón España, cortador de jamón, jamón ibérico, cortador de jamón bodas, eventos corporativos, cortador de jamón profesional, barra de bebidas, camareros eventos"
         />
         <meta name="author" content="elpernilet" />
         <meta name="robots" content="index, follow" />
@@ -136,7 +135,7 @@ export default function RootLayout({
         <meta property="og:image:height" content="630" />
         <meta
           property="og:image:alt"
-          content="Servicios de catering elpernilet"
+          content="Servicios de cortador de jamón elpernilet"
         />
 
         {/* Twitter Card tags explícitos */}
@@ -147,7 +146,7 @@ export default function RootLayout({
         />
         <meta
           name="twitter:description"
-          content="Cortador de jamón en vivo y servicios de catering para eventos"
+          content="Cortador de jamón en vivo y servicios de cortador de jamón para eventos"
         />
         <meta
           name="twitter:image"
@@ -215,7 +214,7 @@ export default function RootLayout({
               },
               hasOfferCatalog: {
                 "@type": "OfferCatalog",
-                name: "Servicios de Catering Premium",
+                name: "Servicios de Cortador de Jamón Premium",
                 itemListElement: [
                   {
                     "@type": "Offer",
@@ -331,20 +330,20 @@ export default function RootLayout({
                   },
                   object: {
                     "@type": "Service",
-                    name: "Reservar Servicio de Catering",
+                    name: "Reservar Servicio de Cortador de Jamón",
                   },
                 },
               ],
               knowsAbout: [
                 "Cortador de jamón ibérico",
                 "Jamón de bellota",
-                "Catering para bodas",
+                "Cortador de jamón para bodas",
                 "Eventos corporativos",
                 "Barra de bebidas premium",
                 "Servicio de camareros",
                 "Gastronomía española",
                 "Eventos en Cataluña",
-                "Catering Barcelona",
+                "Cortador de jamón Barcelona",
                 "Maestro jamonero",
               ],
               slogan:

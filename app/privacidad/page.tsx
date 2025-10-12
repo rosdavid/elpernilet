@@ -28,7 +28,8 @@ export default function PrivacyPage() {
                   <strong>Denominación social:</strong> elpernilet
                 </p>
                 <p>
-                  <strong>Actividad:</strong> Servicios de catering y eventos
+                  <strong>Actividad:</strong> Servicios de corte de jamón y
+                  servicios para eventos
                 </p>
                 <p>
                   <strong>Contacto:</strong> A través del formulario de contacto

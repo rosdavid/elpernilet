@@ -38,7 +38,7 @@ export async function generateMetadata({
     description: post.excerpt,
     keywords: [
       ...post.tags,
-      "catering España",
+      "servicios España",
       "eventos bodas",
       "elpernilet blog",
     ],

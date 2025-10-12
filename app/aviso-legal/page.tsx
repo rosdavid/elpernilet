@@ -28,8 +28,8 @@ export default function LegalPage() {
                   <strong>Denominación social:</strong> elpernilet
                 </p>
                 <p>
-                  <strong>Actividad:</strong> Servicios de catering y
-                  organización de eventos
+                  <strong>Actividad:</strong> Servicios y organización de
+                  eventos
                 </p>
                 <p>
                   <strong>Sitio web:</strong> elpernilet.com
@@ -78,7 +78,7 @@ export default function LegalPage() {
               <h2 className="text-2xl font-semibold mb-4">Contenidos</h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
                 Los contenidos del sitio web tienen carácter meramente
-                informativo sobre nuestros servicios de catering y eventos. Nos
+                informativo sobre nuestros servicios para eventos. Nos
                 reservamos el derecho a:
               </p>
               <ul className="list-disc list-inside text-muted-foreground space-y-2">

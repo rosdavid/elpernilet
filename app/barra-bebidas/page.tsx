@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     "servicio bebidas bodas",
     "bartender profesional España",
     "barra bebidas Madrid Valencia",
-    "cocktail catering España",
+    "cocktail España",
     "mixología eventos Barcelona",
     "barra gin tonic eventos",
     "servicio bebidas premium",

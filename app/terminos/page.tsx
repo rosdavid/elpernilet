@@ -63,12 +63,10 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-4">
-                Servicios de catering
-              </h2>
+              <h2 className="text-2xl font-semibold mb-4">Servicios</h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                Los servicios de catering están sujetos a condiciones
-                específicas que se acordarán en cada contrato individual:
+                Los servicios están sujetos a condiciones específicas que se
+                acordarán en cada contrato individual:
               </p>
               <ul className="list-disc list-inside text-muted-foreground space-y-2">
                 <li>Los precios mostrados son orientativos y pueden variar</li>
