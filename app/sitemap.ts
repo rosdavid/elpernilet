@@ -46,10 +46,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/#contact`,
+      url: `${baseUrl}/sobre-nosotros`,
       lastModified: new Date(),
-      changeFrequency: "yearly" as const,
-      priority: 0.9,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/nuestra-historia`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/blog`,

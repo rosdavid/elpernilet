@@ -185,24 +185,24 @@ export function Header() {
                 </div>
               </div>
             </div>
-            <button
-              onClick={() => navigateToSection("about")}
+            <Link
+              href="/sobre-nosotros"
               className="text-sm font-medium text-muted-foreground hover:text-foreground cursor-pointer"
             >
               Sobre nosotros
-            </button>
+            </Link>
             <button
               onClick={() => navigateToSection("gallery")}
               className="text-sm font-medium text-muted-foreground hover:text-foreground cursor-pointer"
             >
               Galería
             </button>
-            <button
-              onClick={() => navigateToSection("our-story")}
+            <Link
+              href="/nuestra-historia"
               className="text-sm font-medium text-muted-foreground hover:text-foreground cursor-pointer"
             >
               Nuestra historia
-            </button>
+            </Link>
             <button
               onClick={() => navigateToSection("faq")}
               className="text-sm font-medium text-muted-foreground hover:text-foreground cursor-pointer"
@@ -301,24 +301,26 @@ export function Header() {
                     </div>
                   )}
                 </div>
-                <button
-                  onClick={() => navigateToSection("about")}
+                <Link
+                  href="/sobre-nosotros"
                   className="text-left text-sm font-medium text-muted-foreground hover:text-foreground py-3 cursor-pointer border-b border-border/30"
+                  onClick={toggleMobileMenu}
                 >
                   Sobre nosotros
-                </button>
+                </Link>
                 <button
                   onClick={() => navigateToSection("gallery")}
                   className="text-left text-sm font-medium text-muted-foreground hover:text-foreground py-3 cursor-pointer border-b border-border/30"
                 >
                   Galería
                 </button>
-                <button
-                  onClick={() => navigateToSection("our-story")}
+                <Link
+                  href="/nuestra-historia"
                   className="text-left text-sm font-medium text-muted-foreground hover:text-foreground py-3 cursor-pointer border-b border-border/30"
+                  onClick={toggleMobileMenu}
                 >
                   Nuestra historia
-                </button>
+                </Link>
                 <button
                   onClick={() => navigateToSection("faq")}
                   className="text-left text-sm font-medium text-muted-foreground hover:text-foreground py-3 cursor-pointer border-b border-border/30"
