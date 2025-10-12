@@ -113,6 +113,8 @@ export function DrinkBarHero() {
               <div className="flex items-center gap-6">
                 <span className="text-sm font-medium">Mas de la Sala</span>
                 <span className="text-sm font-medium">Vila Vallbona</span>
+                <span className="text-sm font-medium">La Premsa</span>
+                <span className="text-sm font-medium">Oller del Mas</span>
               </div>
             </div>
           </div>
