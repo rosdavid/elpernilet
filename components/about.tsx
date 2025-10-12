@@ -1,8 +1,9 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { CheckCircle2, Play } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { lazy, Suspense, useState, memo } from "react";
 
 const VideoModal = lazy(() =>
@@ -43,15 +44,15 @@ export const About = memo(() => {
                 </li>
               ))}
             </ul>
-            <Button
-              onClick={() => setIsVideoModalOpen(true)}
-              size="lg"
-              variant="outline"
-              className="text-lg px-8 py-6 bg-transparent cursor-pointer"
-            >
-              <Play className="w-5 h-5" />
-              Conocer más
-            </Button>
+            <Link href="/sobre-nosotros">
+              <Button
+                size="lg"
+                variant="outline"
+                className="text-lg px-8 py-6 bg-transparent cursor-pointer"
+              >
+                Conocer más sobre nosotros
+              </Button>
+            </Link>
           </div>
           <Image
             src="/foto-evento.webp"
