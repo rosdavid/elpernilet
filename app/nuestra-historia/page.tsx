@@ -10,10 +10,9 @@ import { CommunityImpact } from "@/components/nuestra-historia/community";
 import { AboutCTA } from "@/components/sobre-nosotros/cta";
 
 export const metadata: Metadata = {
-  title:
-    "Nuestra Historia | elpernilet - +15 Años Creando Momentos Inolvidables",
+  title: "Nuestra Historia | elpernilet: De Barcelona a +500 Eventos",
   description:
-    "Descubre la historia de elpernilet: desde nuestros humildes comienzos en 2009 hasta convertirnos en un referente en el corte de jamón y servicios para eventos en España. Una trayectoria de pasión, excelencia y compromiso.",
+    "De un sueño a referencia en eventos: +15 años, +500 celebraciones y pasión por el jamón ibérico, barras y servicio. Conócenos.",
   keywords: [
     "historia elpernilet",
     "trayectoria catering Barcelona",
@@ -30,9 +29,9 @@ export const metadata: Metadata = {
     canonical: "https://elpernilet.com/nuestra-historia",
   },
   openGraph: {
-    title: "Nuestra Historia | elpernilet - +15 Años de Excelencia",
+    title: "Nuestra Historia | elpernilet: De Barcelona a +500 Eventos",
     description:
-      "Conoce nuestra historia desde 2009: cómo comenzamos, nuestros hitos más importantes y la evolución que nos ha convertido en referentes del sector.",
+      "De un sueño a referencia en eventos: +15 años, +500 celebraciones y pasión por el jamón ibérico, barras y servicio. Conócenos.",
     url: "https://elpernilet.com/nuestra-historia",
     siteName: "elpernilet",
     locale: "es_ES",
@@ -48,8 +47,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nuestra Historia | elpernilet - +15 Años de Excelencia",
-    description: "Descubre nuestra trayectoria desde 2009 hasta hoy.",
+    title: "Nuestra Historia | elpernilet: De Barcelona a +500 Eventos",
+    description:
+      "De un sueño a referencia en eventos: +15 años, +500 celebraciones y pasión por el jamón ibérico, barras y servicio. Conócenos.",
     images: ["https://elpernilet.com/elpernilet-event-image.webp"],
   },
   other: {

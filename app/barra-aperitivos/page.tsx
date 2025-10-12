@@ -11,9 +11,10 @@ import { AppetizerBarFAQ } from "@/components/appetizer-bar/faq";
 import { AppetizerBarCTA } from "@/components/appetizer-bar/cta";
 
 export const metadata: Metadata = {
-  title: "Barra de Aperitivos Gourmet para Bodas y Eventos | elpernilet",
+  title:
+    "Barra de Aperitivos Gourmet en Barcelona | Canapés para Bodas y Eventos – elpernilet",
   description:
-    "Barra de aperitivos premium, canapés artesanales y finger foods gourmet para bodas, eventos corporativos y celebraciones. Servicio en Barcelona y toda España.",
+    "Canapés y aperitivos gourmet para bodas y eventos en Barcelona. Montaje, servicio y reposición incluidos. Combínalo con cortador de jamón o barra de bebidas.",
   keywords: [
     "barra aperitivos Barcelona",
     "canapés bodas Catalunya",
@@ -30,9 +31,10 @@ export const metadata: Metadata = {
     canonical: "https://elpernilet.com/barra-aperitivos",
   },
   openGraph: {
-    title: "Barra de Aperitivos Gourmet para Bodas y Eventos | elpernilet",
+    title:
+      "Barra de Aperitivos Gourmet en Barcelona | Canapés para Bodas y Eventos – elpernilet",
     description:
-      "Canapés artesanales, aperitivos premium y finger foods gourmet para eventos únicos.",
+      "Canapés y aperitivos gourmet para bodas y eventos en Barcelona. Montaje, servicio y reposición incluidos. Combínalo con cortador de jamón o barra de bebidas.",
     url: "https://elpernilet.com/barra-aperitivos",
     siteName: "elpernilet",
     locale: "es_ES",
@@ -48,9 +50,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Barra de Aperitivos Gourmet para Bodas y Eventos",
+    title:
+      "Barra de Aperitivos Gourmet en Barcelona | Canapés para Bodas y Eventos – elpernilet",
     description:
-      "Canapés artesanales y aperitivos premium para eventos únicos.",
+      "Canapés y aperitivos gourmet para bodas y eventos en Barcelona. Montaje, servicio y reposición incluidos. Combínalo con cortador de jamón o barra de bebidas.",
     images: ["https://elpernilet.com/elpernilet-event-image.webp"],
   },
   other: {
@@ -68,9 +71,9 @@ export default function BarraAperitivos() {
   const serviceJsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Barra de Aperitivos Gourmet",
+    name: "Barra de Aperitivos Gourmet en Barcelona | Canapés para Bodas y Eventos – elpernilet",
     description:
-      "Servicio de barra de aperitivos premium con canapés artesanales y finger foods para bodas, eventos corporativos y celebraciones privadas",
+      "Canapés y aperitivos gourmet para bodas y eventos en Barcelona. Montaje, servicio y reposición incluidos. Combínalo con cortador de jamón o barra de bebidas.",
     provider: {
       "@type": ["LocalBusiness", "Caterer"],
       "@id": "https://elpernilet.com/#business",

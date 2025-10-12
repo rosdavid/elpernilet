@@ -10,9 +10,10 @@ import { getAllPosts, getAllCategories } from "@/lib/blog";
 import { Calendar, Clock, User, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Blog - Consejos y tendencias para eventos | elpernilet",
+  title:
+    "Blog de elpernilet | Consejos de Cortador de Jamón y Organización de Eventos",
   description:
-    "Descubre los últimos consejos, tendencias y secretos del mundo de los eventos y servicios. Guías para eventos, bodas y celebraciones inolvidables.",
+    "Guías prácticas sobre cortadores de jamón, barras de bebidas y planificación de eventos. Precios, cantidades por invitado y checklists descargables.",
   keywords: [
     "blog eventos España",
     "consejos eventos bodas",
@@ -38,8 +39,10 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Blog elpernilet - Consejos y tendencias para eventos",
-    description: "Descubre los secretos y las últimas tendencias para eventos.",
+    title:
+      "Blog de elpernilet | Consejos de Cortador de Jamón y Organización de Eventos",
+    description:
+      "Guías prácticas sobre cortadores de jamón, barras de bebidas y planificación de eventos. Precios, cantidades por invitado y checklists descargables.",
     url: "https://elpernilet.com/blog",
     siteName: "elpernilet",
     locale: "es_ES",
@@ -49,14 +52,16 @@ export const metadata: Metadata = {
         url: "https://elpernilet.com/elpernilet-event-image.webp",
         width: 1200,
         height: 630,
-        alt: "Blog elpernilet - Consejos y tendencias para eventos",
+        alt: "Blog de elpernilet | Consejos de Cortador de Jamón y Organización de Eventos",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blog elpernilet - Consejos y tendencias para eventos",
-    description: "Descubre los secretos y las últimas tendencias para eventos.",
+    title:
+      "Blog de elpernilet | Consejos de Cortador de Jamón y Organización de Eventos",
+    description:
+      "Guías prácticas sobre cortadores de jamón, barras de bebidas y planificación de eventos. Precios, cantidades por invitado y checklists descargables.",
     creator: "@elpernilet",
     site: "@elpernilet",
     images: ["https://elpernilet.com/elpernilet-event-image.webp"],
@@ -73,9 +78,9 @@ export default function BlogPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    name: "Blog elpernilet",
+    name: "Blog de elpernilet | Consejos de Cortador de Jamón y Organización de Eventos",
     description:
-      "Consejos, tendencias y secretos del mundo del jamón y servicios premium",
+      "Guías prácticas sobre cortadores de jamón, barras de bebidas y planificación de eventos. Precios, cantidades por invitado y checklists descargables.",
     url: "https://elpernilet.com/blog",
     publisher: {
       "@type": "Organization",

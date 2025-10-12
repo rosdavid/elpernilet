@@ -10,10 +10,9 @@ import { WhyChooseUs } from "@/components/sobre-nosotros/why-choose-us";
 import { AboutCTA } from "@/components/sobre-nosotros/cta";
 
 export const metadata: Metadata = {
-  title:
-    "Sobre Nosotros | elpernilet - +15 Años de Excelencia en Catering y Eventos",
+  title: "Sobre elpernilet | +15 Años en Catering y Eventos en Barcelona",
   description:
-    "Conoce la historia de elpernilet: más de 15 años creando experiencias inolvidables en bodas, eventos corporativos y celebraciones. Equipo experto, pasión por la excelencia y compromiso con la calidad.",
+    "Conoce nuestro equipo, valores y experiencia en catering para eventos. +500 eventos, +15 años y valoración 5.0. Descubre por qué nos eligen.",
   keywords: [
     "sobre elpernilet",
     "historia catering Barcelona",
@@ -30,9 +29,9 @@ export const metadata: Metadata = {
     canonical: "https://elpernilet.com/sobre-nosotros",
   },
   openGraph: {
-    title: "Sobre Nosotros | elpernilet - +15 Años de Excelencia en Catering",
+    title: "Sobre elpernilet | +15 Años en Catering y Eventos en Barcelona",
     description:
-      "Descubre nuestra historia, valores y el equipo que hace posible experiencias inolvidables en tus eventos más importantes.",
+      "Conoce nuestro equipo, valores y experiencia en catering para eventos. +500 eventos, +15 años y valoración 5.0. Descubre por qué nos eligen.",
     url: "https://elpernilet.com/sobre-nosotros",
     siteName: "elpernilet",
     locale: "es_ES",
@@ -48,9 +47,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sobre Nosotros | elpernilet - +15 Años de Excelencia",
+    title: "Sobre elpernilet | +15 Años en Catering y Eventos en Barcelona",
     description:
-      "Conoce el equipo y la historia detrás de experiencias inolvidables.",
+      "Conoce nuestro equipo, valores y experiencia en catering para eventos. +500 eventos, +15 años y valoración 5.0. Descubre por qué nos eligen.",
     images: ["https://elpernilet.com/elpernilet-event-image.webp"],
   },
   other: {

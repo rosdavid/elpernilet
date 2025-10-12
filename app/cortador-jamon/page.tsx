@@ -12,9 +12,9 @@ import { HamSlicingCTA } from "@/components/ham-slicing/cta";
 
 export const metadata: Metadata = {
   title:
-    "Cortadores de Jamón Profesionales para Bodas y Eventos | elpernilet Barcelona",
+    "Cortador de Jamón en Barcelona para Bodas y Eventos | Maestro Cortador – elpernilet",
   description:
-    "Maestros cortadores de jamón ibérico para bodas, eventos corporativos y celebraciones en Barcelona y toda España. Espectáculo gastronómico en vivo. Presupuesto gratuito en 24h.",
+    "Contrata un maestro cortador de jamón para bodas y eventos en Barcelona. Show en vivo, emplatado premium y asesoramiento de cantidades. Presupuesto en 24 h.",
   keywords: [
     "cortador de jamón Barcelona",
     "maestro cortador jamón Catalunya",
@@ -37,9 +37,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title:
-      "Cortadores de Jamón Profesionales para Bodas y Eventos | elpernilet",
+      "Cortador de Jamón en Barcelona para Bodas y Eventos | Maestro Cortador – elpernilet",
     description:
-      "Maestros cortadores de jamón ibérico para bodas, eventos corporativos y celebraciones. Espectáculo gastronómico en vivo.",
+      "Contrata un maestro cortador de jamón para bodas y eventos en Barcelona. Show en vivo, emplatado premium y asesoramiento de cantidades. Presupuesto en 24 h.",
     url: "https://elpernilet.com/cortador-jamon",
     siteName: "elpernilet",
     locale: "es_ES",
@@ -55,9 +55,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cortadores de Jamón Profesionales para Bodas y Eventos",
+    title:
+      "Cortador de Jamón en Barcelona para Bodas y Eventos | Maestro Cortador – elpernilet",
     description:
-      "Maestros cortadores de jamón ibérico para eventos. Espectáculo gastronómico en vivo.",
+      "Contrata un maestro cortador de jamón para bodas y eventos en Barcelona. Show en vivo, emplatado premium y asesoramiento de cantidades. Presupuesto en 24 h.",
     images: ["https://elpernilet.com/cortador-jamon-hero.webp"],
   },
   other: {
@@ -75,9 +76,9 @@ export default function CortadorJamonPage() {
   const serviceJsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Cortadores de Jamón Profesionales",
+    name: "Cortador de Jamón en Barcelona para Bodas y Eventos | Maestro Cortador – elpernilet",
     description:
-      "Servicio de maestros cortadores de jamón ibérico para bodas, eventos corporativos y celebraciones privadas",
+      "Contrata un maestro cortador de jamón para bodas y eventos en Barcelona. Show en vivo, emplatado premium y asesoramiento de cantidades. Presupuesto en 24 h.",
     provider: {
       "@type": ["LocalBusiness", "Caterer"],
       "@id": "https://elpernilet.com/#business",

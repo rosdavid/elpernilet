@@ -11,9 +11,9 @@ import { WaitersFAQ } from "@/components/camareros/faq";
 import { WaitersCTA } from "@/components/camareros/cta";
 
 export const metadata: Metadata = {
-  title: "Servicio de Camareros Profesionales para Eventos | elpernilet",
+  title: "Servicio de Camareros en Barcelona para Bodas y Eventos | elpernilet",
   description:
-    "Camareros profesionales certificados para bodas, eventos corporativos y celebraciones. Servicio completo de atención al cliente y catering en Barcelona y toda España.",
+    "Camareros profesionales para bodas y eventos en Barcelona. Ratio por invitados, uniformes y coordinación con proveedores. Presupuesto rápido en 24 h.",
   keywords: [
     "camareros profesionales Barcelona",
     "servicio camareros eventos España",
@@ -30,9 +30,10 @@ export const metadata: Metadata = {
     canonical: "https://elpernilet.com/camareros",
   },
   openGraph: {
-    title: "Servicio de Camareros Profesionales para Eventos | elpernilet",
+    title:
+      "Servicio de Camareros en Barcelona para Bodas y Eventos | elpernilet",
     description:
-      "Camareros certificados y atención profesional para eventos únicos.",
+      "Camareros profesionales para bodas y eventos en Barcelona. Ratio por invitados, uniformes y coordinación con proveedores. Presupuesto rápido en 24 h.",
     url: "https://elpernilet.com/camareros",
     siteName: "elpernilet",
     locale: "es_ES",
@@ -48,8 +49,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Servicio de Camareros Profesionales para Eventos",
-    description: "Camareros certificados para eventos únicos.",
+    title:
+      "Servicio de Camareros en Barcelona para Bodas y Eventos | elpernilet",
+    description:
+      "Camareros profesionales para bodas y eventos en Barcelona. Ratio por invitados, uniformes y coordinación con proveedores. Presupuesto rápido en 24 h.",
     images: ["https://elpernilet.com/elpernilet-event-image.webp"],
   },
   other: {
@@ -67,9 +70,9 @@ export default function Camareros() {
   const serviceJsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Servicio de Camareros Profesionales",
+    name: "Servicio de Camareros en Barcelona para Bodas y Eventos | elpernilet",
     description:
-      "Servicio completo de camareros profesionales certificados para bodas, eventos corporativos y celebraciones privadas",
+      "Camareros profesionales para bodas y eventos en Barcelona. Ratio por invitados, uniformes y coordinación con proveedores. Presupuesto rápido en 24 h.",
     provider: {
       "@type": ["LocalBusiness", "Caterer"],
       "@id": "https://elpernilet.com/#business",

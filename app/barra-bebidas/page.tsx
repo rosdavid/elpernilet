@@ -11,9 +11,10 @@ import { DrinkBarFAQ } from "@/components/drink-bar/faq";
 import { DrinkBarCTA } from "@/components/drink-bar/cta";
 
 export const metadata: Metadata = {
-  title: "Barra de Bebidas y Cócteles para Bodas y Eventos | elpernilet",
+  title:
+    "Barra de Bebidas y Cócteles en Barcelona | Bartenders para Bodas y Eventos – elpernilet",
   description:
-    "Bartenders profesionales, barra de bebidas premium y cócteles artesanales para bodas, eventos corporativos y celebraciones. Servicio en Barcelona y toda España.",
+    "Barra de bebidas con bartenders, coctelería y cristalería para bodas y eventos. Packs cerrados y montaje incluido. Presupuesto en 24 h.",
   keywords: [
     "barra de bebidas Barcelona",
     "bartender profesional Catalunya",
@@ -35,9 +36,10 @@ export const metadata: Metadata = {
     canonical: "https://elpernilet.com/barra-bebidas",
   },
   openGraph: {
-    title: "Barra de Bebidas y Cócteles para Bodas y Eventos | elpernilet",
+    title:
+      "Barra de Bebidas y Cócteles en Barcelona | Bartenders para Bodas y Eventos – elpernilet",
     description:
-      "Bartenders profesionales, barra de bebidas premium y cócteles artesanales para bodas y eventos corporativos.",
+      "Barra de bebidas con bartenders, coctelería y cristalería para bodas y eventos. Packs cerrados y montaje incluido. Presupuesto en 24 h.",
     url: "https://elpernilet.com/barra-bebidas",
     siteName: "elpernilet",
     locale: "es_ES",
@@ -53,9 +55,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Barra de Bebidas y Cócteles para Bodas y Eventos",
+    title:
+      "Barra de Bebidas y Cócteles en Barcelona | Bartenders para Bodas y Eventos – elpernilet",
     description:
-      "Bartenders profesionales y cócteles artesanales para eventos únicos.",
+      "Barra de bebidas con bartenders, coctelería y cristalería para bodas y eventos. Packs cerrados y montaje incluido. Presupuesto en 24 h.",
     images: ["https://elpernilet.com/elpernilet-event-image.webp"],
   },
   other: {
@@ -73,9 +76,9 @@ export default function BarraBebidas() {
   const serviceJsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Barra de Bebidas y Cócteles Profesional",
+    name: "Barra de Bebidas y Cócteles en Barcelona | Bartenders para Bodas y Eventos – elpernilet",
     description:
-      "Servicio de bartenders profesionales con barra de bebidas premium y cócteles artesanales para bodas, eventos corporativos y celebraciones privadas",
+      "Barra de bebidas con bartenders, coctelería y cristalería para bodas y eventos. Packs cerrados y montaje incluido. Presupuesto en 24 h.",
     provider: {
       "@type": ["LocalBusiness", "Caterer"],
       "@id": "https://elpernilet.com/#business",

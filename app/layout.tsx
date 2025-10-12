@@ -21,9 +21,9 @@ const roboto = Roboto({
 
 export const metadata: Metadata = {
   title:
-    "Servicio de cortador de jamón para bodas y eventos en Barcelona | elpernilet",
+    "Cortador de Jamón, Barra de Bebidas y Camareros en Barcelona | elpernilet",
   description:
-    "Maestros cortadores de jamón, barra de bebidas y camareros para bodas y eventos. Servicio en Barcelona y resto de España. Pide presupuesto en 24h.",
+    "Cortador de jamón en vivo, barra de bebidas y aperitivos y servicio de camareros para bodas y eventos. Presupuesto en 24 h. Cobertura Barcelona, Cataluña y resto de España.",
   keywords: [
     "cortador de jamón España",
     "cortador de jamón",
@@ -52,9 +52,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title:
-      "Servicio de cortador de jamón para bodas y eventos en Barcelona | elpernilet",
+      "Cortador de Jamón, Barra de Bebidas y Camareros en Barcelona | elpernilet",
     description:
-      "Cortador de jamón ibérico en vivo, barra de bebidas gourmet y camareros profesionales para eventos corporativos y privados.",
+      "Cortador de jamón en vivo, barra de bebidas y aperitivos y servicio de camareros para bodas y eventos. Presupuesto en 24 h. Cobertura Barcelona, Cataluña y resto de España.",
     url: "https://elpernilet.com",
     siteName: "elpernilet",
     images: [
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
         url: "/elpernilet-event-image.webp",
         width: 1200,
         height: 630,
-        alt: "Cortador de jamón ibérico en vivo, barra de bebidas gourmet y camareros profesionales para eventos corporativos y privados.",
+        alt: "Cortador de jamón en vivo, barra de bebidas y aperitivos y servicio de camareros para bodas y eventos.",
       },
     ],
     locale: "es_ES",
@@ -71,8 +71,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Servicio de cortador de jamón para bodas y eventos en Barcelona | elpernilet",
-    description: "Cortador de jamón en vivo y servicios para eventos",
+      "Cortador de Jamón, Barra de Bebidas y Camareros en Barcelona | elpernilet",
+    description:
+      "Cortador de jamón en vivo, barra de bebidas y aperitivos y servicio de camareros para bodas y eventos. Presupuesto en 24 h. Cobertura Barcelona, Cataluña y resto de España.",
     images: ["/elpernilet-event-image.webp"],
   },
   robots: {
@@ -99,7 +100,7 @@ export default function RootLayout({
         {/* Meta tags explícitos para Lighthouse */}
         <meta
           name="description"
-          content="Maestros cortadores de jamón, barra de bebidas y camareros para bodas y eventos. Servicio en Barcelona y resto de España. Pide presupuesto en 24h."
+          content="Cortador de jamón en vivo, barra de bebidas y aperitivos y servicio de camareros para bodas y eventos. Presupuesto en 24 h. Cobertura Barcelona, Cataluña y resto de España."
         />
         <meta
           name="keywords"
@@ -117,11 +118,11 @@ export default function RootLayout({
         {/* Open Graph tags explícitos */}
         <meta
           property="og:title"
-          content="Servicio de cortador de jamón para bodas y eventos en Barcelona | elpernilet"
+          content="Cortador de jamón, barra de bebidas y camareros en Barcelona | elpernilet"
         />
         <meta
           property="og:description"
-          content="Cortador de jamón ibérico en vivo, barra de bebidas gourmet y camareros profesionales para eventos corporativos y privados."
+          content="Cortador de jamón en vivo, barra de bebidas y aperitivos y servicio de camareros para bodas y eventos. Presupuesto en 24 h. Cobertura Barcelona, Cataluña y resto de España."
         />
         <meta property="og:url" content="https://elpernilet.com" />
         <meta property="og:type" content="website" />
@@ -142,11 +143,11 @@ export default function RootLayout({
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Servicio de cortador de jamón para bodas y eventos en Barcelona | elpernilet"
+          content="Cortador de jamón, barra de bebidas y camareros en Barcelona | elpernilet"
         />
         <meta
           name="twitter:description"
-          content="Cortador de jamón en vivo y servicios de cortador de jamón para eventos"
+          content="Cortador de jamón en vivo, barra de bebidas y aperitivos y servicio de camareros para bodas y eventos. Presupuesto en 24 h. Cobertura Barcelona, Cataluña y resto de España."
         />
         <meta
           name="twitter:image"
@@ -171,9 +172,9 @@ export default function RootLayout({
               "@id": "https://www.elpernilet.com/#business",
               name: "elpernilet",
               alternateName:
-                "elpernilet - Servicios de cortador de jamón para eventos",
+                "Cortador de Jamón, Barra de Bebidas y Camareros en Barcelona | elpernilet",
               description:
-                "Servicios premium para eventos: cortador de jamón ibérico en vivo, barra de bebidas y aperitivos, y camareros profesionales en toda España.",
+                "Cortador de jamón en vivo, barra de bebidas y aperitivos y servicio de camareros para bodas y eventos. Presupuesto en 24 h. Cobertura Barcelona, Cataluña y resto de España.",
               url: "https://elpernilet.com",
               telephone: "+34654127391",
               email: "hola@elpernilet.com",
