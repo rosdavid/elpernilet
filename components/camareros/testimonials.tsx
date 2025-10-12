@@ -173,7 +173,7 @@ export function WaitersTestimonials() {
 
             <div className="grid md:grid-cols-4 gap-8 text-center">
               <div>
-                <div className="text-4xl font-bold mb-2">+600</div>
+                <div className="text-4xl font-bold mb-2">+500</div>
                 <div className="text-purple-100">Eventos Realizados</div>
               </div>
               <div>
