@@ -79,7 +79,7 @@ export function OurStory() {
                 index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
               } items-center gap-8 lg:gap-12`}
             >
-              <div className="flex-1">
+              <div className="flex-1 order-1 w-full lg:w-auto">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-16 h-16 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xl font-bold">
                     {milestone.year}
@@ -95,7 +95,7 @@ export function OurStory() {
                 </p>
               </div>
 
-              <div className="flex-1">
+              <div className="flex-1 order-2 w-full lg:w-auto">
                 <Card className="overflow-hidden shadow-lg">
                   <div className="relative aspect-[4/3]">
                     <Image
