@@ -124,7 +124,9 @@ export function OnlineStore() {
                   <div className="text-sm text-muted-foreground">Productos</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-primary">24-48h</div>
+                  <div className="text-2xl font-bold text-primary">
+                    24 - 48h
+                  </div>
                   <div className="text-sm text-muted-foreground">
                     Envío rápido
                   </div>
