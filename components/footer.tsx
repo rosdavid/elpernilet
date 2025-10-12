@@ -89,6 +89,14 @@ export function Footer() {
                   Barra de aperitivos
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/camareros"
+                  className="hover:text-primary-foreground transition-colors"
+                >
+                  Camareros profesionales
+                </Link>
+              </li>
               <li>Eventos corporativos</li>
               <li>Eventos privados</li>
             </ul>

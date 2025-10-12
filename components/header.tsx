@@ -171,7 +171,17 @@ export function Header() {
                     </div>
                   </Link>
 
-                  <div className="mx-4 my-2 border-t border-border/30"></div>
+                  <Link
+                    href="/camareros"
+                    className="flex items-center px-4 py-3 text-sm text-foreground hover:bg-purple-50 hover:text-purple-700 transition-colors duration-150 group"
+                  >
+                    <div>
+                      <div className="font-medium">Camareros Profesionales</div>
+                      <div className="text-xs text-muted-foreground group-hover:text-purple-600">
+                        Servicio de atención al cliente
+                      </div>
+                    </div>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -280,6 +290,13 @@ export function Header() {
                         onClick={toggleMobileMenu}
                       >
                         Barra de Aperitivos
+                      </Link>
+                      <Link
+                        href="/camareros"
+                        className="block text-sm font-medium text-muted-foreground hover:text-foreground py-2 cursor-pointer"
+                        onClick={toggleMobileMenu}
+                      >
+                        Camareros Profesionales
                       </Link>
                     </div>
                   )}
