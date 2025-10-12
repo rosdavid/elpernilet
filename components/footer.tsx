@@ -73,7 +73,22 @@ export function Footer() {
                   Cortador de jamón en vivo
                 </Link>
               </li>
-              <li>Barra de bebidas y aperitivos</li>
+              <li>
+                <Link
+                  href="/barra-bebidas"
+                  className="hover:text-primary-foreground transition-colors"
+                >
+                  Barra de bebidas
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/barra-aperitivos"
+                  className="hover:text-primary-foreground transition-colors"
+                >
+                  Barra de aperitivos
+                </Link>
+              </li>
               <li>Eventos corporativos</li>
               <li>Eventos privados</li>
             </ul>
