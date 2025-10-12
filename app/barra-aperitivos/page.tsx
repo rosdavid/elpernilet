@@ -5,7 +5,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { AppetizerBarHero } from "@/components/appetizer-bar/hero";
 import { AppetizerBarServices } from "@/components/appetizer-bar/services";
 import { AppetizerBarProcess } from "@/components/appetizer-bar/process";
-import { AppetizerBarGallery } from "@/components/appetizer-bar/gallery";
+// import { AppetizerBarGallery } from "@/components/appetizer-bar/gallery";
 import { AppetizerBarTestimonials } from "@/components/appetizer-bar/testimonials";
 import { AppetizerBarFAQ } from "@/components/appetizer-bar/faq";
 import { AppetizerBarCTA } from "@/components/appetizer-bar/cta";
@@ -208,7 +208,7 @@ export default function BarraAperitivos() {
         <AppetizerBarHero />
         <AppetizerBarServices />
         <AppetizerBarProcess />
-        <AppetizerBarGallery />
+        {/* <AppetizerBarGallery /> */}
         <AppetizerBarTestimonials />
         <AppetizerBarFAQ />
         <AppetizerBarCTA />
