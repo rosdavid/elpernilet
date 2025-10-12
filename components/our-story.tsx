@@ -1,5 +1,9 @@
 "use client";
 
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+
 export function OurStory() {
   return (
     <section id="our-story" className="py-24 bg-accent/30">
@@ -54,6 +58,18 @@ export function OurStory() {
                 productos de primera calidad que reflejan la riqueza
                 gastronómica de nuestra tierra.
               </p>
+            </div>
+
+            <div className="pt-6">
+              <Link href="/nuestra-historia">
+                <Button
+                  size="lg"
+                  className="flex items-center gap-2 cursor-pointer"
+                >
+                  Conoce Nuestra Historia Completa
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
