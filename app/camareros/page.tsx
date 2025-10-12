@@ -5,7 +5,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { WaitersHero } from "@/components/camareros/hero";
 import { WaitersServices } from "@/components/camareros/services";
 import { WaitersProcess } from "@/components/camareros/process";
-import { WaitersGallery } from "@/components/camareros/gallery";
+// import { WaitersGallery } from "@/components/camareros/gallery";
 import { WaitersTestimonials } from "@/components/camareros/testimonials";
 import { WaitersFAQ } from "@/components/camareros/faq";
 import { WaitersCTA } from "@/components/camareros/cta";
@@ -215,7 +215,7 @@ export default function Camareros() {
         <WaitersHero />
         <WaitersServices />
         <WaitersProcess />
-        <WaitersGallery />
+        {/* <WaitersGallery /> */}
         <WaitersTestimonials />
         <WaitersFAQ />
         <WaitersCTA />
