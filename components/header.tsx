@@ -159,6 +159,18 @@ export function Header() {
                     </div>
                   </Link>
 
+                  <Link
+                    href="/barra-aperitivos"
+                    className="flex items-center px-4 py-3 text-sm text-foreground hover:bg-green-50 hover:text-green-700 transition-colors duration-150 group"
+                  >
+                    <div>
+                      <div className="font-medium">Barra de Aperitivos</div>
+                      <div className="text-xs text-muted-foreground group-hover:text-green-600">
+                        Canapés y aperitivos gourmet
+                      </div>
+                    </div>
+                  </Link>
+
                   <div className="mx-4 my-2 border-t border-border/30"></div>
                 </div>
               </div>
@@ -261,6 +273,13 @@ export function Header() {
                         onClick={toggleMobileMenu}
                       >
                         Barra de Bebidas
+                      </Link>
+                      <Link
+                        href="/barra-aperitivos"
+                        className="block text-sm font-medium text-muted-foreground hover:text-foreground py-2 cursor-pointer"
+                        onClick={toggleMobileMenu}
+                      >
+                        Barra de Aperitivos
                       </Link>
                     </div>
                   )}
