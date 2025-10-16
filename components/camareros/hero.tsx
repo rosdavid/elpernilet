@@ -58,7 +58,7 @@ export function WaitersHero() {
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6 leading-tight">
               Servicio de Camareros
-              <span className="block text-purple-700">Profesionales</span>
+              <span className="block text-purple-700">para Bodas y Eventos</span>
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">

@@ -12,9 +12,9 @@ import { AppetizerBarCTA } from "@/components/appetizer-bar/cta";
 
 export const metadata: Metadata = {
   title:
-    "Barra de Aperitivos Gourmet en Barcelona | Canapés para Bodas y Eventos – elpernilet",
+    "Canapés Gourmet para Bodas y Eventos en Barcelona. Aperitivos Premium Desde 10€ por Persona",
   description:
-    "Canapés y aperitivos gourmet para bodas y eventos en Barcelona. Montaje, servicio y reposición incluidos. Combínalo con cortador de jamón o barra de bebidas.",
+    "Sorprende con canapés gourmet y aperitivos premium para bodas y eventos en Barcelona. Desde 10€ por persona, opciones vegetarianas y presupuesto gratis en 24h. ¡Contrata ahora!",
   keywords: [
     "barra aperitivos Barcelona",
     "canapés bodas Catalunya",
@@ -26,15 +26,20 @@ export const metadata: Metadata = {
     "barra canapés bodas",
     "aperitivos artesanales eventos",
     "servicio aperitivos premium",
+    "barra aperitivos boda Barcelona precio",
+    "canapés gourmet bodas Catalunya",
+    "aperitivos para eventos corporativos España",
+    "barra tapas premium bodas",
+    "servicio aperitivos eventos Barcelona",
   ],
   alternates: {
     canonical: "https://elpernilet.com/barra-aperitivos",
   },
   openGraph: {
     title:
-      "Barra de Aperitivos Gourmet en Barcelona | Canapés para Bodas y Eventos – elpernilet",
+      "Canapés Gourmet para Bodas y Eventos en Barcelona. Aperitivos Premium Desde 10€ por Persona",
     description:
-      "Canapés y aperitivos gourmet para bodas y eventos en Barcelona. Montaje, servicio y reposición incluidos. Combínalo con cortador de jamón o barra de bebidas.",
+      "Deliciosos canapés y aperitivos que harán que tus invitados hablen de tu evento por semanas. Opciones vegetarianas, montaje fácil. Combínalo con nuestro jamón y wow. Presupuesto en 24h.",
     url: "https://elpernilet.com/barra-aperitivos",
     siteName: "elpernilet",
     locale: "es_ES",
@@ -51,9 +56,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Barra de Aperitivos Gourmet en Barcelona | Canapés para Bodas y Eventos – elpernilet",
+      "Canapés Gourmet para Bodas y Eventos en Barcelona. Aperitivos Premium Desde 10€ por Persona",
     description:
-      "Canapés y aperitivos gourmet para bodas y eventos en Barcelona. Montaje, servicio y reposición incluidos. Combínalo con cortador de jamón o barra de bebidas.",
+      "Deliciosos canapés y aperitivos que harán que tus invitados hablen de tu evento por semanas. Opciones vegetarianas, montaje fácil. Combínalo con nuestro jamón y wow. Presupuesto en 24h.",
     images: ["https://elpernilet.com/elpernilet-event-image.webp"],
   },
   other: {
@@ -71,9 +76,9 @@ export default function BarraAperitivos() {
   const serviceJsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Barra de Aperitivos Gourmet en Barcelona | Canapés para Bodas y Eventos – elpernilet",
+    name: "Canapés Gourmet para Bodas y Eventos en Barcelona. Aperitivos Premium Desde 10€ por Persona",
     description:
-      "Canapés y aperitivos gourmet para bodas y eventos en Barcelona. Montaje, servicio y reposición incluidos. Combínalo con cortador de jamón o barra de bebidas.",
+      "Deliciosos canapés y aperitivos que harán que tus invitados hablen de tu evento por semanas. Opciones vegetarianas, montaje fácil. Combínalo con nuestro jamón y wow. Presupuesto en 24h.",
     provider: {
       "@type": ["LocalBusiness", "Caterer"],
       "@id": "https://elpernilet.com/#business",

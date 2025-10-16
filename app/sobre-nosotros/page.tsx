@@ -10,9 +10,10 @@ import { WhyChooseUs } from "@/components/sobre-nosotros/why-choose-us";
 import { AboutCTA } from "@/components/sobre-nosotros/cta";
 
 export const metadata: Metadata = {
-  title: "Sobre elpernilet | +15 Años en Catering y Eventos en Barcelona",
+  title:
+    "Sobre Nosotros. Expertos en Cortador de Jamón en Barcelona con Pasión",
   description:
-    "Conoce nuestro equipo, valores y experiencia en catering para eventos. +500 eventos, +15 años y valoración 5.0. Descubre por qué nos eligen.",
+    "Somos un equipo apasionado con +15 años haciendo eventos especiales. Jamón ibérico, barras premium y sonrisas garantizadas. ¿Por qué nos aman? Descúbrelo aquí.",
   keywords: [
     "sobre elpernilet",
     "historia catering Barcelona",
@@ -29,9 +30,10 @@ export const metadata: Metadata = {
     canonical: "https://elpernilet.com/sobre-nosotros",
   },
   openGraph: {
-    title: "Sobre elpernilet | +15 Años en Catering y Eventos en Barcelona",
+    title:
+      "Sobre Nosotros. Expertos en Cortador de Jamón en Barcelona con Pasión",
     description:
-      "Conoce nuestro equipo, valores y experiencia en catering para eventos. +500 eventos, +15 años y valoración 5.0. Descubre por qué nos eligen.",
+      "Somos un equipo apasionado con +15 años haciendo eventos especiales. Jamón ibérico, barras premium y sonrisas garantizadas. ¿Por qué nos aman? Descúbrelo aquí.",
     url: "https://elpernilet.com/sobre-nosotros",
     siteName: "elpernilet",
     locale: "es_ES",
@@ -47,9 +49,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sobre elpernilet | +15 Años en Catering y Eventos en Barcelona",
+    title:
+      "Sobre Nosotros. Expertos en Cortador de Jamón en Barcelona con Pasión",
     description:
-      "Conoce nuestro equipo, valores y experiencia en catering para eventos. +500 eventos, +15 años y valoración 5.0. Descubre por qué nos eligen.",
+      "Somos un equipo apasionado con +15 años haciendo eventos especiales. Jamón ibérico, barras premium y sonrisas garantizadas. ¿Por qué nos aman? Descúbrelo aquí.",
     images: ["https://elpernilet.com/elpernilet-event-image.webp"],
   },
   other: {

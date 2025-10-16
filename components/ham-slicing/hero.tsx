@@ -43,15 +43,15 @@ export function HamSlicingHero() {
             </Badge>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6 leading-tight">
-              Cortadores de Jamón Ibérico
-              <span className="block text-red-700">para tu Evento</span>
+              Cortador de Jamón Ibérico
+              <span className="block text-red-700">para Bodas y Eventos</span>
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
               Espectáculo gastronómico único con{" "}
               <strong>maestros cortadores profesionales</strong>. Jamón ibérico
               premium cortado en vivo para bodas, eventos corporativos y
-              celebraciones especiales.
+              celebraciones especiales. ¡Sorprende a tus invitados!
             </p>
 
             {/* Stats */}

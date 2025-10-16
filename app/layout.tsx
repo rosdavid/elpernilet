@@ -20,10 +20,9 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title:
-    "Cortador de Jamón, Barra de Bebidas y Camareros en Barcelona | elpernilet",
+  title: "Cortador de Jamón para Bodas y Eventos en Barcelona. Desde 350€",
   description:
-    "Cortador de jamón en vivo, barra de bebidas y aperitivos y servicio de camareros para bodas y eventos. Presupuesto en 24 h. Cobertura Barcelona, Cataluña y resto de España.",
+    "¿Quieres sorprender a tus invitados con un show de jamón ibérico en vivo? Barra de bebidas premium y camareros expertos en Barcelona. Amado por cientos, presupuesto gratis en 24h. Toda España.",
   keywords: [
     "cortador de jamón España",
     "cortador de jamón",
@@ -51,10 +50,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title:
-      "Cortador de Jamón, Barra de Bebidas y Camareros en Barcelona | elpernilet",
+    title: "Cortador de Jamón para Bodas y Eventos en Barcelona. Desde 350€",
     description:
-      "Cortador de jamón en vivo, barra de bebidas y aperitivos y servicio de camareros para bodas y eventos. Presupuesto en 24 h. Cobertura Barcelona, Cataluña y resto de España.",
+      "¿Quieres sorprender a tus invitados con un show de jamón ibérico en vivo? Barra de bebidas premium y camareros expertos en Barcelona. Amado por cientos, presupuesto gratis en 24h. Toda España.",
     url: "https://elpernilet.com",
     siteName: "elpernilet",
     images: [
@@ -70,10 +68,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title:
-      "Cortador de Jamón, Barra de Bebidas y Camareros en Barcelona | elpernilet",
+    title: "Cortador de Jamón para Bodas y Eventos en Barcelona. Desde 350€",
     description:
-      "Cortador de jamón en vivo, barra de bebidas y aperitivos y servicio de camareros para bodas y eventos. Presupuesto en 24 h. Cobertura Barcelona, Cataluña y resto de España.",
+      "¿Quieres sorprender a tus invitados con un show de jamón ibérico en vivo? Barra de bebidas premium y camareros expertos en Barcelona. Amado por cientos, presupuesto gratis en 24h. Toda España.",
     images: ["/elpernilet-event-image.webp"],
   },
   robots: {
@@ -100,7 +97,7 @@ export default function RootLayout({
         {/* Meta tags explícitos para Lighthouse */}
         <meta
           name="description"
-          content="Cortador de jamón en vivo, barra de bebidas y aperitivos y servicio de camareros para bodas y eventos. Presupuesto en 24 h. Cobertura Barcelona, Cataluña y resto de España."
+          content="¿Quieres sorprender a tus invitados con un show de jamón ibérico en vivo? Barra de bebidas premium y camareros expertos en Barcelona. Amado por cientos, presupuesto gratis en 24h. Toda España."
         />
         <meta
           name="keywords"
@@ -118,11 +115,11 @@ export default function RootLayout({
         {/* Open Graph tags explícitos */}
         <meta
           property="og:title"
-          content="Cortador de jamón, barra de bebidas y camareros en Barcelona | elpernilet"
+          content="Cortador de Jamón para Bodas y Eventos en Barcelona. Desde 350€"
         />
         <meta
           property="og:description"
-          content="Cortador de jamón en vivo, barra de bebidas y aperitivos y servicio de camareros para bodas y eventos. Presupuesto en 24 h. Cobertura Barcelona, Cataluña y resto de España."
+          content="¿Quieres sorprender a tus invitados con un show de jamón ibérico en vivo? Barra de bebidas premium y camareros expertos en Barcelona. Amado por cientos, presupuesto gratis en 24h. Toda España."
         />
         <meta property="og:url" content="https://elpernilet.com" />
         <meta property="og:type" content="website" />
@@ -143,11 +140,11 @@ export default function RootLayout({
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Cortador de jamón, barra de bebidas y camareros en Barcelona | elpernilet"
+          content="Cortador de Jamón para Bodas y Eventos en Barcelona. Desde 350€"
         />
         <meta
           name="twitter:description"
-          content="Cortador de jamón en vivo, barra de bebidas y aperitivos y servicio de camareros para bodas y eventos. Presupuesto en 24 h. Cobertura Barcelona, Cataluña y resto de España."
+          content="¿Quieres sorprender a tus invitados con un show de jamón ibérico en vivo? Barra de bebidas premium y camareros expertos en Barcelona. Amado por cientos, presupuesto gratis en 24h. Toda España."
         />
         <meta
           name="twitter:image"
@@ -172,9 +169,9 @@ export default function RootLayout({
               "@id": "https://www.elpernilet.com/#business",
               name: "elpernilet",
               alternateName:
-                "Cortador de Jamón, Barra de Bebidas y Camareros en Barcelona | elpernilet",
+                "Cortador de Jamón para Bodas y Eventos en Barcelona. Desde 350€",
               description:
-                "Cortador de jamón en vivo, barra de bebidas y aperitivos y servicio de camareros para bodas y eventos. Presupuesto en 24 h. Cobertura Barcelona, Cataluña y resto de España.",
+                "¿Quieres sorprender a tus invitados con un show de jamón ibérico en vivo? Barra de bebidas premium y camareros expertos en Barcelona. Amado por cientos, presupuesto gratis en 24h. Toda España.",
               url: "https://elpernilet.com",
               telephone: "+34654127391",
               email: "hola@elpernilet.com",

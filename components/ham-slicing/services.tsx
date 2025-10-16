@@ -95,7 +95,7 @@ export function HamSlicingServices() {
       <div className="w-full max-w-7xl mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
-            Servicios de Cortador de Jamón
+            Servicios de Cortador de Jamón para Bodas y Eventos
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Ofrecemos el servicio más completo de cortador de jamón ibérico,

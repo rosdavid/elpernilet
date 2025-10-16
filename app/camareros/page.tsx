@@ -11,9 +11,10 @@ import { WaitersFAQ } from "@/components/camareros/faq";
 import { WaitersCTA } from "@/components/camareros/cta";
 
 export const metadata: Metadata = {
-  title: "Servicio de Camareros en Barcelona para Bodas y Eventos | elpernilet",
+  title:
+    "Camareros Expertos para Bodas y Eventos en Barcelona. Servicio Impecable Desde 15€/Hora",
   description:
-    "Camareros profesionales para bodas y eventos en Barcelona. Ratio por invitados, uniformes y coordinación con proveedores. Presupuesto rápido en 24 h.",
+    "Sorprende con camareros expertos para bodas y eventos en Barcelona. Servicio impecable desde 15€/hora, certificados y presupuesto gratis en 24h. ¡Contrata ahora!",
   keywords: [
     "camareros profesionales Barcelona",
     "servicio camareros eventos España",
@@ -25,15 +26,19 @@ export const metadata: Metadata = {
     "servicio camareros premium",
     "personal eventos Barcelona",
     "camareros bodas profesionales",
+    "servicio camareros boda Barcelona precio",
+    "personal catering bodas Catalunya",
+    "camareros certificados eventos España",
+    "servicio atención cliente bodas",
   ],
   alternates: {
     canonical: "https://elpernilet.com/camareros",
   },
   openGraph: {
     title:
-      "Servicio de Camareros en Barcelona para Bodas y Eventos | elpernilet",
+      "Camareros Expertos para Bodas y Eventos en Barcelona. Servicio Impecable Desde 15€/Hora",
     description:
-      "Camareros profesionales para bodas y eventos en Barcelona. Ratio por invitados, uniformes y coordinación con proveedores. Presupuesto rápido en 24 h.",
+      "Deja que nuestros camareros certificados cuiden cada detalle de tu evento. Uniformes perfectos, coordinación total. ¿Por qué cientos nos eligen? Presupuesto rápido y sin estrés.",
     url: "https://elpernilet.com/camareros",
     siteName: "elpernilet",
     locale: "es_ES",
@@ -50,9 +55,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Servicio de Camareros en Barcelona para Bodas y Eventos | elpernilet",
+      "Camareros Expertos para Bodas y Eventos en Barcelona. Servicio Impecable Desde 15€/Hora",
     description:
-      "Camareros profesionales para bodas y eventos en Barcelona. Ratio por invitados, uniformes y coordinación con proveedores. Presupuesto rápido en 24 h.",
+      "Deja que nuestros camareros certificados cuiden cada detalle de tu evento. Uniformes perfectos, coordinación total. ¿Por qué cientos nos eligen? Presupuesto rápido y sin estrés.",
     images: ["https://elpernilet.com/elpernilet-event-image.webp"],
   },
   other: {
@@ -70,9 +75,9 @@ export default function Camareros() {
   const serviceJsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Servicio de Camareros en Barcelona para Bodas y Eventos | elpernilet",
+    name: "Camareros Expertos para Bodas y Eventos en Barcelona. Servicio Impecable Desde 15€/Hora",
     description:
-      "Camareros profesionales para bodas y eventos en Barcelona. Ratio por invitados, uniformes y coordinación con proveedores. Presupuesto rápido en 24 h.",
+      "Deja que nuestros camareros certificados cuiden cada detalle de tu evento. Uniformes perfectos, coordinación total. ¿Por qué cientos nos eligen? Presupuesto rápido y sin estrés.",
     provider: {
       "@type": ["LocalBusiness", "Caterer"],
       "@id": "https://elpernilet.com/#business",

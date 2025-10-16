@@ -12,9 +12,9 @@ import { DrinkBarCTA } from "@/components/drink-bar/cta";
 
 export const metadata: Metadata = {
   title:
-    "Barra de Bebidas y Cócteles en Barcelona | Bartenders para Bodas y Eventos – elpernilet",
+    "Barra de Bebidas para Bodas y Eventos en Barcelona. Desde 10€ por Persona",
   description:
-    "Barra de bebidas con bartenders, coctelería y cristalería para bodas y eventos. Packs cerrados y montaje incluido. Presupuesto en 24 h.",
+    "Sorprende con cócteles premium y barra de bebidas para bodas y eventos en Barcelona. Desde 10€ por persona, bartenders expertos y presupuesto gratis en 24h. ¡Contrata ahora!",
   keywords: [
     "barra de bebidas Barcelona",
     "bartender profesional Catalunya",
@@ -31,15 +31,20 @@ export const metadata: Metadata = {
     "mixología eventos Barcelona",
     "barra gin tonic eventos",
     "servicio bebidas premium",
+    "barra bebidas boda Barcelona precio",
+    "cócteles premium bodas Catalunya",
+    "bartender para eventos corporativos España",
+    "barra móvil bodas Barcelona",
+    "servicio mixología eventos",
   ],
   alternates: {
     canonical: "https://elpernilet.com/barra-bebidas",
   },
   openGraph: {
     title:
-      "Barra de Bebidas y Cócteles en Barcelona | Bartenders para Bodas y Eventos – elpernilet",
+      "Barra de Bebidas para Bodas y Eventos en Barcelona. Desde 10€ por Persona",
     description:
-      "Barra de bebidas con bartenders, coctelería y cristalería para bodas y eventos. Packs cerrados y montaje incluido. Presupuesto en 24 h.",
+      "¿Sueñas con una barra de bebidas que anime cualquier fiesta? Bartenders expertos, cócteles únicos y todo incluido. 5/5 de clientes felices. Pide presupuesto gratis hoy.",
     url: "https://elpernilet.com/barra-bebidas",
     siteName: "elpernilet",
     locale: "es_ES",
@@ -56,9 +61,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Barra de Bebidas y Cócteles en Barcelona | Bartenders para Bodas y Eventos – elpernilet",
+      "Barra de Bebidas para Bodas y Eventos en Barcelona. Desde 10€ por Persona",
     description:
-      "Barra de bebidas con bartenders, coctelería y cristalería para bodas y eventos. Packs cerrados y montaje incluido. Presupuesto en 24 h.",
+      "¿Sueñas con una barra de bebidas que anime cualquier fiesta? Bartenders expertos, cócteles únicos y todo incluido. 5/5 de clientes felices. Pide presupuesto gratis hoy.",
     images: ["https://elpernilet.com/elpernilet-event-image.webp"],
   },
   other: {
@@ -76,9 +81,9 @@ export default function BarraBebidas() {
   const serviceJsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Barra de Bebidas y Cócteles en Barcelona | Bartenders para Bodas y Eventos – elpernilet",
+    name: "Barra de Bebidas para Bodas y Eventos en Barcelona. Desde 10€ por Persona",
     description:
-      "Barra de bebidas con bartenders, coctelería y cristalería para bodas y eventos. Packs cerrados y montaje incluido. Presupuesto en 24 h.",
+      "¿Sueñas con una barra de bebidas que anime cualquier fiesta? Bartenders expertos, cócteles únicos y todo incluido. 5/5 de clientes felices. Pide presupuesto gratis hoy.",
     provider: {
       "@type": ["LocalBusiness", "Caterer"],
       "@id": "https://elpernilet.com/#business",

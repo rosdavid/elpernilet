@@ -67,7 +67,7 @@ export function DrinkBarHero() {
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6 leading-tight">
               Barra de Bebidas Premium
-              <span className="block text-blue-700">para tu Evento</span>
+              <span className="block text-blue-700">para Bodas y Eventos</span>
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">

@@ -10,9 +10,10 @@ import { CommunityImpact } from "@/components/nuestra-historia/community";
 import { AboutCTA } from "@/components/sobre-nosotros/cta";
 
 export const metadata: Metadata = {
-  title: "Nuestra Historia | elpernilet: De Barcelona a +500 Eventos",
+  title:
+    "Nuestra Historia. De Sueño a +500 Eventos con Cortador de Jamón en Barcelona",
   description:
-    "De un sueño a referencia en eventos: +15 años, +500 celebraciones y pasión por el jamón ibérico, barras y servicio. Conócenos.",
+    "Desde un pequeño sueño en Barcelona hasta líderes en jamón ibérico y catering premium. +15 años creando momentos mágicos. ¿Quieres conocer nuestra aventura? Entra.",
   keywords: [
     "historia elpernilet",
     "trayectoria catering Barcelona",
@@ -29,9 +30,10 @@ export const metadata: Metadata = {
     canonical: "https://elpernilet.com/nuestra-historia",
   },
   openGraph: {
-    title: "Nuestra Historia | elpernilet: De Barcelona a +500 Eventos",
+    title:
+      "Nuestra Historia. De Sueño a +500 Eventos con Cortador de Jamón en Barcelona",
     description:
-      "De un sueño a referencia en eventos: +15 años, +500 celebraciones y pasión por el jamón ibérico, barras y servicio. Conócenos.",
+      "Desde un pequeño sueño en Barcelona hasta líderes en jamón ibérico y catering premium. +15 años creando momentos mágicos. ¿Quieres conocer nuestra aventura? Entra.",
     url: "https://elpernilet.com/nuestra-historia",
     siteName: "elpernilet",
     locale: "es_ES",
@@ -47,9 +49,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nuestra Historia | elpernilet: De Barcelona a +500 Eventos",
+    title:
+      "Nuestra Historia. De Sueño a +500 Eventos con Cortador de Jamón en Barcelona",
     description:
-      "De un sueño a referencia en eventos: +15 años, +500 celebraciones y pasión por el jamón ibérico, barras y servicio. Conócenos.",
+      "Desde un pequeño sueño en Barcelona hasta líderes en jamón ibérico y catering premium. +15 años creando momentos mágicos. ¿Quieres conocer nuestra aventura? Entra.",
     images: ["https://elpernilet.com/elpernilet-event-image.webp"],
   },
   other: {

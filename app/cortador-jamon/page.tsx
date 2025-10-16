@@ -12,9 +12,9 @@ import { HamSlicingCTA } from "@/components/ham-slicing/cta";
 
 export const metadata: Metadata = {
   title:
-    "Cortador de Jamón en Barcelona para Bodas y Eventos | Maestro Cortador – elpernilet",
+    "Cortador de Jamón para Bodas y Eventos en Barcelona. Show en Vivo Desde 350€",
   description:
-    "Contrata un maestro cortador de jamón para bodas y eventos en Barcelona. Show en vivo, emplatado premium y asesoramiento de cantidades. Presupuesto en 24 h.",
+    "Sorprende a tus invitados con un maestro cortador de jamón ibérico en vivo para bodas y eventos en Barcelona. Servicio premium desde 350€, 5 estrellas y presupuesto gratis en 24h. ¡Contrata ahora!",
   keywords: [
     "cortador de jamón Barcelona",
     "maestro cortador jamón Catalunya",
@@ -31,15 +31,20 @@ export const metadata: Metadata = {
     "show cooking jamón Barcelona",
     "corte jamón artesanal eventos",
     "cortador jamón ibérico España",
+    "cortador de jamón boda Barcelona precio",
+    "servicio cortador jamón eventos España",
+    "maestro cortador jamón bodas Catalunya",
+    "jamón ibérico para eventos corporativos",
+    "cortador jamón en vivo bodas Barcelona",
   ],
   alternates: {
     canonical: "https://elpernilet.com/cortador-jamon",
   },
   openGraph: {
     title:
-      "Cortador de Jamón en Barcelona para Bodas y Eventos | Maestro Cortador – elpernilet",
+      "Cortador de Jamón para Bodas y Eventos en Barcelona. Show en Vivo Desde 350€",
     description:
-      "Contrata un maestro cortador de jamón para bodas y eventos en Barcelona. Show en vivo, emplatado premium y asesoramiento de cantidades. Presupuesto en 24 h.",
+      "Imagina un maestro cortador trayendo magia a tu evento con jamón ibérico premium. Asesoramiento personalizado, 5 estrellas de verdad. ¿Listo para el mejor evento? Presupuesto gratis ahora.",
     url: "https://elpernilet.com/cortador-jamon",
     siteName: "elpernilet",
     locale: "es_ES",
@@ -56,9 +61,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Cortador de Jamón en Barcelona para Bodas y Eventos | Maestro Cortador – elpernilet",
+      "Cortador de Jamón para Bodas y Eventos en Barcelona. Show en Vivo Desde 350€",
     description:
-      "Contrata un maestro cortador de jamón para bodas y eventos en Barcelona. Show en vivo, emplatado premium y asesoramiento de cantidades. Presupuesto en 24 h.",
+      "Imagina un maestro cortador trayendo magia a tu evento con jamón ibérico premium. Asesoramiento personalizado, 5 estrellas de verdad. ¿Listo para el mejor evento? Presupuesto gratis ahora.",
     images: ["https://elpernilet.com/cortador-jamon-hero.webp"],
   },
   other: {
@@ -76,9 +81,9 @@ export default function CortadorJamonPage() {
   const serviceJsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Cortador de Jamón en Barcelona para Bodas y Eventos | Maestro Cortador – elpernilet",
+    name: "Cortador de Jamón para Bodas y Eventos en Barcelona. Show en Vivo Desde 350€",
     description:
-      "Contrata un maestro cortador de jamón para bodas y eventos en Barcelona. Show en vivo, emplatado premium y asesoramiento de cantidades. Presupuesto en 24 h.",
+      "Imagina un maestro cortador trayendo magia a tu evento con jamón ibérico premium. Asesoramiento personalizado, 5 estrellas de verdad. ¿Listo para el mejor evento? Presupuesto gratis ahora.",
     provider: {
       "@type": ["LocalBusiness", "Caterer"],
       "@id": "https://elpernilet.com/#business",
@@ -252,6 +257,66 @@ export default function CortadorJamonPage() {
                   "@type": "Answer",
                   text: "Sí, podemos organizar una degustación previa en nuestras instalaciones. Disponemos de muestras y certificados de calidad de nuestros jamones.",
                 },
+              },
+            ],
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            name: "Cómo contratar un cortador de jamón para tu evento",
+            description:
+              "Guía paso a paso para contratar un servicio de cortador de jamón ibérico profesional en Barcelona y España.",
+            image: "https://elpernilet.com/cortador-jamon-hero.webp",
+            totalTime: "PT30M",
+            supply: [
+              {
+                "@type": "HowToSupply",
+                name: "Información del evento (fecha, número de invitados, tipo de celebración)",
+              },
+              {
+                "@type": "HowToSupply",
+                name: "Preferencias de jamón (ibérico, bellota, etc.)",
+              },
+            ],
+            tool: [
+              {
+                "@type": "HowToTool",
+                name: "Teléfono o formulario de contacto",
+              },
+            ],
+            step: [
+              {
+                "@type": "HowToStep",
+                name: "Paso 1: Contacta con nosotros",
+                text: "Llama al +34654127391 o envía un mensaje por WhatsApp con los detalles básicos de tu evento.",
+                image: "https://elpernilet.com/cortador-jamon-hero.webp",
+                position: 1,
+              },
+              {
+                "@type": "HowToStep",
+                name: "Paso 2: Recibe asesoramiento personalizado",
+                text: "Nuestro equipo te asesorará sobre cantidades de jamón, precios y opciones según tus invitados y presupuesto.",
+                image: "https://elpernilet.com/cortador-jamon-hero.webp",
+                position: 2,
+              },
+              {
+                "@type": "HowToStep",
+                name: "Paso 3: Elige tu paquete y confirma",
+                text: "Selecciona el servicio que mejor se adapte (Esencial, Premium o VIP) y confirma fecha y detalles.",
+                image: "https://elpernilet.com/cortador-jamon-hero.webp",
+                position: 3,
+              },
+              {
+                "@type": "HowToStep",
+                name: "Paso 4: Disfruta del show en tu evento",
+                text: "Nuestros maestros cortadores llegan puntuales, montan todo y ofrecen un espectáculo inolvidable.",
+                image: "https://elpernilet.com/cortador-jamon-hero.webp",
+                position: 4,
               },
             ],
           }),

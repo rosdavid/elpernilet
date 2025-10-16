@@ -10,10 +10,9 @@ import { getAllPosts, getAllCategories } from "@/lib/blog";
 import { Calendar, Clock, User, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title:
-    "Blog de elpernilet | Consejos de Cortador de Jamón y Organización de Eventos",
+  title: "Blog de Consejos para Eventos. Cortador de Jamón y Más en Barcelona",
   description:
-    "Guías prácticas sobre cortadores de jamón, barras de bebidas y planificación de eventos. Precios, cantidades por invitado y checklists descargables.",
+    "Descubre tips reales para eventos inolvidables: cuánto jamón necesitas, barras geniales y checklists gratis. Aprende con nosotros y haz que tu evento brille.",
   keywords: [
     "blog eventos España",
     "consejos eventos bodas",
@@ -40,9 +39,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title:
-      "Blog de elpernilet | Consejos de Cortador de Jamón y Organización de Eventos",
+      "Blog de Consejos para Eventos. Cortador de Jamón y Más en Barcelona",
     description:
-      "Guías prácticas sobre cortadores de jamón, barras de bebidas y planificación de eventos. Precios, cantidades por invitado y checklists descargables.",
+      "Descubre tips reales para eventos inolvidables: cuánto jamón necesitas, barras geniales y checklists gratis. Aprende con nosotros y haz que tu evento brille.",
     url: "https://elpernilet.com/blog",
     siteName: "elpernilet",
     locale: "es_ES",
@@ -52,16 +51,16 @@ export const metadata: Metadata = {
         url: "https://elpernilet.com/elpernilet-event-image.webp",
         width: 1200,
         height: 630,
-        alt: "Blog de elpernilet | Consejos de Cortador de Jamón y Organización de Eventos",
+        alt: "Blog de Consejos para Eventos. Cortador de Jamón y Más en Barcelona",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title:
-      "Blog de elpernilet | Consejos de Cortador de Jamón y Organización de Eventos",
+      "Blog de Consejos para Eventos. Cortador de Jamón y Más en Barcelona",
     description:
-      "Guías prácticas sobre cortadores de jamón, barras de bebidas y planificación de eventos. Precios, cantidades por invitado y checklists descargables.",
+      "Descubre tips reales para eventos inolvidables: cuánto jamón necesitas, barras geniales y checklists gratis. Aprende con nosotros y haz que tu evento brille.",
     creator: "@elpernilet",
     site: "@elpernilet",
     images: ["https://elpernilet.com/elpernilet-event-image.webp"],
@@ -78,9 +77,9 @@ export default function BlogPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    name: "Blog de elpernilet | Consejos de Cortador de Jamón y Organización de Eventos",
+    name: "Blog de Consejos para Eventos. Cortador de Jamón y Más en Barcelona",
     description:
-      "Guías prácticas sobre cortadores de jamón, barras de bebidas y planificación de eventos. Precios, cantidades por invitado y checklists descargables.",
+      "Descubre tips reales para eventos inolvidables: cuánto jamón necesitas, barras geniales y checklists gratis. Aprende con nosotros y haz que tu evento brille.",
     url: "https://elpernilet.com/blog",
     publisher: {
       "@type": "Organization",
