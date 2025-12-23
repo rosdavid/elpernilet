@@ -108,7 +108,7 @@ export function AppetizerBarHero() {
           <div className="relative">
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
               <Image
-                src="/appetizer-bar-3.webp"
+                src="/appetizer-bar-6.webp"
                 alt="Barra de aperitivos gourmet en evento"
                 fill
                 className="object-cover"

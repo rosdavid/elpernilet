@@ -15,10 +15,10 @@ import Image from "next/image";
 const events = [
   // ...existing events...
   {
-    image: "/evento-boda-1.webp",
-    location: "Sallent, Barcelona",
+    image: "/evento-boda-6.webp",
+    location: "Monistrol de Montserrat, Barcelona",
     eventType: "Boda",
-    venue: "Mas de la Sala",
+    venue: "Vila Vallbona",
     service: "Corte de Jamón en Vivo",
   },
   {

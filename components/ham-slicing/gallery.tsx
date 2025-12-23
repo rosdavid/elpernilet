@@ -43,7 +43,7 @@ const galleryImages = [
     description: "15+ años perfeccionando el arte del corte ibérico",
   },
   {
-    src: "/evento-boda-1.webp",
+    src: "/evento-boda-6.webp",
     alt: "Montaje profesional para corte de jamón",
     category: "Setup",
     title: "Montaje Profesional",

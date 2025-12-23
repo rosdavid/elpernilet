@@ -12,7 +12,7 @@ const processSteps = [
     title: "Selección del Jamón",
     description:
       "Elegimos jamones ibéricos premium de las mejores dehesas, con certificación de origen y curación óptima.",
-    image: "/evento-boda-1.webp",
+    image: "/evento-boda-6.webp",
     details: [
       "Denominación de Origen Protegida",
       "Inspección de calidad previa",

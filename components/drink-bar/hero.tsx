@@ -123,7 +123,7 @@ export function DrinkBarHero() {
           <div className="relative">
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
               <Image
-                src="/elpernilet-event-image.webp"
+                src="/drinks-bar-1.webp"
                 alt="Bartender profesional preparando cócteles artesanales en evento"
                 fill
                 className="object-cover"
