@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { Header } from "@/components/header";
 import { Hero } from "@/components/hero";
+import { TrustedBy } from "@/components/trusted-by";
 import { Services } from "@/components/services";
 import { About } from "@/components/about";
 import { EventGallery } from "@/components/event-gallery";
@@ -22,14 +23,15 @@ export default function Home() {
     <main className="min-h-screen">
       <Header />
       <Hero />
+      <TrustedBy />
       <Services />
       <About />
       <EventGallery />
       <OurStory />
+      <ContactForm />
       <FAQ />
       <BlogPreview />
       <OnlineStore />
-      <ContactForm />
       <Footer />
     </main>
   );

@@ -277,9 +277,9 @@ export function SuccessStories() {
               invitados recordarán para siempre.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contacto">
+              <Link href="/#contact">
                 <Button size="lg" className="flex items-center gap-2">
-                  Solicitar Presupuesto
+                  Solicita presupuesto
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>

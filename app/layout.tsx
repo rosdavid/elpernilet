@@ -5,6 +5,7 @@ import { CookieBanner } from "@/components/cookie-banner";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
+import { StickyCta } from "@/components/sticky-cta";
 import { GoogleAnalytics } from "@/components/google-analytics";
 import { Roboto } from "next/font/google";
 import { Toaster } from "sonner";
@@ -94,63 +95,6 @@ export default function RootLayout({
   return (
     <html lang="es">
       <head>
-        {/* Meta tags explícitos para Lighthouse */}
-        <meta
-          name="description"
-          content="¿Quieres sorprender a tus invitados con un show de jamón ibérico en vivo? Barra de bebidas premium y camareros expertos en Barcelona. Amado por cientos, presupuesto gratis en 24h. Toda España."
-        />
-        <meta
-          name="keywords"
-          content="cortador de jamón España, cortador de jamón, jamón ibérico, cortador de jamón bodas, eventos corporativos, cortador de jamón profesional, barra de bebidas, camareros eventos"
-        />
-        <meta name="author" content="elpernilet" />
-        <meta name="robots" content="index, follow" />
-        <meta
-          name="googlebot"
-          content="index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
-        />
-
-        {/* Canonical URL será definido por cada página individualmente */}
-
-        {/* Open Graph tags explícitos */}
-        <meta
-          property="og:title"
-          content="Cortador de Jamón para Bodas y Eventos en Barcelona. Desde 350€"
-        />
-        <meta
-          property="og:description"
-          content="¿Quieres sorprender a tus invitados con un show de jamón ibérico en vivo? Barra de bebidas premium y camareros expertos en Barcelona. Amado por cientos, presupuesto gratis en 24h. Toda España."
-        />
-        <meta property="og:url" content="https://elpernilet.com" />
-        <meta property="og:type" content="website" />
-        <meta property="og:locale" content="es_ES" />
-        <meta property="og:site_name" content="elpernilet" />
-        <meta
-          property="og:image"
-          content="https://elpernilet.com/elpernilet-event-image.webp"
-        />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta
-          property="og:image:alt"
-          content="Servicios de cortador de jamón elpernilet"
-        />
-
-        {/* Twitter Card tags explícitos */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="Cortador de Jamón para Bodas y Eventos en Barcelona. Desde 350€"
-        />
-        <meta
-          name="twitter:description"
-          content="¿Quieres sorprender a tus invitados con un show de jamón ibérico en vivo? Barra de bebidas premium y camareros expertos en Barcelona. Amado por cientos, presupuesto gratis en 24h. Toda España."
-        />
-        <meta
-          name="twitter:image"
-          content="https://elpernilet.com/elpernilet-event-image.webp"
-        />
-
         {/* Preload critical resources */}
         <link
           rel="preload"
@@ -485,6 +429,7 @@ export default function RootLayout({
       <body className={`${roboto.variable} font-sans`}>
         {children}
         <CookieBanner />
+        <StickyCta />
         <WhatsAppFloat />
         <Toaster
           position="top-right"

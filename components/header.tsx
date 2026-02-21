@@ -182,6 +182,18 @@ export function Header() {
                       </div>
                     </div>
                   </Link>
+
+                  <Link
+                    href="/musica-en-directo"
+                    className="flex items-center px-4 py-3 text-sm text-foreground hover:bg-amber-50 hover:text-amber-700 transition-colors duration-150 group"
+                  >
+                    <div>
+                      <div className="font-medium">Música en Directo</div>
+                      <div className="text-xs text-muted-foreground group-hover:text-amber-600">
+                        Jazz, acústico, DJ y más
+                      </div>
+                    </div>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -297,6 +309,13 @@ export function Header() {
                         onClick={toggleMobileMenu}
                       >
                         Camareros Profesionales
+                      </Link>
+                      <Link
+                        href="/musica-en-directo"
+                        className="block text-sm font-medium text-muted-foreground hover:text-foreground py-2 cursor-pointer"
+                        onClick={toggleMobileMenu}
+                      >
+                        Música en Directo
                       </Link>
                     </div>
                   )}

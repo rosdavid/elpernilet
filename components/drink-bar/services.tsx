@@ -77,7 +77,7 @@ export function DrinkBarServices() {
   const navigateToContactForm = () => {
     trackEvent("cta_click", {
       cta_location: "services_section",
-      cta_text: "Solicitar Presupuesto",
+      cta_text: "Solicita presupuesto",
       page: "barra-bebidas",
     });
 
@@ -168,7 +168,7 @@ export function DrinkBarServices() {
                 onClick={navigateToContactForm}
                 className="bg-blue-700 hover:bg-blue-800 cursor-pointer"
               >
-                Solicitar Presupuesto
+                Solicita presupuesto
               </Button>
               <Button
                 onClick={() => scrollToSection("faq")}

@@ -161,7 +161,7 @@ export function HamSlicingServices() {
                 onClick={navigateToContactForm}
                 className="bg-red-700 hover:bg-red-800 cursor-pointer"
               >
-                Solicitar Presupuesto
+                Solicita presupuesto
               </Button>
               <Button
                 onClick={() => scrollToSection("faq")}

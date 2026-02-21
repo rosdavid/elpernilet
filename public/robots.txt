@@ -17,8 +17,5 @@ Disallow: /api/auth/*
 Disallow: /login
 Disallow: /logout
 
-# Crawl-delay para ser respetuosos
-Crawl-delay: 1
-
 # Sitemaps
 Sitemap: https://elpernilet.com/sitemap.xml

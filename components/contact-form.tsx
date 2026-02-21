@@ -48,6 +48,7 @@ export const ContactForm = memo(() => {
     { value: "cortador-jamon", label: "Cortador de Jamón" },
     { value: "barra-aperitivos", label: "Barra de Aperitivos" },
     { value: "barra-bebidas", label: "Barra de Bebidas" },
+    { value: "musica-en-directo", label: "Música en Directo" },
   ];
 
   const handleSubmit = useCallback(

@@ -48,7 +48,7 @@ export const Hero = memo(() => {
             size="lg"
             className="text-lg px-8 py-6 cursor-pointer"
           >
-            Solicitar presupuesto
+            Solicita presupuesto
           </Button>
           <Button
             onClick={() => setIsVideoModalOpen(true)}

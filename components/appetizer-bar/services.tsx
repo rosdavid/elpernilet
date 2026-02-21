@@ -77,7 +77,7 @@ export function AppetizerBarServices() {
   const navigateToContactForm = () => {
     trackEvent("cta_click", {
       cta_location: "services_section",
-      cta_text: "Solicitar Presupuesto",
+      cta_text: "Solicita presupuesto",
       page: "barra-aperitivos",
     });
 
@@ -173,7 +173,7 @@ export function AppetizerBarServices() {
                 onClick={navigateToContactForm}
                 className="bg-green-700 hover:bg-green-800 cursor-pointer"
               >
-                Solicitar Presupuesto
+                Solicita presupuesto
               </Button>
               <Button
                 onClick={() => scrollToSection("faq")}

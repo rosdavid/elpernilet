@@ -190,4 +190,4 @@ Para evitar colas, a partir de **150 invitados** valora **2 estaciones** si el j
 ## Siguiente paso
 
 ¿Quieres que te pasemos un **presupuesto exacto** con la cifra calculada y el plan de servicio (tiempos, puesta en escena, emplatado)?  
-→ **[Pide presupuesto](/#contact)** · **[Servicio de cortador de jamón](/cortador-de-jamon)**
+→ **[Pide presupuesto](/#contact)** · **[Servicio de cortador de jamón](/cortador-jamon)**

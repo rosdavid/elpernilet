@@ -195,6 +195,7 @@ export async function POST(request: NextRequest) {
       "barra-bebidas": "Barra de Bebidas",
       "barra-aperitivos": "Barra de Aperitivos",
       "cortador-jamon": "Cortador de Jamón",
+      "musica-en-directo": "Música en Directo",
     };
 
     // Enviar email al admin

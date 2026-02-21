@@ -3,78 +3,90 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Users, Crown, Clock, Award, MapPin, Utensils } from "lucide-react";
+import { Music, Guitar, Mic, Piano, Users, MapPin } from "lucide-react";
 import { trackEvent } from "@/hooks/use-analytics";
 
 const services = [
   {
-    icon: Crown,
-    title: "Servicio Premium",
+    icon: Music,
+    title: "Múltiples Estilos",
     description:
-      "Atención personalizada con camareros profesionales certificados y formación especializada en protocolo y etiqueta.",
+      "Jazz, bossa nova, flamenco, música clásica, acústico, pop, rock suave y más. Adaptamos el repertorio a la atmósfera de tu evento.",
     features: [
-      "Camareros certificados",
-      "Protocolo profesional",
-      "Atención personalizada",
+      "Jazz y bossa nova",
+      "Música clásica",
+      "Acústico y pop",
     ],
-    badge: "Premium",
+    badge: "Variedad",
+  },
+  {
+    icon: Guitar,
+    title: "Formaciones Flexibles",
+    description:
+      "Desde solistas y dúos hasta tríos, cuartetos u orquestas completas. Seleccionamos la formación ideal según el tamaño de tu evento.",
+    features: [
+      "Solistas y dúos",
+      "Tríos y cuartetos",
+      "Orquestas",
+    ],
+    badge: "Adaptable",
+  },
+  {
+    icon: Mic,
+    title: "DJ y Animación",
+    description:
+      "DJs profesionales para animar la fiesta, desde el cocktail hasta el baile. Equipos de sonido de alta calidad incluidos.",
+    features: [
+      "DJ profesional",
+      "Sonido premium",
+      "Animación garantizada",
+    ],
+    badge: "Fiesta",
+  },
+  {
+    icon: Piano,
+    title: "Ceremonias Especiales",
+    description:
+      "Música en vivo para la ceremonia nupcial, entrada, primer baile o momentos emotivos. Repertorio personalizado.",
+    features: [
+      "Ceremonias nupciales",
+      "Primer baile",
+      "Repertorio personalizado",
+    ],
+    badge: "Emocional",
   },
   {
     icon: Users,
-    title: "Equipo Completo",
+    title: "Coordinación Total",
     description:
-      "Uniforme profesional completo, vajilla, cristalería y mantelería de alta calidad incluida.",
-    features: ["Uniforme completo", "Vajilla", "Equipamiento incluido"],
-    badge: "Todo incluido",
-  },
-  {
-    icon: Utensils,
-    title: "Múltiples Servicios",
-    description:
-      "Servicio a la rusa, buffet asistido, cóctel, mesas redondas y servicio personalizado según tus necesidades.",
-    features: ["Servicio a la rusa", "Buffet asistido", "Cóctel"],
-    badge: "Flexible",
-  },
-  {
-    icon: Clock,
-    title: "Horarios Flexibles",
-    description:
-      "Adaptamos nuestro servicio a los horarios específicos de tu evento, desde 4 hasta 12 horas de servicio.",
+      "Coordinamos con el venue, catering y otros proveedores para que la música encaje perfectamente en cada momento.",
     features: [
-      "Horarios flexibles",
-      "Servicio continuo",
-      "Coordinación perfecta",
+      "Timing perfecto",
+      "Montaje incluido",
+      "Logística coordinada",
     ],
-    badge: "24/7",
-  },
-  {
-    icon: Award,
-    title: "Certificaciones",
-    description:
-      "Nuestros camareros cuentan con certificaciones oficiales en manipulación de alimentos y atención al cliente.",
-    features: [
-      "Certificación oficial",
-      "Manipulación alimentos",
-      "Atención al cliente",
-    ],
-    badge: "Certificado",
+    badge: "Integral",
   },
   {
     icon: MapPin,
     title: "Cobertura Nacional",
     description:
-      "Servicio disponible en toda España, con especial atención en Barcelona y Cataluña.",
-    features: ["Toda España", "Base en Barcelona", "Desplazamiento incluido"],
+      "Músicos y grupos en toda España con especial cobertura en Cataluña, Madrid, Valencia y costa mediterránea.",
+    features: [
+      "Toda España",
+      "Red de músicos",
+      "Sin gastos ocultos",
+    ],
     badge: "Nacional",
   },
 ];
 
-export function WaitersServices() {
+export function LiveMusicServices() {
   const navigateToContactForm = () => {
     trackEvent("cta_click", {
       cta_location: "services_section",
       cta_text: "Solicita presupuesto",
-      page: "camareros",
+      page: "musica-en-directo",
     });
 
     if (window.location.pathname === "/") {
@@ -98,17 +110,17 @@ export function WaitersServices() {
         <div className="text-center mb-16">
           <Badge
             variant="secondary"
-            className="mb-4 bg-purple-100 text-purple-800 border-purple-200"
+            className="mb-4 bg-amber-100 text-amber-800 border-amber-200"
           >
             Nuestros Servicios
           </Badge>
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
-            Servicio de Camareros Completo
+            Música para Cada Momento
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Ofrecemos el servicio más completo de camareros profesionales, desde
-            atención personalizada hasta equipamiento completo para un servicio
-            impecable en tu evento
+            Ofrecemos el servicio más completo de música en directo para eventos,
+            desde jazz en el cóctel hasta fiesta con DJ, pasando por ceremonias
+            emotivas
           </p>
         </div>
 
@@ -116,16 +128,16 @@ export function WaitersServices() {
           {services.map((service, index) => (
             <Card
               key={index}
-              className="border-2 hover:border-purple-200 transition-all duration-300 hover:shadow-lg group"
+              className="border-2 hover:border-amber-200 transition-all duration-300 hover:shadow-lg group"
             >
               <CardContent className="p-8">
                 <div className="flex items-start justify-between mb-4">
-                  <div className="w-14 h-14 rounded-full bg-purple-50 flex items-center justify-center group-hover:bg-purple-100 transition-colors">
-                    <service.icon className="w-7 h-7 text-purple-700" />
+                  <div className="w-14 h-14 rounded-full bg-amber-50 flex items-center justify-center group-hover:bg-amber-100 transition-colors">
+                    <service.icon className="w-7 h-7 text-amber-700" />
                   </div>
                   <Badge
                     variant="secondary"
-                    className="bg-purple-100 text-purple-800 border-purple-200"
+                    className="bg-amber-100 text-amber-800 border-amber-200"
                   >
                     {service.badge}
                   </Badge>
@@ -145,7 +157,7 @@ export function WaitersServices() {
                       key={featureIndex}
                       className="flex items-center text-sm text-muted-foreground"
                     >
-                      <div className="w-1.5 h-1.5 bg-purple-700 rounded-full mr-3 flex-shrink-0"></div>
+                      <div className="w-1.5 h-1.5 bg-amber-700 rounded-full mr-3 flex-shrink-0"></div>
                       {feature}
                     </li>
                   ))}
@@ -156,25 +168,25 @@ export function WaitersServices() {
         </div>
 
         <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-purple-50 to-violet-50 rounded-2xl p-8 md:p-12">
+          <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl p-8 md:p-12">
             <h3 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-4">
-              ¿Necesitas un servicio personalizado?
+              ¿Necesitas un repertorio personalizado?
             </h3>
             <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Cada evento es único. Hablemos sobre tus necesidades específicas y
-              creemos un servicio de camareros perfecto para tu celebración.
+              Cada evento es único. Cuéntanos tus preferencias musicales, la
+              atmósfera deseada y creamos una propuesta a medida.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 onClick={navigateToContactForm}
-                className="bg-purple-700 hover:bg-purple-800 cursor-pointer"
+                className="bg-amber-700 hover:bg-amber-800 cursor-pointer"
               >
                 Solicita presupuesto
               </Button>
               <Button
                 onClick={() => scrollToSection("faq")}
                 variant="outline"
-                className="border-purple-200 text-purple-700 hover:bg-purple-50 cursor-pointer"
+                className="border-amber-200 text-amber-700 hover:bg-amber-50 cursor-pointer"
               >
                 Ver Preguntas Frecuentes
               </Button>

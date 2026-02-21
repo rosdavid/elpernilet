@@ -97,8 +97,30 @@ export function Footer() {
                   Camareros profesionales
                 </Link>
               </li>
-              <li>Eventos corporativos</li>
-              <li>Eventos privados</li>
+              <li>
+                <Link
+                  href="/musica-en-directo"
+                  className="hover:text-primary-foreground transition-colors"
+                >
+                  Música en directo
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/#services"
+                  className="hover:text-primary-foreground transition-colors"
+                >
+                  Eventos corporativos
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/#services"
+                  className="hover:text-primary-foreground transition-colors"
+                >
+                  Eventos privados
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

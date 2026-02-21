@@ -257,7 +257,7 @@ export function WhyChooseUs() {
                 onClick={navigateToContactForm}
                 className="flex items-center gap-2 cursor-pointer"
               >
-                Solicitar Presupuesto
+                Solicita presupuesto
                 <ArrowRight className="w-4 h-4" />
               </Button>
             </div>

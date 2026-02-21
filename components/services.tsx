@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Utensils, Wine, Users } from "lucide-react";
+import { Utensils, Wine, Users, Music } from "lucide-react";
+import Link from "next/link";
 
 const services = [
   {
@@ -7,18 +8,28 @@ const services = [
     title: "Cortador de jamón en vivo",
     description:
       "Maestros cortadores profesionales que ofrecen un espectáculo gastronómico único, cortando jamón ibérico de la más alta calidad ante sus invitados.",
+    href: "/cortador-jamon",
   },
   {
     icon: Wine,
     title: "Barra de bebidas y aperitivos",
     description:
       "Selección premium de bebidas, cócteles artesanales y aperitivos gourmet preparados por nuestro equipo de expertos.",
+    href: "/barra-bebidas",
   },
   {
     icon: Users,
     title: "Servicio de camareros",
     description:
       "Personal profesional y experimentado que garantiza un servicio impecable y atención personalizada durante todo su evento.",
+    href: "/camareros",
+  },
+  {
+    icon: Music,
+    title: "Música en directo",
+    description:
+      "Jazz, acústico, DJ y grupos profesionales para bodas y eventos. Da vida a tu celebración con música en vivo.",
+    href: "/musica-en-directo",
   },
 ];
 
@@ -36,13 +47,11 @@ export function Services() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
-            <Card
-              key={index}
-              className="border-2 hover:border-accent transition-colors"
-            >
-              <CardContent className="pt-8 pb-8 text-center">
+            <Link key={index} href={service.href}>
+              <Card className="border-2 hover:border-accent transition-colors h-full cursor-pointer">
+                <CardContent className="pt-8 pb-8 text-center">
                 <div className="mb-6 flex justify-center">
                   <div className="w-16 h-16 rounded-full bg-red-50 flex items-center justify-center">
                     <service.icon className="w-8 h-8 text-red-800" />
@@ -54,6 +63,7 @@ export function Services() {
                 </p>
               </CardContent>
             </Card>
+            </Link>
           ))}
         </div>
       </div>

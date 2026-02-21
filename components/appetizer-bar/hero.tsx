@@ -13,9 +13,28 @@ const stats = [
   { icon: Star, label: "Eventos realizados", value: "+500" },
 ];
 
+const trustedBy = [
+  "Mas de la Sala",
+  "Vila Vallbona",
+  "La Premsa",
+  "Oller del Mas",
+  "Bodegues Abadal",
+  "La Sala",
+  "Aligué",
+  "Eurest",
+  "Alecco",
+  "Torrebusquets",
+  "Lo Racó d'en Carles",
+  "Delicious",
+  "Nou Urbisol",
+  "Guateque Catering",
+];
+
 export function AppetizerBarHero() {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
-  const youtubeVideoId = "CSIkAkGXwfs"; // Reemplaza con un ID de video relevante para aperitivos
+  const [showAllTrusted, setShowAllTrusted] = useState(false);
+  const youtubeVideoId = "CSIkAkGXwfs";
+  const visibleTrustedBy = showAllTrusted ? trustedBy : trustedBy.slice(0, 5);
 
   const navigateToContactForm = () => {
     trackEvent("cta_click", {
@@ -96,12 +115,25 @@ export function AppetizerBarHero() {
               <p className="text-sm text-muted-foreground mb-3">
                 Confían en nosotros:
               </p>
-              <div className="flex items-center gap-6">
-                <span className="text-sm font-medium">Mas de la Sala</span>
-                <span className="text-sm font-medium">Vila Vallbona</span>
-                <span className="text-sm font-medium">La Premsa</span>
-                <span className="text-sm font-medium">Oller del Mas</span>
+              <div className="flex flex-wrap gap-2">
+                {visibleTrustedBy.map((name) => (
+                  <span
+                    key={name}
+                    className="px-3 py-1 rounded-full border border-green-200 bg-white/70 text-xs md:text-sm font-medium text-foreground"
+                  >
+                    {name}
+                  </span>
+                ))}
               </div>
+              {trustedBy.length > 5 && (
+                <button
+                  type="button"
+                  onClick={() => setShowAllTrusted((prev) => !prev)}
+                  className="mt-3 text-sm font-medium text-green-700 hover:text-green-800 cursor-pointer"
+                >
+                  {showAllTrusted ? "Ver menos" : "Ver todos"}
+                </button>
+              )}
             </div>
           </div>
 

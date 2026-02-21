@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Play, Star, Award, Users } from "lucide-react";
+import { Play, Star, Award, Music } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { VideoModal } from "@/components/video-modal";
@@ -10,8 +10,8 @@ import { trackEvent } from "@/hooks/use-analytics";
 
 const stats = [
   { icon: Award, label: "Años de experiencia", value: "+15" },
-  { icon: Star, label: "Eventos realizados", value: "+500" },
-  { icon: Users, label: "Camareros certificados", value: "+25" },
+  { icon: Star, label: "Eventos realizados", value: "+400" },
+  { icon: Music, label: "Estilos disponibles", value: "+20" },
 ];
 
 const trustedBy = [
@@ -31,7 +31,7 @@ const trustedBy = [
   "Guateque Catering",
 ];
 
-export function WaitersHero() {
+export function LiveMusicHero() {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [showAllTrusted, setShowAllTrusted] = useState(false);
   const youtubeVideoId = "CSIkAkGXwfs";
@@ -41,7 +41,7 @@ export function WaitersHero() {
     trackEvent("cta_click", {
       cta_location: "hero_section",
       cta_text: "Solicita presupuesto",
-      page: "camareros",
+      page: "musica-en-directo",
     });
 
     if (window.location.pathname === "/") {
@@ -57,43 +57,41 @@ export function WaitersHero() {
   const handleVideoPlay = () => {
     trackEvent("video_play", {
       video_location: "hero_section",
-      video_type: "waiters_demo",
-      page: "camareros",
+      video_type: "live_music_demo",
+      page: "musica-en-directo",
     });
     setIsVideoModalOpen(true);
   };
 
   return (
-    <section className="relative py-20 md:py-32 bg-gradient-to-br from-purple-50 via-violet-50 to-indigo-50 overflow-hidden">
+    <section className="relative py-20 md:py-32 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 overflow-hidden">
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <Badge
               variant="secondary"
-              className="mb-6 bg-purple-100 text-purple-800 border-purple-200"
+              className="mb-6 bg-amber-100 text-amber-800 border-amber-200"
             >
-              👔 Camareros Profesionales Certificados
+              🎵 Músicos Profesionales
             </Badge>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6 leading-tight">
-              Servicio de Camareros
-              <span className="block text-purple-700">
-                para Bodas y Eventos
-              </span>
+              Música en Directo
+              <span className="block text-amber-700">para Bodas y Eventos</span>
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
               Experiencia única con{" "}
-              <strong>nuestros camareros certificados</strong>. Atención
-              personalizada, servicio impecable y profesionalismo para bodas,
-              eventos corporativos y celebraciones especiales.
+              <strong>músicos profesionales en vivo</strong>. Jazz, acústico,
+              orquestas, DJ o grupos para bodas, eventos corporativos y
+              celebraciones especiales. ¡Dale vida a tu evento!
             </p>
 
             <div className="grid grid-cols-3 gap-6 mb-8">
               {stats.map((stat, index) => (
                 <div key={index} className="text-center">
                   <div className="flex justify-center mb-2">
-                    <stat.icon className="w-6 h-6 text-purple-700" />
+                    <stat.icon className="w-6 h-6 text-amber-700" />
                   </div>
                   <div className="text-2xl font-bold text-foreground">
                     {stat.value}
@@ -109,13 +107,13 @@ export function WaitersHero() {
               <Button
                 onClick={navigateToContactForm}
                 size="lg"
-                className="text-lg px-8 py-6 bg-purple-700 hover:bg-purple-800 cursor-pointer"
+                className="text-lg px-8 py-6 bg-amber-700 hover:bg-amber-800 cursor-pointer"
               >
                 Solicita presupuesto
               </Button>
             </div>
 
-            <div className="mt-8 pt-8 border-t border-purple-100">
+            <div className="mt-8 pt-8 border-t border-amber-100">
               <p className="text-sm text-muted-foreground mb-3">
                 Confían en nosotros:
               </p>
@@ -123,7 +121,7 @@ export function WaitersHero() {
                 {visibleTrustedBy.map((name) => (
                   <span
                     key={name}
-                    className="px-3 py-1 rounded-full border border-purple-200 bg-white/70 text-xs md:text-sm font-medium text-foreground"
+                    className="px-3 py-1 rounded-full border border-amber-200 bg-white/70 text-xs md:text-sm font-medium text-foreground"
                   >
                     {name}
                   </span>
@@ -133,7 +131,7 @@ export function WaitersHero() {
                 <button
                   type="button"
                   onClick={() => setShowAllTrusted((prev) => !prev)}
-                  className="mt-3 text-sm font-medium text-purple-700 hover:text-purple-800 cursor-pointer"
+                  className="mt-3 text-sm font-medium text-amber-700 hover:text-amber-800 cursor-pointer"
                 >
                   {showAllTrusted ? "Ver menos" : "Ver todos"}
                 </button>
@@ -144,8 +142,8 @@ export function WaitersHero() {
           <div className="relative">
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
               <Image
-                src="/camareros-1.webp"
-                alt="Camareros profesionales en evento"
+                src="/music-5.webp"
+                alt="Música en directo en evento de boda"
                 fill
                 className="object-cover"
                 priority
@@ -156,14 +154,14 @@ export function WaitersHero() {
                 <Button
                   onClick={handleVideoPlay}
                   size="lg"
-                  className="rounded-full w-20 h-20 bg-white/90 hover:bg-white text-purple-700 shadow-lg cursor-pointer"
+                  className="rounded-full w-20 h-20 bg-white/90 hover:bg-white text-amber-700 shadow-lg cursor-pointer"
                 >
                   <Play className="w-8 h-8 ml-1" />
                 </Button>
               </div>
             </div>
 
-            <div className="absolute -top-4 -right-4 bg-purple-700 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+            <div className="absolute -top-4 -right-4 bg-amber-700 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
               ⭐ 5.0 • 47 reseñas
             </div>
           </div>
