@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Utensils, Crown, Users, Clock, Award, MapPin } from "lucide-react";
+import { trackCtaFormClick } from "@/hooks/use-analytics";
 
 const services = [
   {
@@ -78,7 +79,7 @@ export function HamSlicingServices() {
   };
 
   const navigateToContactForm = () => {
-    // Si estamos en la página principal, hacer scroll directo
+    trackCtaFormClick("services_cortador_jamon");
     if (window.location.pathname === "/") {
       const element = document.getElementById("contact");
       if (element) {

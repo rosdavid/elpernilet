@@ -13,7 +13,7 @@ import {
   CheckCircle,
   ArrowRight,
 } from "lucide-react";
-import { trackEvent } from "@/hooks/use-analytics";
+import { trackCtaFormClick } from "@/hooks/use-analytics";
 
 const advantages = [
   {
@@ -126,12 +126,7 @@ const testimonials = [
 
 export function WhyChooseUs() {
   const navigateToContactForm = () => {
-    trackEvent("cta_click", {
-      cta_location: "about_hero_section",
-      cta_text: "Hablemos de tu evento",
-      page: "sobre-nosotros",
-    });
-
+    trackCtaFormClick("why_choose_us", "Solicita presupuesto");
     if (window.location.pathname === "/") {
       const element = document.getElementById("contact");
       if (element) {

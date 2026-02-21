@@ -127,7 +127,7 @@ export function CookieSettingsButton() {
                 <Label className="font-medium">Cookies de análisis</Label>
                 <p className="text-sm text-muted-foreground">
                   Nos ayudan a entender cómo usa el sitio para mejorarlo (Vercel
-                  Analytics y Vercel SpeedInsights).
+                  Analytics, Vercel Speed Insights y Google Analytics GA4).
                 </p>
               </div>
               <Switch

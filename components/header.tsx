@@ -1,22 +1,30 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
+import {
+  trackCtaFormClick,
+  trackMenuOpen,
+  trackServicesDropdownOpen,
+} from "@/hooks/use-analytics";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [desktopServicesOpen, setDesktopServicesOpen] = useState(false);
+  const servicesButtonRef = useRef<HTMLButtonElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const pathname = usePathname();
 
   // Función para abrir/cerrar el menú móvil
   const toggleMobileMenu = () => {
+    if (!mobileMenuOpen) trackMenuOpen();
     setMobileMenuOpen(!mobileMenuOpen);
     // Cerrar el dropdown de servicios cuando se cierra el menú móvil
     if (mobileMenuOpen) {
@@ -27,6 +35,9 @@ export function Header() {
   const navigateToSection = (sectionId: string) => {
     setMobileMenuOpen(false);
     setMobileServicesOpen(false);
+    if (sectionId === "contact") {
+      trackCtaFormClick("header", "Contáctanos");
+    }
 
     // Si estamos en la página principal, hacer scroll
     if (pathname === "/") {
@@ -70,10 +81,10 @@ export function Header() {
         const timeoutId = setTimeout(() => {
           const element = document.getElementById(hash);
           if (element) {
-            // Como inicialmente el header es estático, no necesitamos offset
-            // El header se volverá sticky después del scroll
+            const headerHeight = window.innerWidth < 768 ? 64 : 80;
+            const elementPosition = element.getBoundingClientRect().top + window.scrollY - headerHeight;
             window.scrollTo({
-              top: element.offsetTop,
+              top: elementPosition,
               behavior: "smooth",
             });
           }
@@ -83,6 +94,18 @@ export function Header() {
       }
     }
   }, [pathname]);
+
+  // Cerrar dropdown con Escape
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setDesktopServicesOpen(false);
+        setMobileServicesOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   return (
     <header
@@ -111,13 +134,31 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-8" aria-label="Navegación principal">
             <div
               className="relative"
-              onMouseEnter={() => setDesktopServicesOpen(true)}
+              onMouseEnter={() => {
+                if (!desktopServicesOpen) trackServicesDropdownOpen();
+                setDesktopServicesOpen(true);
+              }}
               onMouseLeave={() => setDesktopServicesOpen(false)}
             >
-              <button className="text-sm font-medium text-muted-foreground hover:text-foreground cursor-pointer flex items-center gap-1 transition-colors duration-200">
+              <button
+                ref={servicesButtonRef}
+                type="button"
+                onClick={() => setDesktopServicesOpen(!desktopServicesOpen)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setDesktopServicesOpen(!desktopServicesOpen);
+                  }
+                }}
+                aria-haspopup="true"
+                aria-expanded={desktopServicesOpen}
+                aria-controls="services-menu"
+                id="services-menu-button"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground cursor-pointer flex items-center gap-1 transition-colors duration-200 min-w-[44px] min-h-[44px] -m-2 p-2"
+              >
                 Servicios
                 <ChevronDown
                   className={`w-4 h-4 transition-transform duration-200 ${
@@ -128,16 +169,22 @@ export function Header() {
 
               {/* Custom Dropdown */}
               <div
+                ref={dropdownRef}
+                id="services-menu"
+                role="menu"
+                aria-labelledby="services-menu-button"
                 className={`absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-border/20 transition-all duration-200 transform origin-top ${
                   desktopServicesOpen
                     ? "opacity-100 visible scale-100 translate-y-0"
                     : "opacity-0 invisible scale-95 -translate-y-2"
                 }`}
               >
-                <div className="py-2">
+                <div className="py-2" role="none">
                   <Link
                     href="/cortador-jamon"
+                    role="menuitem"
                     className="flex items-center px-4 py-3 text-sm text-foreground hover:bg-red-50 hover:text-red-700 transition-colors duration-150 group"
+                    onClick={() => setDesktopServicesOpen(false)}
                   >
                     <div>
                       <div className="font-medium">Cortadores de Jamón</div>
@@ -149,7 +196,9 @@ export function Header() {
 
                   <Link
                     href="/barra-bebidas"
+                    role="menuitem"
                     className="flex items-center px-4 py-3 text-sm text-foreground hover:bg-blue-50 hover:text-blue-700 transition-colors duration-150 group"
+                    onClick={() => setDesktopServicesOpen(false)}
                   >
                     <div>
                       <div className="font-medium">Barra de Bebidas</div>
@@ -161,7 +210,9 @@ export function Header() {
 
                   <Link
                     href="/barra-aperitivos"
+                    role="menuitem"
                     className="flex items-center px-4 py-3 text-sm text-foreground hover:bg-green-50 hover:text-green-700 transition-colors duration-150 group"
+                    onClick={() => setDesktopServicesOpen(false)}
                   >
                     <div>
                       <div className="font-medium">Barra de Aperitivos</div>
@@ -173,7 +224,9 @@ export function Header() {
 
                   <Link
                     href="/camareros"
+                    role="menuitem"
                     className="flex items-center px-4 py-3 text-sm text-foreground hover:bg-purple-50 hover:text-purple-700 transition-colors duration-150 group"
+                    onClick={() => setDesktopServicesOpen(false)}
                   >
                     <div>
                       <div className="font-medium">Camareros Profesionales</div>
@@ -185,7 +238,9 @@ export function Header() {
 
                   <Link
                     href="/musica-en-directo"
+                    role="menuitem"
                     className="flex items-center px-4 py-3 text-sm text-foreground hover:bg-amber-50 hover:text-amber-700 transition-colors duration-150 group"
+                    onClick={() => setDesktopServicesOpen(false)}
                   >
                     <div>
                       <div className="font-medium">Música en Directo</div>
@@ -244,8 +299,10 @@ export function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMobileMenu}
-            className="md:hidden p-2 text-foreground cursor-pointer"
-            aria-label="Toggle menu"
+            className="md:hidden p-2 text-foreground cursor-pointer min-w-[44px] min-h-[44px]"
+            aria-label={mobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
           >
             {mobileMenuOpen ? (
               <X className="h-6 w-6" />
@@ -259,19 +316,27 @@ export function Header() {
       {/* Mobile Navigation Overlay */}
       {mobileMenuOpen && (
         <div
+          id="mobile-menu"
           className="md:hidden fixed top-16 left-0 right-0 bottom-0 bg-black/50 backdrop-blur-sm z-40"
           onClick={toggleMobileMenu}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menú de navegación"
         >
           <nav
             className="absolute top-0 left-0 right-0 bg-background border-b border-border shadow-lg"
             onClick={(e) => e.stopPropagation()}
+            aria-label="Navegación móvil"
           >
             <div className="w-full max-w-7xl mx-auto px-4 py-6">
               <div className="flex flex-col gap-4">
                 <div className="border-b border-border/30">
                   <button
                     onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                    className="text-left text-sm font-medium text-muted-foreground hover:text-foreground py-3 cursor-pointer w-full flex items-center justify-between"
+                    aria-expanded={mobileServicesOpen}
+                    aria-controls="mobile-services-list"
+                    id="mobile-services-button"
+                    className="text-left text-sm font-medium text-muted-foreground hover:text-foreground py-3 cursor-pointer w-full flex items-center justify-between min-h-[44px]"
                   >
                     Servicios
                     <ChevronDown
@@ -280,6 +345,7 @@ export function Header() {
                       }`}
                     />
                   </button>
+                  <div id="mobile-services-list" role="region" aria-labelledby="mobile-services-button">
                   {mobileServicesOpen && (
                     <div className="pl-4 pb-3 space-y-2">
                       <Link
@@ -319,6 +385,7 @@ export function Header() {
                       </Link>
                     </div>
                   )}
+                  </div>
                 </div>
                 <Link
                   href="/sobre-nosotros"

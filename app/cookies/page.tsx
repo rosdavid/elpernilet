@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function CookiesPage() {
   return (
-    <main className="min-h-screen bg-background">
+    <main id="main-content" className="min-h-screen bg-background">
       <Header />
       <div className="min-h-screen bg-background pt-8">
         <div className="container mx-auto px-4 py-16 max-w-4xl">
@@ -48,11 +48,13 @@ export default function CookiesPage() {
                   <ul className="list-disc list-inside text-muted-foreground space-y-1">
                     <li>
                       <strong>admin_session</strong>: Para autenticación del
-                      panel de administración
+                      panel de administración (sesión)
                     </li>
                     <li>
-                      <strong>cookie-consent</strong>: Para recordar sus
-                      preferencias de cookies
+                      <strong>localStorage: cookie-consent</strong>: Almacenamos
+                      sus preferencias de cookies en su navegador (no es una
+                      cookie, pero cumple la misma función de recordar su
+                      elección)
                     </li>
                   </ul>
                 </div>
@@ -67,16 +69,16 @@ export default function CookiesPage() {
                   </p>
                   <ul className="list-disc list-inside text-muted-foreground space-y-1">
                     <li>
-                      <strong>Vercel Analytics</strong>: Para análisis de
-                      tráfico y comportamiento
+                      <strong>Vercel Analytics</strong>: Análisis de tráfico y
+                      comportamiento (sesión)
                     </li>
                     <li>
-                      <strong>Vercel Speed Insights</strong>: Para métricas de
-                      rendimiento del sitio
+                      <strong>Vercel Speed Insights</strong>: Métricas de
+                      rendimiento del sitio (persistente)
                     </li>
                     <li>
-                      <strong>Google Analytics (GA4)</strong>: Para estadísticas
-                      detalladas de uso y comportamiento de usuarios
+                      <strong>Google Analytics (GA4)</strong>: Estadísticas de
+                      uso y comportamiento (_ga: 2 años; _gid: 24 h; _gat: 1 min)
                     </li>
                   </ul>
                 </div>
@@ -114,6 +116,22 @@ export default function CookiesPage() {
             </section>
 
             <section>
+              <h2 className="text-2xl font-semibold mb-4">Responsable</h2>
+              <p className="text-muted-foreground leading-relaxed mb-2">
+                El responsable del tratamiento de los datos recogidos mediante
+                cookies es elpernilet. Para más información sobre el tratamiento
+                de sus datos personales, consulte nuestra{" "}
+                <a
+                  href="/privacidad"
+                  className="underline hover:text-primary transition-colors"
+                >
+                  Política de Privacidad
+                </a>
+                .
+              </p>
+            </section>
+
+            <section>
               <h2 className="text-2xl font-semibold mb-4">Más información</h2>
               <p className="text-muted-foreground leading-relaxed">
                 Si tiene preguntas sobre nuestra política de cookies, puede
@@ -124,7 +142,7 @@ export default function CookiesPage() {
 
             <section className="bg-muted p-6 rounded-lg">
               <p className="text-sm text-muted-foreground">
-                <strong>Última actualización:</strong> Octubre 2024
+                <strong>Última actualización:</strong> Febrero 2025
               </p>
             </section>
           </div>

@@ -12,6 +12,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import Link from "next/link";
+import { trackCtaFormClick } from "@/hooks/use-analytics";
 
 const successStories = [
   {
@@ -277,7 +278,10 @@ export function SuccessStories() {
               invitados recordarán para siempre.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/#contact">
+              <Link
+                href="/#contact"
+                onClick={() => trackCtaFormClick("success_stories_nuestra_historia")}
+              >
                 <Button size="lg" className="flex items-center gap-2">
                   Solicita presupuesto
                   <ArrowRight className="w-4 h-4" />

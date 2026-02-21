@@ -71,7 +71,7 @@ export default function NuestraHistoria() {
     <>
       <Header />
 
-      <main className="min-h-screen">
+      <main id="main-content" className="min-h-screen">
         <Breadcrumbs
           items={[
             { label: "Inicio", href: "/" },

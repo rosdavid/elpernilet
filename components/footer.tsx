@@ -1,4 +1,6 @@
 import { Mail, Phone, MapPin, Instagram } from "lucide-react";
+import { SocialLink } from "@/components/social-link";
+import { ContactLink } from "@/components/contact-link";
 import Image from "next/image";
 import Link from "next/link";
 import { CookieSettingsButton } from "./cookie-settings-button";
@@ -24,15 +26,14 @@ export function Footer() {
 
             {/* Redes Sociales */}
             <div className="flex gap-4 mt-6">
-              <a
+              <SocialLink
                 href="https://instagram.com/elpernilet"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary-foreground/60 hover:text-primary-foreground transition-colors duration-200 hover:scale-110 transform"
+                platform="instagram"
                 aria-label="Síguenos en Instagram"
+                className="text-primary-foreground/60 hover:text-primary-foreground transition-colors duration-200 hover:scale-110 transform"
               >
                 <Instagram className="w-6 h-6" />
-              </a>
+              </SocialLink>
             </div>
           </div>
 
@@ -41,15 +42,38 @@ export function Footer() {
             <div className="space-y-3 text-primary-foreground/80">
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5" />
-                <a href="tel:+34654127391">+34 654 12 73 91</a>
+                <ContactLink
+                  type="phone"
+                  href="tel:+34654127391"
+                  location="footer"
+                  className="hover:text-primary-foreground transition-colors"
+                >
+                  +34 654 12 73 91
+                </ContactLink>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5" />
-                <a href="mailto:hola@elpernilet.com">hola@elpernilet.com</a>
+                <ContactLink
+                  type="email"
+                  href="mailto:hola@elpernilet.com"
+                  location="footer"
+                  className="hover:text-primary-foreground transition-colors"
+                >
+                  hola@elpernilet.com
+                </ContactLink>
               </div>
               <div className="flex items-center gap-3">
                 <MapPin className="w-5 h-5" />
-                <span>Carrer Nou, 41, Navarcles (08270), Barcelona</span>
+                <ContactLink
+                  type="map"
+                  href="https://www.google.com/maps/search/?api=1&query=Carrer+Nou+41+08270+Navarcles+Barcelona"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  location="footer"
+                  className="hover:text-primary-foreground transition-colors"
+                >
+                  Carrer Nou, 41, Navarcles (08270), Barcelona
+                </ContactLink>
               </div>
             </div>
           </div>

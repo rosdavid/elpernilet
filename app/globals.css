@@ -113,6 +113,29 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/* Scroll-margin para navegación por hash con header fijo */
+#main-content,
+#contact,
+#hero,
+#gallery,
+#faq,
+#services,
+#online-store {
+  scroll-margin-top: 5rem; /* 80px - altura del header */
+}
+
+@media (max-width: 768px) {
+  #main-content,
+  #contact,
+  #hero,
+  #gallery,
+  #faq,
+  #services,
+  #online-store {
+    scroll-margin-top: 4rem; /* 64px - header móvil */
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

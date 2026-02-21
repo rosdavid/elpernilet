@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Star, Quote } from "lucide-react";
+import { trackCtaFormClick } from "@/hooks/use-analytics";
 
 const testimonials = [
   {
@@ -42,7 +43,7 @@ const testimonials = [
 
 export function AppetizerBarTestimonials() {
   const navigateToContactForm = () => {
-    // Si estamos en la página principal, hacer scroll directo
+    trackCtaFormClick("testimonials_barra_aperitivos");
     if (window.location.pathname === "/") {
       const element = document.getElementById("contact");
       if (element) {

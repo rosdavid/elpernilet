@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { X } from "lucide-react";
+import { trackWhatsAppClick } from "@/hooks/use-analytics";
 
 // Componente del icono de WhatsApp original
 const WhatsAppIcon = ({ className }: { className?: string }) => (
@@ -88,6 +89,7 @@ export function WhatsAppFloat() {
   };
 
   const handleWhatsAppClick = () => {
+    trackWhatsAppClick();
     setIsExpanded(false); // Cerrar tooltip al hacer clic en WhatsApp
   };
 

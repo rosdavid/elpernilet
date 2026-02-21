@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Star, Quote } from "lucide-react";
+import { trackCtaFormClick } from "@/hooks/use-analytics";
 
 const testimonials = [
   {
@@ -42,6 +43,7 @@ const testimonials = [
 
 export function LiveMusicTestimonials() {
   const navigateToContactForm = () => {
+    trackCtaFormClick("testimonials_musica_en_directo");
     if (window.location.pathname === "/") {
       const element = document.getElementById("contact");
       if (element) {

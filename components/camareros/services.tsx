@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Users, Crown, Clock, Award, MapPin, Utensils } from "lucide-react";
-import { trackEvent } from "@/hooks/use-analytics";
+import { trackCtaFormClick } from "@/hooks/use-analytics";
 
 const services = [
   {
@@ -71,12 +71,7 @@ const services = [
 
 export function WaitersServices() {
   const navigateToContactForm = () => {
-    trackEvent("cta_click", {
-      cta_location: "services_section",
-      cta_text: "Solicita presupuesto",
-      page: "camareros",
-    });
-
+    trackCtaFormClick("services_camareros");
     if (window.location.pathname === "/") {
       const element = document.getElementById("contact");
       if (element) {

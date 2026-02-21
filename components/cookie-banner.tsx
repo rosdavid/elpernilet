@@ -109,8 +109,14 @@ export function CookieBanner() {
               <h3 className="font-semibold mb-2">🍪 Uso de cookies</h3>
               <p className="text-sm text-muted-foreground">
                 Utilizamos cookies para mejorar su experiencia, analizar el
-                tráfico y personalizar el contenido. Puede gestionar sus
-                preferencias en cualquier momento.
+                tráfico y personalizar el contenido.{" "}
+                <a
+                  href="/cookies"
+                  className="underline hover:text-primary transition-colors"
+                >
+                  Política de cookies
+                </a>
+                . Puede gestionar sus preferencias en cualquier momento.
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -166,7 +172,7 @@ export function CookieBanner() {
                 <Label className="font-medium">Cookies de análisis</Label>
                 <p className="text-sm text-muted-foreground">
                   Nos ayudan a entender cómo usa el sitio para mejorarlo (Vercel
-                  Analytics y Vercel SpeedInsights).
+                  Analytics, Vercel Speed Insights y Google Analytics GA4).
                 </p>
               </div>
               <Switch

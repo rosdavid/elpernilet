@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { getBreadcrumbSchema } from "@/lib/breadcrumb-schema";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Breadcrumbs } from "@/components/breadcrumbs";
@@ -136,6 +137,17 @@ export default function Camareros() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            getBreadcrumbSchema([
+              { name: "Inicio", url: "/" },
+              { name: "Camareros", url: "/camareros" },
+            ])
+          ),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "FAQPage",
@@ -211,7 +223,7 @@ export default function Camareros() {
 
       <Header />
 
-      <main className="min-h-screen">
+      <main id="main-content" className="min-h-screen">
         <Breadcrumbs
           items={[
             { label: "Inicio", href: "/" },

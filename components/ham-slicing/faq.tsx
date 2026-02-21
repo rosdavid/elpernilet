@@ -10,6 +10,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { HelpCircle } from "lucide-react";
+import { trackCtaFormClick, trackFaqOpen } from "@/hooks/use-analytics";
 
 const faqs = [
   {
@@ -61,7 +62,7 @@ const faqs = [
 
 export function HamSlicingFAQ() {
   const navigateToContactForm = () => {
-    // Si estamos en la página principal, hacer scroll directo
+    trackCtaFormClick("faq_cortador_jamon");
     if (window.location.pathname === "/") {
       const element = document.getElementById("contact");
       if (element) {
@@ -116,7 +117,18 @@ export function HamSlicingFAQ() {
 
           <Card className="border-2 border-red-50">
             <CardContent className="p-0">
-              <Accordion type="single" collapsible className="w-full">
+              <Accordion
+                type="single"
+                collapsible
+                className="w-full"
+                onValueChange={(value) => {
+                  const match = value?.match(/item-(\d+)/);
+                  if (match) {
+                    const idx = parseInt(match[1], 10);
+                    if (faqs[idx]) trackFaqOpen(faqs[idx].question, "cortador-jamon");
+                  }
+                }}
+              >
                 {faqs.map((faq, index) => (
                   <AccordionItem
                     key={index}

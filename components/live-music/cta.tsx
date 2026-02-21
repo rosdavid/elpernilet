@@ -4,9 +4,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Phone, Mail, Calendar, MapPin, Award } from "lucide-react";
+import { trackCtaFormClick } from "@/hooks/use-analytics";
+import { ContactLink } from "@/components/contact-link";
 
 export function LiveMusicCTA() {
   const navigateToContactForm = () => {
+    trackCtaFormClick("cta_musica_en_directo");
     if (window.location.pathname === "/") {
       const element = document.getElementById("contact");
       if (element) {
@@ -53,7 +56,13 @@ export function LiveMusicCTA() {
                 <div>
                   <div className="font-semibold">Teléfono</div>
                   <div className="text-accent">
-                    <a href="tel:+34654127391">+34 654 12 73 91</a>
+                    <ContactLink
+                      type="phone"
+                      href="tel:+34654127391"
+                      location="cta_musica_en_directo"
+                    >
+                      +34 654 12 73 91
+                    </ContactLink>
                   </div>
                 </div>
               </div>
@@ -65,7 +74,13 @@ export function LiveMusicCTA() {
                 <div>
                   <div className="font-semibold">Email</div>
                   <div className="text-accent">
-                    <a href="mailto:hola@elpernilet.com">hola@elpernilet.com</a>
+                    <ContactLink
+                      type="email"
+                      href="mailto:hola@elpernilet.com"
+                      location="cta_musica_en_directo"
+                    >
+                      hola@elpernilet.com
+                    </ContactLink>
                   </div>
                 </div>
               </div>

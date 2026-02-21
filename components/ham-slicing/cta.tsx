@@ -2,11 +2,14 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { trackCtaFormClick } from "@/hooks/use-analytics";
+import { ContactLink } from "@/components/contact-link";
 import { Badge } from "@/components/ui/badge";
 import { Phone, Mail, Calendar, MapPin, Award } from "lucide-react";
 
 export function HamSlicingCTA() {
   const navigateToContactForm = () => {
+    trackCtaFormClick("cta_cortador_jamon");
     // Si estamos en la página principal, hacer scroll directo
     if (window.location.pathname === "/") {
       const element = document.getElementById("contact");
@@ -57,7 +60,13 @@ export function HamSlicingCTA() {
                 <div>
                   <div className="font-semibold">Teléfono</div>
                   <div className="text-accent">
-                    <a href="tel:+34654127391">+34 654 12 73 91</a>
+                    <ContactLink
+                      type="phone"
+                      href="tel:+34654127391"
+                      location="cta_cortador_jamon"
+                    >
+                      +34 654 12 73 91
+                    </ContactLink>
                   </div>
                 </div>
               </div>
@@ -69,7 +78,13 @@ export function HamSlicingCTA() {
                 <div>
                   <div className="font-semibold">Email</div>
                   <div className="text-accent">
-                    <a href="mailto:info@elpernilet.com">info@elpernilet.com</a>
+                    <ContactLink
+                      type="email"
+                      href="mailto:info@elpernilet.com"
+                      location="cta_cortador_jamon"
+                    >
+                      info@elpernilet.com
+                    </ContactLink>
                   </div>
                 </div>
               </div>

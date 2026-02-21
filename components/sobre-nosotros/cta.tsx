@@ -3,7 +3,12 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Phone, Mail, Calendar, ArrowRight, Sparkles } from "lucide-react";
-import { trackEvent } from "@/hooks/use-analytics";
+import {
+  trackCtaFormClick,
+  trackEvent,
+  trackPhoneClick,
+  trackEmailClick,
+} from "@/hooks/use-analytics";
 
 export function AboutCTA() {
   const handleCTAClick = (action: string) => {
@@ -14,12 +19,7 @@ export function AboutCTA() {
   };
 
   const navigateToContactForm = () => {
-    trackEvent("cta_click", {
-      cta_location: "about_hero_section",
-      cta_text: "Hablemos de tu evento",
-      page: "sobre-nosotros",
-    });
-
+    trackCtaFormClick("cta_sobre_nosotros", "Hablemos de tu evento");
     if (window.location.pathname === "/") {
       const element = document.getElementById("contact");
       if (element) {
@@ -31,11 +31,13 @@ export function AboutCTA() {
   };
 
   const handlePhoneClick = () => {
+    trackPhoneClick("sobre_nosotros_cta");
     handleCTAClick("phone_call");
     window.location.href = "tel:+34654127391";
   };
 
   const handleEmailClick = () => {
+    trackEmailClick("sobre_nosotros_cta");
     handleCTAClick("email_contact");
     window.location.href = "mailto:info@elpernilet.com";
   };

@@ -6,6 +6,7 @@ import { Play, Star, Award } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { VideoModal } from "@/components/video-modal";
+import { trackCtaFormClick } from "@/hooks/use-analytics";
 
 const stats = [
   { icon: Award, label: "Años de experiencia", value: "+15" },
@@ -36,6 +37,7 @@ export function HamSlicingHero() {
   const visibleTrustedBy = showAllTrusted ? trustedBy : trustedBy.slice(0, 5);
 
   const navigateToContactForm = () => {
+    trackCtaFormClick("hero_cortador_jamon");
     // Si estamos en la página principal, hacer scroll directo
     if (window.location.pathname === "/") {
       const element = document.getElementById("contact");
@@ -91,14 +93,17 @@ export function HamSlicingHero() {
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col gap-3">
               <Button
                 onClick={navigateToContactForm}
                 size="lg"
-                className="text-lg px-8 py-6 cursor-pointer"
+                className="text-lg px-8 py-6 cursor-pointer w-fit"
               >
                 Solicita presupuesto
               </Button>
+              <p className="text-sm text-muted-foreground">
+                Respuesta en menos de 24h · Sin compromiso
+              </p>
             </div>
 
             {/* Trust Indicators */}

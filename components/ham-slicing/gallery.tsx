@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { trackCtaFormClick } from "@/hooks/use-analytics";
 
 const galleryImages = [
   {
@@ -60,7 +61,7 @@ const galleryImages = [
 
 export function HamSlicingGallery() {
   const navigateToContactForm = () => {
-    // Si estamos en la página principal, hacer scroll directo
+    trackCtaFormClick("gallery_cortador_jamon");
     if (window.location.pathname === "/") {
       const element = document.getElementById("contact");
       if (element) {

@@ -176,7 +176,7 @@ export default function SobreNosotros() {
 
       <Header />
 
-      <main className="min-h-screen">
+      <main id="main-content" className="min-h-screen">
         <Breadcrumbs
           items={[{ label: "Inicio", href: "/" }, { label: "Sobre Nosotros" }]}
         />

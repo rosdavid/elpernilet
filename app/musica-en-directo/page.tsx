@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { getBreadcrumbSchema } from "@/lib/breadcrumb-schema";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Breadcrumbs } from "@/components/breadcrumbs";
@@ -138,6 +139,17 @@ export default function MusicaEnDirecto() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            getBreadcrumbSchema([
+              { name: "Inicio", url: "/" },
+              { name: "Música en directo", url: "/musica-en-directo" },
+            ])
+          ),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "FAQPage",
@@ -205,7 +217,7 @@ export default function MusicaEnDirecto() {
 
       <Header />
 
-      <main className="min-h-screen">
+      <main id="main-content" className="min-h-screen">
         <Breadcrumbs
           items={[
             { label: "Inicio", href: "/" },

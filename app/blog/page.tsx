@@ -114,7 +114,7 @@ export default function BlogPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Header />
-      <main className="min-h-screen">
+      <main id="main-content" className="min-h-screen">
         {/* Hero Section */}
         <section className="pt-8 pb-12 md:pt-12 md:pb-16 bg-gradient-to-b from-background to-accent/20">
           <div className="w-full max-w-7xl mx-auto px-4">

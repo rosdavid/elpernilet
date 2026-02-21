@@ -2,10 +2,19 @@
 
 import type React from "react";
 
-import { useState, memo, useCallback } from "react";
+import { useState, memo, useCallback, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { trackFormSubmission, trackConversion } from "@/hooks/use-analytics";
+import {
+  trackFormSend,
+  trackFormStart,
+  trackFormAbandon,
+  trackFormValidationError,
+  trackFormError,
+  trackBudgetRangeSelect,
+  trackEventTypeSelect,
+  trackServicesSelect,
+} from "@/hooks/use-analytics";
 import {
   Card,
   CardContent,
@@ -38,10 +47,54 @@ import {
 import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+const FORM_STARTED_KEY = "elpernilet_form_started";
+const FORM_SUBMITTED_KEY = "elpernilet_form_submitted";
+
 export const ContactForm = memo(() => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [services, setServices] = useState<string[]>([]);
   const [open, setOpen] = useState(false);
+  const formStartedRef = useRef(false);
+  const formSubmittedRef = useRef(false);
+
+  // form_abandon: si form_start se disparó pero el usuario cierra/abandona sin enviar
+  useEffect(() => {
+    const handleAbandon = () => {
+      if (
+        formStartedRef.current &&
+        !formSubmittedRef.current &&
+        typeof sessionStorage !== "undefined"
+      ) {
+        const submitted = sessionStorage.getItem(FORM_SUBMITTED_KEY);
+        if (!submitted) {
+          trackFormAbandon();
+        }
+      }
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "hidden") {
+        handleAbandon();
+      }
+    };
+
+    const handlePageHide = () => {
+      handleAbandon();
+    };
+
+    const handleBeforeUnload = () => {
+      handleAbandon();
+    };
+
+    window.addEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("pagehide", handlePageHide);
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("pagehide", handlePageHide);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
 
   const serviceOptions = [
     { value: "camareros", label: "Camareros" },
@@ -60,6 +113,7 @@ export const ContactForm = memo(() => {
         const formData = new FormData(e.currentTarget);
 
         if (services.length === 0) {
+          trackFormValidationError("services", "Seleccione al menos un servicio");
           toast.error("Seleccione al menos un servicio.");
           setIsSubmitting(false);
           return;
@@ -128,9 +182,11 @@ export const ContactForm = memo(() => {
         });
 
         if (result.success) {
-          // Tracking de conversión exitosa
-          trackFormSubmission("contact_form");
-          trackConversion("contact_form_submitted", "lead_generation");
+          formSubmittedRef.current = true;
+          if (typeof sessionStorage !== "undefined") {
+            sessionStorage.setItem(FORM_SUBMITTED_KEY, "1");
+          }
+          trackFormSend();
 
           toast.success("¡Formulario enviado correctamente!", {
             description:
@@ -140,12 +196,14 @@ export const ContactForm = memo(() => {
           (e.target as HTMLFormElement).reset();
           setServices([]);
         } else {
+          trackFormError("api_error");
           toast.error("Error al enviar el formulario", {
             description: result.message || "Por favor, inténtelo de nuevo.",
             duration: 4000,
           });
         }
       } catch (error) {
+        trackFormError("network_error");
         toast.error("Error de conexión", {
           description:
             "Por favor, verifique su conexión a internet e inténtelo de nuevo.",
@@ -168,11 +226,14 @@ export const ContactForm = memo(() => {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif mb-6 text-balance">
-              Solicite su presupuesto
+              Solicita presupuesto
             </h2>
-            <p className="text-lg md:text-xl text-muted-foreground text-pretty leading-relaxed max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-muted-foreground text-pretty leading-relaxed max-w-2xl mx-auto mb-4">
               Cuéntenos sobre su evento y le prepararemos una propuesta
-              personalizada
+              personalizada. Respuesta en menos de 24h.
+            </p>
+            <p className="text-base font-medium text-foreground/90 max-w-xl mx-auto">
+              Presupuesto gratuito y sin compromiso · Sin coste de consulta
             </p>
           </div>
 
@@ -182,12 +243,36 @@ export const ContactForm = memo(() => {
                 Formulario de contacto
               </CardTitle>
               <CardDescription className="text-base">
-                Complete el formulario y nos pondremos en contacto con usted en
-                menos de 24 horas
+                Complete el formulario y nos pondremos en contacto en menos de 24
+                horas. Sin compromiso.
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-8">
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-8"
+                onFocus={(e) => {
+                  if (
+                    !formStartedRef.current &&
+                    (e.target as HTMLElement).tagName !== "BODY"
+                  ) {
+                    formStartedRef.current = true;
+                    if (typeof sessionStorage !== "undefined") {
+                      sessionStorage.setItem(FORM_STARTED_KEY, "1");
+                    }
+                    trackFormStart();
+                  }
+                }}
+                onInvalid={(e) => {
+                  const target = e.target as HTMLInputElement | HTMLSelectElement;
+                  if (target?.name) {
+                    trackFormValidationError(
+                      target.name,
+                      target.validationMessage || "Campo requerido"
+                    );
+                  }
+                }}
+              >
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="firstName" className="text-sm font-medium">
@@ -253,7 +338,11 @@ export const ContactForm = memo(() => {
                     <Label htmlFor="eventType" className="text-sm font-medium">
                       Tipo de evento *
                     </Label>
-                    <Select name="eventType" required>
+                    <Select
+                      name="eventType"
+                      required
+                      onValueChange={(value) => trackEventTypeSelect(value)}
+                    >
                       <SelectTrigger id="eventType" className="h-11">
                         <SelectValue placeholder="Seleccione el tipo de evento" />
                       </SelectTrigger>
@@ -329,7 +418,11 @@ export const ContactForm = memo(() => {
                     >
                       Rango de presupuesto aproximado *
                     </Label>
-                    <Select name="budgetRange" required>
+                    <Select
+                      name="budgetRange"
+                      required
+                      onValueChange={(value) => trackBudgetRangeSelect(value)}
+                    >
                       <SelectTrigger id="budgetRange" className="h-11">
                         <SelectValue placeholder="Seleccione rango de presupuesto" />
                       </SelectTrigger>
@@ -420,11 +513,13 @@ export const ContactForm = memo(() => {
                               <CommandItem
                                 key={service.value}
                                 onSelect={() => {
-                                  setServices((prev) =>
-                                    prev.includes(service.value)
+                                  setServices((prev) => {
+                                    const next = prev.includes(service.value)
                                       ? prev.filter((s) => s !== service.value)
-                                      : [...prev, service.value]
-                                  );
+                                      : [...prev, service.value];
+                                    trackServicesSelect(next);
+                                    return next;
+                                  });
                                 }}
                               >
                                 <Check

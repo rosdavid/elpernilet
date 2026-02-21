@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Award, Users, Star, Heart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { trackEvent } from "@/hooks/use-analytics";
+import { trackCtaFormClick } from "@/hooks/use-analytics";
 
 const stats = [
   { icon: Award, label: "Años de experiencia", value: "+15" },
@@ -16,12 +16,7 @@ const stats = [
 
 export function AboutHero() {
   const navigateToContactForm = () => {
-    trackEvent("cta_click", {
-      cta_location: "about_hero_section",
-      cta_text: "Hablemos de tu evento",
-      page: "sobre-nosotros",
-    });
-
+    trackCtaFormClick("hero_sobre_nosotros", "Hablemos de tu evento");
     if (window.location.pathname === "/") {
       const element = document.getElementById("contact");
       if (element) {

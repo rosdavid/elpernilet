@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, ArrowRight } from "lucide-react";
+import { trackCtaFormClick } from "@/hooks/use-analytics";
 import Image from "next/image";
 
 const processSteps = [
@@ -59,6 +60,7 @@ const processSteps = [
 
 export function LiveMusicProcess() {
   const navigateToContactForm = () => {
+    trackCtaFormClick("process_musica_en_directo");
     if (window.location.pathname === "/") {
       const element = document.getElementById("contact");
       if (element) {

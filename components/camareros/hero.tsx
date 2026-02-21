@@ -6,7 +6,7 @@ import { Play, Star, Award, Users } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { VideoModal } from "@/components/video-modal";
-import { trackEvent } from "@/hooks/use-analytics";
+import { trackCtaFormClick, trackEvent } from "@/hooks/use-analytics";
 
 const stats = [
   { icon: Award, label: "Años de experiencia", value: "+15" },
@@ -38,12 +38,7 @@ export function WaitersHero() {
   const visibleTrustedBy = showAllTrusted ? trustedBy : trustedBy.slice(0, 5);
 
   const navigateToContactForm = () => {
-    trackEvent("cta_click", {
-      cta_location: "hero_section",
-      cta_text: "Solicita presupuesto",
-      page: "camareros",
-    });
-
+    trackCtaFormClick("hero_camareros");
     if (window.location.pathname === "/") {
       const element = document.getElementById("contact");
       if (element) {
@@ -105,14 +100,17 @@ export function WaitersHero() {
               ))}
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col gap-3">
               <Button
                 onClick={navigateToContactForm}
                 size="lg"
-                className="text-lg px-8 py-6 bg-purple-700 hover:bg-purple-800 cursor-pointer"
+                className="text-lg px-8 py-6 bg-purple-700 hover:bg-purple-800 cursor-pointer w-fit"
               >
                 Solicita presupuesto
               </Button>
+              <p className="text-sm text-muted-foreground">
+                Respuesta en menos de 24h · Sin compromiso
+              </p>
             </div>
 
             <div className="mt-8 pt-8 border-t border-purple-100">

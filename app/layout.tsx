@@ -2,6 +2,8 @@
 import type React from "react";
 import type { Metadata } from "next";
 import { CookieBanner } from "@/components/cookie-banner";
+import { SkipToContent } from "@/components/skip-to-content";
+import { ScrollToContactTracker } from "@/components/scroll-to-contact-tracker";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
@@ -427,6 +429,8 @@ export default function RootLayout({
         />
       </head>
       <body className={`${roboto.variable} font-sans`}>
+        <SkipToContent />
+        <ScrollToContactTracker />
         {children}
         <CookieBanner />
         <StickyCta />

@@ -6,7 +6,7 @@ import { Play, Star, Award, Wine } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { VideoModal } from "@/components/video-modal";
-import { trackEvent } from "@/hooks/use-analytics";
+import { trackCtaFormClick, trackEvent } from "@/hooks/use-analytics";
 
 const stats = [
   { icon: Award, label: "Años de experiencia", value: "+15" },
@@ -38,21 +38,13 @@ export function DrinkBarHero() {
   const visibleTrustedBy = showAllTrusted ? trustedBy : trustedBy.slice(0, 5);
 
   const navigateToContactForm = () => {
-    // Tracking del click en CTA
-    trackEvent("cta_click", {
-      cta_location: "hero_section",
-      cta_text: "Solicita presupuesto",
-      page: "barra-bebidas",
-    });
-
-    // Si estamos en la página principal, hacer scroll directo
+    trackCtaFormClick("hero_barra_bebidas");
     if (window.location.pathname === "/") {
       const element = document.getElementById("contact");
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
       }
     } else {
-      // Si estamos en otra página, navegar a la principal y luego hacer scroll
       window.location.href = "/#contact";
     }
   };
@@ -114,14 +106,17 @@ export function DrinkBarHero() {
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col gap-3">
               <Button
                 onClick={navigateToContactForm}
                 size="lg"
-                className="text-lg px-8 py-6 bg-blue-700 hover:bg-blue-800 cursor-pointer"
+                className="text-lg px-8 py-6 bg-blue-700 hover:bg-blue-800 cursor-pointer w-fit"
               >
                 Solicita presupuesto
               </Button>
+              <p className="text-sm text-muted-foreground">
+                Respuesta en menos de 24h · Sin compromiso
+              </p>
             </div>
 
             {/* Trust Indicators */}

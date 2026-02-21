@@ -2,13 +2,28 @@
 
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Play } from "lucide-react";
-import { useState, useCallback, memo } from "react";
+import { useState, useCallback, memo, useEffect } from "react";
 import { VideoModal } from "@/components/video-modal";
+import { trackCtaFormClick } from "@/hooks/use-analytics";
 
 export const Hero = memo(() => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
+
+  // Cargar video solo en desktop o conexiones rápidas para mejor rendimiento en móvil
+  useEffect(() => {
+    const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1024;
+    const conn =
+      typeof navigator !== "undefined" &&
+      (navigator as Navigator & { connection?: { effectiveType?: string } })
+        .connection;
+    const isFastConnection =
+      !conn || conn.effectiveType === "4g" || conn.effectiveType === "5g";
+    setShowVideo(isDesktop || isFastConnection);
+  }, []);
 
   const scrollToSection = useCallback((id: string) => {
+    if (id === "contact") trackCtaFormClick("hero_home");
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -22,15 +37,25 @@ export const Hero = memo(() => {
       className="relative min-h-screen flex items-center justify-center bg-background"
     >
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover opacity-25"
-        >
-          <source src="/hero-video.mp4" type="video/mp4" />
-        </video>
+        {showVideo ? (
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            poster="/elpernilet-event-image.webp"
+            className="w-full h-full object-cover opacity-25"
+          >
+            <source src="/hero-video.mp4" type="video/mp4" />
+          </video>
+        ) : (
+          <div
+            className="w-full h-full bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: "url(/elpernilet-event-image.webp)" }}
+            aria-hidden="true"
+          />
+        )}
       </div>
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 text-center">
@@ -42,23 +67,28 @@ export const Hero = memo(() => {
           Servicios premium para eventos. Cortador de jamón en vivo, barra de
           bebidas y aperitivos, y servicio de camareros profesionales.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button
-            onClick={() => scrollToSection("contact")}
-            size="lg"
-            className="text-lg px-8 py-6 cursor-pointer"
-          >
-            Solicita presupuesto
-          </Button>
-          <Button
-            onClick={() => setIsVideoModalOpen(true)}
-            size="lg"
-            variant="outline"
-            className="text-lg px-8 py-6 bg-transparent cursor-pointer flex items-center gap-2"
-          >
-            <Play className="w-5 h-5" />
-            Conocer más
-          </Button>
+        <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              onClick={() => scrollToSection("contact")}
+              size="lg"
+              className="text-lg px-8 py-6 cursor-pointer"
+            >
+              Solicita presupuesto
+            </Button>
+            <Button
+              onClick={() => setIsVideoModalOpen(true)}
+              size="lg"
+              variant="outline"
+              className="text-lg px-8 py-6 bg-transparent cursor-pointer flex items-center gap-2"
+            >
+              <Play className="w-5 h-5" />
+              Conocer más
+            </Button>
+          </div>
+          <p className="text-sm text-muted-foreground">
+            Respuesta en menos de 24h · Sin compromiso
+          </p>
         </div>
       </div>
 

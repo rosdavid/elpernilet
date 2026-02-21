@@ -10,6 +10,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { HelpCircle } from "lucide-react";
+import { trackCtaFormClick, trackFaqOpen } from "@/hooks/use-analytics";
 
 const faqs = [
   {
@@ -56,6 +57,7 @@ const faqs = [
 
 export function LiveMusicFAQ() {
   const navigateToContactForm = () => {
+    trackCtaFormClick("faq_musica_en_directo");
     if (window.location.pathname === "/") {
       const element = document.getElementById("contact");
       if (element) {
@@ -108,7 +110,19 @@ export function LiveMusicFAQ() {
 
           <Card className="border-2 border-amber-50">
             <CardContent className="p-0">
-              <Accordion type="single" collapsible className="w-full">
+              <Accordion
+                type="single"
+                collapsible
+                className="w-full"
+                onValueChange={(value) => {
+                  const match = value?.match(/item-(\d+)/);
+                  if (match) {
+                    const idx = parseInt(match[1], 10);
+                    if (faqs[idx])
+                      trackFaqOpen(faqs[idx].question, "musica-en-directo");
+                  }
+                }}
+              >
                 {faqs.map((faq, index) => (
                   <AccordionItem
                     key={index}

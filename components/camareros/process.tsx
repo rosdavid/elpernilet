@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, ArrowRight } from "lucide-react";
+import { trackCtaFormClick } from "@/hooks/use-analytics";
 import Image from "next/image";
 
 const processSteps = [
@@ -51,6 +52,7 @@ const processSteps = [
 
 export function WaitersProcess() {
   const navigateToContactForm = () => {
+    trackCtaFormClick("process_camareros");
     if (window.location.pathname === "/") {
       const element = document.getElementById("contact");
       if (element) {

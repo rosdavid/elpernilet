@@ -10,6 +10,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ShareButtons } from "@/components/share-buttons";
+import { BlogPostReadTracker } from "@/components/blog-post-read-tracker";
 import { getPostBySlug, getAllPosts, getRelatedPosts } from "@/lib/blog";
 import { Calendar, Clock, User, ArrowLeft, ArrowRight } from "lucide-react";
 
@@ -166,7 +167,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Header />
-      <main className="min-h-screen pt-20">
+      <main id="main-content" className="min-h-screen pt-20">
         {/* Breadcrumb */}
         <Breadcrumbs
           items={[
@@ -234,7 +235,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
         {/* Post Content */}
         <section className="pb-16">
-          <div className="w-full max-w-4xl mx-auto px-4">
+          <div className="w-full max-w-4xl mx-auto px-4 relative">
+            <BlogPostReadTracker slug={slug} title={post.title} />
             <article
               className="prose prose-lg prose-slate max-w-none prose-headings:font-serif prose-headings:text-foreground prose-p:text-muted-foreground prose-p:leading-relaxed prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-strong:text-foreground prose-blockquote:border-l-primary prose-blockquote:bg-accent/20 prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:rounded-r-lg"
               dangerouslySetInnerHTML={{ __html: post.content }}

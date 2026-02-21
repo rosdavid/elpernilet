@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { trackEvent } from "@/hooks/use-analytics";
+import { trackCtaFormClick } from "@/hooks/use-analytics";
 
 const SCROLL_THRESHOLD = 400;
 
@@ -44,11 +44,7 @@ export function StickyCta() {
   }, [isPublic, isHome]);
 
   const handleClick = () => {
-    trackEvent("cta_click", {
-      cta_location: "sticky_bar",
-      cta_text: "Solicita presupuesto",
-      page: pathname || "/",
-    });
+    trackCtaFormClick("sticky_bar", "Solicita presupuesto");
 
     if (pathname === "/") {
       const element = document.getElementById("contact");
@@ -68,7 +64,7 @@ export function StickyCta() {
     >
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4 md:flex-col md:items-stretch md:text-center md:gap-2">
         <p className="text-sm font-medium text-foreground">
-          Presupuesto gratuito en 24h
+          Presupuesto gratuito en 24h · Sin compromiso
         </p>
         <Button
           onClick={handleClick}

@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { getBreadcrumbSchema } from "@/lib/breadcrumb-schema";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Breadcrumbs } from "@/components/breadcrumbs";
@@ -142,6 +143,17 @@ export default function BarraBebidas() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            getBreadcrumbSchema([
+              { name: "Inicio", url: "/" },
+              { name: "Barra de bebidas", url: "/barra-bebidas" },
+            ])
+          ),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "FAQPage",
@@ -217,7 +229,7 @@ export default function BarraBebidas() {
 
       <Header />
 
-      <main className="min-h-screen">
+      <main id="main-content" className="min-h-screen">
         <Breadcrumbs
           items={[
             { label: "Inicio", href: "/" },

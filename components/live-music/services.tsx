@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Music, Guitar, Mic, Piano, Users, MapPin } from "lucide-react";
-import { trackEvent } from "@/hooks/use-analytics";
+import { trackCtaFormClick } from "@/hooks/use-analytics";
 
 const services = [
   {
@@ -83,12 +83,7 @@ const services = [
 
 export function LiveMusicServices() {
   const navigateToContactForm = () => {
-    trackEvent("cta_click", {
-      cta_location: "services_section",
-      cta_text: "Solicita presupuesto",
-      page: "musica-en-directo",
-    });
-
+    trackCtaFormClick("services_musica_en_directo");
     if (window.location.pathname === "/") {
       const element = document.getElementById("contact");
       if (element) {
